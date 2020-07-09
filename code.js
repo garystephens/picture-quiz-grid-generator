@@ -1,10 +1,10 @@
 function readMultiFiles(files) {
+    $('td').hide();
     $('img').each(function () {
         var $image = $(this);
         $image.removeAttr('src').replaceWith($image.clone());
         $image.closest('td').hide();
     });
-    $('.imageNumber').text('');
     readFile(files, 0);
     $('#watermark').show();
     logToGoogleAnalytics(files.length);
@@ -25,7 +25,6 @@ function readFile(files, i) {
         var $image = $('img').eq(i);
         $image.attr('src', e.target.result);
         $image.closest('td').css('display', 'table-cell');
-        $('.imageNumber').eq(i).text(i+1);
         readNextFile(e, files, i);
     };
     reader.readAsDataURL(file);
@@ -97,9 +96,16 @@ function makeScreenshot() {
     });
 }
 
+function numberImages() {
+    $('.imageNumber').each(function (index, image) {
+        $(image).text(index+1);
+    });
+}
+
 $(document).ready(function () {
     setImageSize();
     setWatermarkTextFromCookie();
+    numberImages();
     makeWatermarkDraggable();
     handleWindowResize();
     handleWatermarkTextChange();

@@ -20,7 +20,6 @@ img {
 td { 
     position: relative;
     border: 1px solid #000000;
-    display: none;
 }
 li {
     margin: 0 0 8px 0;
@@ -47,7 +46,6 @@ li p {
     top: 50px;
     left: 50px;
     z-index: 100;
-    display: none;
 }
 @media print, screen and (max-width: 600px) {
     #watermark, .imageNumber  {
