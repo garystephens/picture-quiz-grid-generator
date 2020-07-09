@@ -102,11 +102,23 @@ function numberImages() {
     });
 }
 
+function handleContainImages() {
+    $('#containImages').click(function () {
+        if ($(this).is(':checked')) {
+            $('#pictureQuizGrid').addClass('containImages');
+        } else {
+            $('#pictureQuizGrid').removeClass('containImages');
+        }
+    });
+
+}
+
 $(document).ready(function () {
     setImageSize();
     setWatermarkTextFromCookie();
     numberImages();
     makeWatermarkDraggable();
+    handleContainImages();
     handleWindowResize();
     handleWatermarkTextChange();
     handleWatermarkRotation();

@@ -44,14 +44,14 @@
                     Save up to 24 images for your quiz on your device
                     <br/>
                     <p class="tip">
-                        Tip: Images will be automatically cropped to a square shape,
-                        so make sure that what's important in the image is roughly in the centre of the image,
-                        or that the image is roughly square in shape to begin with.
+                        Tip: Images that are square in shape, or where the important part of the image is in the centre, work best.
                     </span>
                 </li>
                 <li>
                     Choose all the image files with this button -> 
                     <input type="file" id="fileSelector" name="fileSelector" onchange="readMultiFiles(this.files)" multiple=""/>
+                    <br/>
+                    <label><input type="checkbox" id="containImages">Show full uncropped images</label>
                 </li>
                 <li>
                     Optionally, type some watermark text to be overlaid on the grid: <input type="text" id="watermarkText" /> and drag the watermark to your preferred position

@@ -17,6 +17,9 @@ img {
     border-width: 0; 
     display: block;
 }
+#pictureQuizGrid.containImages img {
+    object-fit: contain;
+}
 td { 
     position: relative;
     border: 1px solid #000000;
@@ -46,6 +49,7 @@ li p {
     top: 50px;
     left: 50px;
     z-index: 100;
+    cursor: move;
 }
 @media print, screen and (max-width: 600px) {
     #watermark, .imageNumber  {
