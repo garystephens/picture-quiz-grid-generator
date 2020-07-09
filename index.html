@@ -20,16 +20,75 @@
 
     </head>
     <body>
-        <input type="file" id="fileSelector" name="fileSelector" onchange="readMultiFiles(this.files)" multiple=""/>
-        <br/>
-        Watermark Text: <input type="text" id="watermarkText" />
-        <input type="checkbox" id="verticalWatermark" /> Vertical
-        &nbsp;&nbsp;&nbsp;
-        (watermark can be dragged to your preferred position)
+        <h2>Gary's Picture Quiz Grid Generator</h2>
+        <ol>
+            <li>
+                Save up to 24 images for your quiz on your device
+                <br/>
+                <span class="tip">
+                    Tip: Images will be automatically cropped to a square shape.
+                    Make sure that what's important in the image is roughly in the centre of the image,
+                    or that the image is roughly square in shape to being with.
+                </span>
+            </li>
+            <li>
+                Choose all the images with this button -> 
+                <input type="file" id="fileSelector" name="fileSelector" onchange="readMultiFiles(this.files)" multiple=""/>
+            </li>
+            <li>
+                Optionally set watermark text: <input type="text" id="watermarkText" />
+                <input type="checkbox" id="verticalWatermark" /> Vertical
+                &nbsp;&nbsp;&nbsp;
+                <span class="tip">(watermark can be dragged to your preferred position)</span>
+            </li>
+            <li>
+                Take a screenshot of the grid (e.g. on Windows, you could use <a href="https://getgreenshot.org/" target="_blank">Greenshot</a>)
+                <br/>
+                <span class="tip">
+                    Some browsers give better image quality than others, e.g. on Windows, Firefox is better than Chrome.
+                </span>
+            </li>
+        </ol>
         <br/>
         <div style="position:relative">
             <div id="watermark"></div>
             <table>
+                <tr>
+                    <td>
+                        <span class="counter"></span>
+                        <img>
+                    </td>
+                    <td>
+                        <span class="counter"></span>
+                        <img>
+                    </td>
+                    <td>
+                        <span class="counter"></span>
+                        <img>
+                    </td>
+                    <td>
+                        <span class="counter"></span>
+                        <img>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="counter"></span>
+                        <img>
+                    </td>
+                    <td>
+                        <span class="counter"></span>
+                        <img>
+                    </td>
+                    <td>
+                        <span class="counter"></span>
+                        <img>
+                    </td>
+                    <td>
+                        <span class="counter"></span>
+                        <img>
+                    </td>
+                </tr>
                 <tr>
                     <td>
                         <span class="counter"></span>

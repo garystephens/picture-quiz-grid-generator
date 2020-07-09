@@ -40,3 +40,6 @@ td {
     -ms-transform: rotate(270deg);
     transform: rotate(270deg);
 }
+.tip {
+    font-size: 11px;
+}

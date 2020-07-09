@@ -1,5 +1,8 @@
 function readMultiFiles(files) {
-    $('img').removeAttr('src');
+    $('img').each(function () {
+        var $image = $(this);
+        $image.removeAttr('src').replaceWith($image.clone());
+    });
     $('.counter').text('');
     readFile(files, 0);
 }
@@ -26,6 +29,7 @@ var WATERMARKTEXT_COOKIE_NAME = 'watermarkText';
 function setWatermarkTextFromCookie() {
     var watermarkText = $.cookie(WATERMARKTEXT_COOKIE_NAME);
     if (watermarkText !== undefined) {
+        $('#watermarkText').val(watermarkText);
         $('#watermark').text(watermarkText);
     }
 }
