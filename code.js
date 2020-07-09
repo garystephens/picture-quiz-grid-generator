@@ -3,7 +3,7 @@ function readMultiFiles(files) {
         var $image = $(this);
         $image.removeAttr('src').replaceWith($image.clone());
     });
-    $('.counter').text('');
+    $('.imageNumber').text('');
     readFile(files, 0);
 }
 
@@ -12,7 +12,7 @@ function readFile(files, i) {
     var reader = new FileReader();
     reader.onload = function(e){
         $('img').eq(i).attr('src', e.target.result);
-        $('.counter').eq(i).text(i+1);
+        $('.imageNumber').eq(i).text(i+1);
         readNextFile(e, files, i);
     };
     reader.readAsDataURL(file);
@@ -55,11 +55,20 @@ function handleWatermarkTextChange() {
 function handleWatermarkRotation() {
     $('#verticalWatermark').click(function () {
         if ($(this).is(':checked')) {
-            $('#watermark').addClass('rotate270');
+            $('#watermark').addClass('rotate90');
         } else {
-            $('#watermark').removeClass('rotate270');
+            $('#watermark').removeClass('rotate90');
         }
     });
+}
+
+function handleWindowResize() {
+    var resizeTimeout;
+    $(window).resize(function() {
+        // On resize, don't adjust image size immediately (too computationally heavy), instead wait for user to stop resizing the window first
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(setImageSize, 250);
+    }) 
 }
 
 function setImageSize() {
@@ -67,16 +76,19 @@ function setImageSize() {
     var imageWidth = Math.round((windowWidth - 20) / 4);
     $('img').attr('width', imageWidth);
     $('img').attr('height', imageWidth);
+}
 
-    $(window).resize(function(){
-        setImageSize();
-    }) 
+function makeScreenshot() {
+    html2canvas(document.getElementById('pictureQuizGrid'), {scale: 1}).then(canvas => {
+        document.body.appendChild(canvas);
+    });
 }
 
 $(document).ready(function () {
     setImageSize();
     setWatermarkTextFromCookie();
     makeWatermarkDraggable();
+    handleWindowResize();
     handleWatermarkTextChange();
     handleWatermarkRotation();
 });
