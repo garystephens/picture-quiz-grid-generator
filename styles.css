@@ -1,0 +1,42 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+table, td {
+    border: 1px solid white;
+}
+img {
+    object-fit: cover;
+    width:200px;
+    height:200px;    
+    image-rendering: -webkit-optimize-contrast;            
+}
+td { 
+    position: relative;
+}
+.counter {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: white;
+    display: inline-block;
+    padding: 0px 5px;
+    font-weight: bold;
+    opacity: 0.7;
+}
+#watermark {
+    position: absolute;
+    background-color: white;
+    padding: 0px 5px;
+    font-weight: bold;
+    opacity: 0.7;
+    top: 384px;
+    left: 420px;
+    z-index: 100;
+}
+.rotate270 {
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
