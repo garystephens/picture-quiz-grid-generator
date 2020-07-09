@@ -20,9 +20,13 @@ img {
 td { 
     position: relative;
     border: 1px solid #000000;
+    display: none;
 }
 li {
     margin: 0 0 8px 0;
+}
+li p {
+    margin-top: 2px;
 }
 .imageNumber {
     position: absolute;
@@ -44,7 +48,7 @@ li {
     left: 50px;
     z-index: 100;
 }
-@media only screen and (max-width: 600px) {
+@media print, screen and (max-width: 600px) {
     #watermark, .imageNumber  {
         font-size: 9px;
     }
@@ -55,6 +59,11 @@ li {
         padding: 0 3px 0px 3px;
     }
 }
+@media print { 
+    h2, #instructions {
+        display: none;
+    }
+}
 .rotate90 {
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
@@ -63,8 +72,5 @@ li {
     transform: rotate(-90deg);
 }
 .tip {
-    font-size: 11px;
-}
-#pictureQuizGrid {
-    page-break-before: always;
+    font-size: 12px;
 }

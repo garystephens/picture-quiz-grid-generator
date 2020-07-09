@@ -2,6 +2,7 @@ function readMultiFiles(files) {
     $('img').each(function () {
         var $image = $(this);
         $image.removeAttr('src').replaceWith($image.clone());
+        $image.closest('td').hide();
     });
     $('.imageNumber').text('');
     readFile(files, 0);
@@ -11,7 +12,9 @@ function readFile(files, i) {
     var file = files[i];
     var reader = new FileReader();
     reader.onload = function(e){
-        $('img').eq(i).attr('src', e.target.result);
+        var $image = $('img').eq(i);
+        $image.attr('src', e.target.result);
+        $image.closest('td').css('display', 'table-cell');
         $('.imageNumber').eq(i).text(i+1);
         readNextFile(e, files, i);
     };
