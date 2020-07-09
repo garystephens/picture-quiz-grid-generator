@@ -63,8 +63,8 @@ function handleWatermarkRotation() {
 }
 
 function setImageSize() {
-    var windowWidth = $(window).width();
-    var imageWidth = Math.round((windowWidth - 50) / 4);
+    var windowWidth = $("body").prop("clientWidth"); // $(window).width();
+    var imageWidth = Math.round((windowWidth - 20) / 4);
     $('img').attr('width', imageWidth);
     $('img').attr('height', imageWidth);
 
