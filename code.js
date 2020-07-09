@@ -110,7 +110,12 @@ function handleContainImages() {
             $('#pictureQuizGrid').removeClass('containImages');
         }
     });
+}
 
+function handleShowInstructions() {
+    $('#showInstructions').click(function () {
+        $('#instructions').toggle();
+    });
 }
 
 $(document).ready(function () {
@@ -122,4 +127,5 @@ $(document).ready(function () {
     handleWindowResize();
     handleWatermarkTextChange();
     handleWatermarkRotation();
+    handleShowInstructions();
 });

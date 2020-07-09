@@ -1,6 +1,24 @@
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+}
+#content {
+    padding: 6px;
+}
+h2 {
+    background-color: #b8e4e2;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 4px;
+    border-bottom: 1px solid #999999;
+    border-top: 1px solid #999999;
+    text-align: center;
+    font-size: 18px;
+}
 table {
     border: 0;
 }
@@ -76,4 +94,33 @@ li p {
 }
 .tip {
     font-size: 12px;
+}
+#controls, #instructions {
+    float: left;
+    width: 47%;
+}
+#controls {
+    padding-right: 10px;
+}
+#instructions {
+    border: 1px solid black;
+    padding: 6px;
+    background-color: #EBF4F4;
+}
+#showInstructions {
+    display: none;
+    margin-bottom: 10px;
+}
+@media screen and (max-width: 600px) {
+    #instructions {
+        display: none;
+        width: 96%;
+    }
+    #controls {
+        width: 100%;
+        float: initial;
+    }
+    #showInstructions {
+        display: inline;
+    }
 }

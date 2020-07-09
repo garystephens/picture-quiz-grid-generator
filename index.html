@@ -38,150 +38,168 @@
     </head>
     <body>
         <h2>Gary's Picture Quiz Grid Generator</h2>
-        <div id="instructions">
-            <ol>
-                <li>
-                    Save up to 24 images for your quiz on your device
-                    <br/>
-                    <p class="tip">
-                        Tip: Images that are square in shape, or where the important part of the image is in the centre, work best.
-                    </span>
-                </li>
-                <li>
-                    Choose all the image files with this button -> 
-                    <input type="file" id="fileSelector" name="fileSelector" onchange="readMultiFiles(this.files)" multiple=""/>
-                    <br/>
-                    <label><input type="checkbox" id="containImages">Show full uncropped images</label>
-                </li>
-                <li>
-                    Optionally, type some watermark text to be overlaid on the grid: <input type="text" id="watermarkText" /> and drag the watermark to your preferred position
-                    &nbsp;&nbsp;&nbsp;
-                    <span style="display: inline-block"><input type="checkbox" id="verticalWatermark" /> Display watermark vertically</span>
-                </li>
-                <li>
-                    Take a screenshot of the grid. 
-                    <br/>
-                    Or print to a PDF or to paper (you may need to adjust the browser window width first so that the grid fits onto the page,
-                    but if you do so, and you have set watermark text, you'll also need to check the position of the watermark text).
-                </li>
-            </ol>
-            <!--<input type="button" onclick="makeScreenshot()" value="Make screenshot" />-->
-            Please send bug reports, feature suggestions, spare change, etc. to: gary.p.stephens [AT] gmail DOT com
-            <br/>
-            <br/>
-        </div>        
-        <div id="pictureQuizGrid" style="position:relative">
-            <div id="watermark"></div>
-            <table>
-                <tr>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                    <td>
-                        <span class="imageNumber"></span>
-                        <img src="yourImageHere.png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td style="display:none">
-                        <span class="imageNumber"></span>
-                        <img>
-                    </td>
-                    <td style="display:none">
-                        <span class="imageNumber"></span>
-                        <img>
-                    </td>
-                    <td style="display:none">
-                        <span class="imageNumber"></span>
-                        <img>
-                    </td>
-                    <td style="display:none">
-                        <span class="imageNumber"></span>
-                        <img>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="display:none">
-                        <span class="imageNumber"></span>
-                        <img>
-                    </td>
-                    <td style="display:none">
-                        <span class="imageNumber"></span>
-                        <img>
-                    </td>
-                    <td style="display:none">
-                        <span class="imageNumber"></span>
-                        <img>
-                    </td>
-                    <td style="display:none">
-                        <span class="imageNumber"></span>
-                        <img>
-                    </td>
-                </tr>
-            </table>
+        <div id="content">
+            <div id="controls">
+                <p style="margin-top: 0"><b>Easily create a picture quiz of up to 24 pictures, displayed in a numbered grid.</b></p>
+                <p><b>Simply select your images to upload...</b></p>
+                <input type="file" id="fileSelector" name="fileSelector" onchange="readMultiFiles(this.files)" multiple=""/>
+                <br/>
+                <span class="tip">Maximum 24 files</span>
+                <br/>
+                <br/>
+                <label><input type="checkbox" id="containImages">Show full uncropped images</label>
+                <br/>
+                <br/>
+                Watermark text (optional): <input type="text" id="watermarkText" /> 
+                <br/>
+                <label><input type="checkbox" id="verticalWatermark" /> Display watermark vertically</label>
+                <br/>
+                <span class="tip">Watermark can be dragged to your preferred location.</span>
+                <br/>
+                <br/>
+                <button id="showInstructions">Show/Hide Instructions</button>
+            </div>
+            <div id="instructions">
+                <b>Instructions</b>
+                <ol>
+                    <li>
+                        Save up to 24 images for your quiz on your device
+                        <br/>
+                        <p class="tip">
+                            Tip: Images that are square in shape, or where the important part of the image is in the centre, work best.
+                        </span>
+                    </li>
+                    <li>
+                        Press the button to upload your image files
+                    </li>
+                    <li>
+                        Optionally, type some watermark text to be overlaid on the grid
+                    </li>
+                    <li>
+                        Take a screenshot of the grid. 
+                        <br/>
+                        Or print to a PDF or to paper (you may need to adjust the browser window width first so that the grid fits onto the page,
+                        but if you do so then you may need to adjust the position of the watermark).
+                    </li>
+                </ol>
+                <!--<input type="button" onclick="makeScreenshot()" value="Make screenshot" />-->
+                Please send bug reports, feature suggestions, spare change, etc. to: gary.p.stephens [AT] gmail DOT com
+                <br/>
+            </div>  
+            <div style="clear:both; height:12px"></div>
+            <div id="pictureQuizGrid" style="position:relative">
+                <div id="watermark"></div>
+                <table>
+                    <tr>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                        <td>
+                            <span class="imageNumber"></span>
+                            <img src="yourImageHere.png" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="display:none">
+                            <span class="imageNumber"></span>
+                            <img>
+                        </td>
+                        <td style="display:none">
+                            <span class="imageNumber"></span>
+                            <img>
+                        </td>
+                        <td style="display:none">
+                            <span class="imageNumber"></span>
+                            <img>
+                        </td>
+                        <td style="display:none">
+                            <span class="imageNumber"></span>
+                            <img>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="display:none">
+                            <span class="imageNumber"></span>
+                            <img>
+                        </td>
+                        <td style="display:none">
+                            <span class="imageNumber"></span>
+                            <img>
+                        </td>
+                        <td style="display:none">
+                            <span class="imageNumber"></span>
+                            <img>
+                        </td>
+                        <td style="display:none">
+                            <span class="imageNumber"></span>
+                            <img>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </body>
 </html>
