@@ -7,6 +7,15 @@ function readMultiFiles(files) {
     $('.imageNumber').text('');
     readFile(files, 0);
     $('#watermark').show();
+    logToGoogleAnalytics(files.length);
+}
+
+function logToGoogleAnalytics(numberOfImages) {
+    gtag('event', numberOfImages, {
+        'event_category': 'generateGrid',
+        'event_label': numberOfImages,
+        'value': Number(numberOfImages)
+    });
 }
 
 function readFile(files, i) {
