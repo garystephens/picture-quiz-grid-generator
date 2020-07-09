@@ -62,7 +62,19 @@ function handleWatermarkRotation() {
     });
 }
 
+function setImageSize() {
+    var windowWidth = $(window).width();
+    var imageWidth = Math.round((windowWidth - 50) / 4);
+    $('img').attr('width', imageWidth);
+    $('img').attr('height', imageWidth);
+
+    $(window).resize(function(){
+        setImageSize();
+    }) 
+}
+
 $(document).ready(function () {
+    setImageSize();
     setWatermarkTextFromCookie();
     makeWatermarkDraggable();
     handleWatermarkTextChange();
