@@ -47,6 +47,7 @@ li p {
     top: 50px;
     left: 50px;
     z-index: 100;
+    display: none;
 }
 @media print, screen and (max-width: 600px) {
     #watermark, .imageNumber  {

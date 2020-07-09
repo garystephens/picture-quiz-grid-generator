@@ -6,6 +6,7 @@ function readMultiFiles(files) {
     });
     $('.imageNumber').text('');
     readFile(files, 0);
+    $('#watermark').show();
 }
 
 function readFile(files, i) {
