@@ -1,8 +1,8 @@
 function readMultiFiles(files) {
     $('td').hide();
-    $('img').each(function () {
+    $('#pictureQuizGrid img').each(function () {
         var $image = $(this);
-        $image.removeAttr('src').replaceWith($image.clone());
+        $image.removeAttr('src').replaceWith($image.clone(true));
         $image.closest('td').hide();
     });
     readFile(files, 0);
@@ -22,15 +22,15 @@ function readFile(files, i) {
     var file = files[i];
     var reader = new FileReader();
     reader.onload = function(e){
-        var $image = $('img').eq(i);
+        var $image = $('#pictureQuizGrid img').eq(i);
         $image.attr('src', e.target.result);
         $image.closest('td').css('display', 'table-cell');
-        readNextFile(e, files, i);
+        readNextFile(files, i);
     };
     reader.readAsDataURL(file);
 }
 
-function readNextFile(e, files, i) {
+function readNextFile(files, i) {
     if (i < files.length - 1) {
         readFile(files, i+1);
     }
@@ -52,7 +52,28 @@ function saveWatermarkTextToCookie(watermarkText) {
     });
 };
 
-function makeWatermarkDraggable() {
+var CROPIMAGES_COOKIE_NAME = 'cropImages';
+
+function setCropImagesFromCookie() {
+    var cookieValue = $.cookie(CROPIMAGES_COOKIE_NAME);
+    if (cookieValue !== undefined) {
+        $('#cropImages').attr('checked', cookieValue === 'true');
+        if (cookieValue === 'true') {
+            $('#pictureQuizGrid img').addClass('cropImage');
+        } else {
+            $('#pictureQuizGrid img').removeClass('cropImage');
+        }
+
+    }
+}
+
+function saveCropImagesToCookie(value) {
+    $.cookie(CROPIMAGES_COOKIE_NAME, value, {
+        expires: 99999
+    });
+};
+
+function handleDraggingWatermark() {
     $('#watermark').draggable();
 }
 
@@ -77,17 +98,17 @@ function handleWatermarkRotation() {
 function handleWindowResize() {
     var resizeTimeout;
     $(window).resize(function() {
-        // On resize, don't adjust image size immediately (too computationally heavy), instead wait for user to stop resizing the window first
+        // On resize, don't adjust image size immediately (too computationally heavy), instead wait for user to stop resizing the window for a moment
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(setImageSize, 250);
     }) 
 }
 
 function setImageSize() {
-    var windowWidth = $("body").prop("clientWidth"); // $(window).width();
-    var imageWidth = Math.round((windowWidth - 20) / 4);
-    $('img').attr('width', imageWidth);
-    $('img').attr('height', imageWidth);
+    var contentWidth = $("#content").width();
+    var imageWidth = Math.round((contentWidth - 20) / 4);
+    $('#pictureQuizGrid img').attr('width', imageWidth);
+    $('#pictureQuizGrid img').attr('height', imageWidth);
 }
 
 function makeScreenshot() {
@@ -96,18 +117,20 @@ function makeScreenshot() {
     });
 }
 
-function numberImages() {
+function numberTheImages() {
     $('.imageNumber').each(function (index, image) {
         $(image).text(index+1);
     });
 }
 
-function handleContainImages() {
-    $('#containImages').click(function () {
+function handleCropImagesChange() {
+    $('#cropImages').click(function () {
         if ($(this).is(':checked')) {
-            $('#pictureQuizGrid').addClass('containImages');
+            $('#pictureQuizGrid img').addClass('cropImage');
+            saveCropImagesToCookie('true');
         } else {
-            $('#pictureQuizGrid').removeClass('containImages');
+            $('#pictureQuizGrid img').removeClass('cropImage');
+            saveCropImagesToCookie('false');
         }
     });
 }
@@ -118,14 +141,39 @@ function handleShowInstructions() {
     });
 }
 
-$(document).ready(function () {
-    setImageSize();
-    setWatermarkTextFromCookie();
-    numberImages();
-    makeWatermarkDraggable();
-    handleContainImages();
+function handleClickImageToCrop() {
+    $('#pictureQuizGrid img').click(function () {
+        $(this).toggleClass('cropImage');
+    });
+}
+
+function cropImagesByDefault() {
+    $('#pictureQuizGrid img').addClass('cropImage');
+}
+
+function handleUserActions() {
+    handleDraggingWatermark();
+    handleCropImagesChange();
     handleWindowResize();
     handleWatermarkTextChange();
     handleWatermarkRotation();
     handleShowInstructions();
+    handleClickImageToCrop();
+}
+
+function setSettingsFromCookies() {
+    setWatermarkTextFromCookie();
+    setCropImagesFromCookie();
+}
+
+function setUpGrid() {
+    setImageSize();
+    numberTheImages();
+    cropImagesByDefault();
+}
+
+$(document).ready(function () {
+    setUpGrid();
+    setSettingsFromCookies();
+    handleUserActions();
 });

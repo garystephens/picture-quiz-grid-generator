@@ -1,0 +1,23 @@
+TO TEST ON SERVER
+Persist cropped/uncropped to cookie
+
+SMALL
+Move all CSS to CSS file
+Improve styling, style the buttons
+Remove PRINT button? Firefox doesn't show print preview if you call window.print
+Watermark is in wrong position when printing in Firefox
+
+BIG
+Resize grid without having to resize browser window
+Bootstrap for responsive layout
+Allow any number of columns, from 1-10?
+Add button to make screenshot
+Automatically move watermark when grid resizes
+Support any number of images (up to a reasonable max)
+Drag cropped image to fine tune positioning
+Use localstorage instead of cookies
+Store images in localStorage?
+Webpack, transpile code to ES5? Pull in libraries via npm
+    Run local webserver to test cookie code
+    Use Less or Sass for CSS
+    See https://www.thinkful.com/learn/a-guide-to-using-github-pages/
