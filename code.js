@@ -11,7 +11,7 @@ function readMultiFiles(files) {
 }
 
 function logToGoogleAnalytics(numberOfImages) {
-    gtag('event', 'numberOfImages', {
+    gtag('event', numberOfImages, {
         'event_category': 'generateGrid',
         'event_label': numberOfImages,
         'value': Number(numberOfImages)
