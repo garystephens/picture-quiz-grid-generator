@@ -1,18 +1,23 @@
 SMALL
+GA event not logged
+Grid flickers on page load, initially is larger
 Move all CSS to CSS file
 Improve styling, style the buttons
 Remove PRINT button? Firefox doesn't show print preview if you call window.print
 Watermark is in wrong position when printing in Firefox
+Use localstorage instead of cookies
+
+MEDIUM
+Resize grid without having to resize browser window
+Add button to make screenshot
+ESLint code
 
 BIG
-Resize grid without having to resize browser window
 Bootstrap for responsive layout
 Allow any number of columns, from 1-10?
-Add button to make screenshot
+    Support any number of images (up to a reasonable max)
 Automatically move watermark when grid resizes
-Support any number of images (up to a reasonable max)
-Drag cropped image to fine tune positioning
-Use localstorage instead of cookies
+Drag cropped image to fine tune cropping
 Store images in localStorage?
 Webpack, transpile code to ES5? Pull in libraries via npm
     Run local webserver to test cookie code
