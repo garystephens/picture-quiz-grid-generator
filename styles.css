@@ -22,7 +22,7 @@ ol {
 h2 {
     background-color: #b8e4e2;
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 6px;
     padding: 4px;
     border-bottom: 1px solid #999999;
     border-top: 1px solid #999999;
@@ -39,6 +39,10 @@ td, img {
     padding: 0; 
     margin: 0; 
 }
+#pictureQuizGrid {
+    position: relative;
+    width: fit-content;
+}
 #pictureQuizGrid img {
     object-fit: contain;
     image-rendering: -webkit-optimize-contrast;            
@@ -50,6 +54,10 @@ td, img {
 }
 #pictureQuizGrid img.cropImage {
     object-fit: cover;
+}
+#pageUrl {
+    text-align:center;
+    padding-top:2px
 }
 td { 
     position: relative;
@@ -97,6 +105,9 @@ li p {
     h2, #main, #instructionsBlock {
         display: none;
     }
+    .imageNumber { 
+        font-size: 30px;
+    }
 }
 .rotate90 {
     -webkit-transform: rotate(-90deg);
@@ -131,6 +142,11 @@ li p {
 }
 #showInstructions {
     display: none;
+    margin-bottom: 10px;
+}
+#sampleImage {
+    float:right;
+    margin-left: 10px;
     margin-bottom: 10px;
 }
 @media screen and (max-width: 820px) {

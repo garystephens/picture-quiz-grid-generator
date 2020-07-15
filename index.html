@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
     <head>
 
         <title>Gary's Picture Grid Quiz Generator</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:image" content="samplequiz-fullsize.jpg" />
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128490828-1"></script>
@@ -12,7 +13,6 @@
             window.dataLayer = window.dataLayer || [];
             function gtag() { dataLayer.push(arguments); }
             gtag('js', new Date());
-
             gtag('config', 'UA-128490828-1');
         </script>
 
@@ -24,9 +24,7 @@
             src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
             integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
             crossorigin="anonymous"></script>
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
         <!--<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>-->
@@ -41,7 +39,7 @@
         <h2>Gary's Picture Quiz Grid Generator</h2>
         <div id="content">
             <div id="main">
-                <div id="sampleImage" style="float:right; margin-left: 10px; margin-bottom: 10px">
+                <div id="sampleImage">
                     <img src="samplequiz.jpg" />
                 </div>
                 <div id="intro">
@@ -103,7 +101,7 @@
                 </div>  
             </div>  
             <div style="clear:both; height:12px"></div>
-            <div id="pictureQuizGrid" style="position:relative; width:fit-content">
+            <div id="pictureQuizGrid">
                 <div id="watermark"></div>
                 <table>
                     <tr>
@@ -215,7 +213,7 @@
                         </td>
                     </tr>
                 </table>
-                <div style="text-align:center; padding-top:2px">garystephens.github.io/picture-quiz-grid-generator</div>
+                <div id="pageUrl">garystephens.github.io/picture-quiz-grid-generator</div>
             </div>
         </div>
     </body>
