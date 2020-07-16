@@ -1,16 +1,15 @@
 SMALL
-Improve favicon
+Grid flickers on page load, initially is larger
 Move all CSS to CSS file
 Improve styling, style the buttons
 Remove PRINT button? Firefox doesn't show print preview if you call window.print
 Watermark is in wrong position when printing in Firefox
-Use localstorage instead of cookies?
+Use localstorage instead of cookies
 
 MEDIUM
 Resize grid without having to resize browser window
 Add button to make screenshot
 ESLint code
-Prettier code
 
 BIG
 Bootstrap for responsive layout
