@@ -50,6 +50,7 @@ td {
 #pictureQuizGrid {
     position: relative;
     width: fit-content;
+    display: none;
 }
 #pictureQuizGrid img {
     object-fit: contain;
