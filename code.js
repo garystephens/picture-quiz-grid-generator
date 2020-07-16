@@ -100,7 +100,7 @@ function handleWindowResize() {
     $(window).resize(function() {
         // On resize, don't adjust image size immediately (too computationally heavy), instead wait for user to stop resizing the window for a moment
         clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(setImageSize, 250);
+        resizeTimeout = setTimeout(setImageSize, 100);
     }) 
 }
 

@@ -1,5 +1,4 @@
 SMALL
-GA event not logged
 Grid flickers on page load, initially is larger
 Move all CSS to CSS file
 Improve styling, style the buttons

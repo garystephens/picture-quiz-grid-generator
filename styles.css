@@ -4,9 +4,6 @@ body {
     padding: 0;
     font-size: 15px;
 }
-h2 {
-    font-weight: bold;
-}
 p {
     margin-bottom: 12px;
 }
@@ -14,10 +11,11 @@ ol {
     list-style: decimal;
     margin-left: 26px;
 }
-#content {
-    padding: 6px;
-    max-width: 1000px;
-    margin: auto;
+li {
+    margin: 0 0 8px 0;
+}
+li p {
+    margin-top: 2px;
 }
 h2 {
     background-color: #b8e4e2;
@@ -28,6 +26,7 @@ h2 {
     border-top: 1px solid #999999;
     text-align: center;
     font-size: 18px;
+    font-weight: bold;
 }
 table {
     border: 0;
@@ -38,6 +37,15 @@ table, td {
 td, img { 
     padding: 0; 
     margin: 0; 
+}
+td { 
+    position: relative;
+    border: 1px solid #000000;
+}
+#content {
+    padding: 6px;
+    max-width: 1000px;
+    margin: auto;
 }
 #pictureQuizGrid {
     position: relative;
@@ -59,23 +67,13 @@ td, img {
     text-align:center;
     padding-top:2px
 }
-td { 
-    position: relative;
-    border: 1px solid #000000;
-}
-li {
-    margin: 0 0 8px 0;
-}
-li p {
-    margin-top: 2px;
-}
 .imageNumber {
     position: absolute;
     top: 0;
     left: 0;
     background-color: white;
     display: inline-block;
-    padding: 0 5px 3px 5px;
+    padding: 1px 5px 3px 5px;
     font-weight: bold;
     font-size: 20px;
 }
@@ -89,25 +87,6 @@ li p {
     left: 50px;
     z-index: 100;
     cursor: move;
-}
-@media print, screen and (max-width: 600px) {
-    #watermark, .imageNumber  {
-        font-size: 9px;
-    }
-    .imageNumber  {
-        padding: 0 3px 1px 3px;
-    }
-    #watermark {
-        padding: 0 3px 0px 3px;
-    }
-}
-@media print { 
-    h2, #main, #instructionsBlock {
-        display: none;
-    }
-    .imageNumber { 
-        font-size: 30px;
-    }
 }
 .rotate90 {
     -webkit-transform: rotate(-90deg);
@@ -148,6 +127,25 @@ li p {
     float:right;
     margin-left: 10px;
     margin-bottom: 10px;
+}
+@media print, screen and (max-width: 600px) {
+    #watermark, .imageNumber  {
+        font-size: 9px;
+    }
+    .imageNumber  {
+        padding: 1px 3px 1px 3px;
+    }
+    #watermark {
+        padding: 0 3px 0px 3px;
+    }
+}
+@media print { 
+    h2, #main, #instructionsBlock {
+        display: none;
+    }
+    .imageNumber { 
+        font-size: 30px;
+    }
 }
 @media screen and (max-width: 820px) {
     #instructions {
