@@ -1,7 +1,4 @@
-/* global
-$
-gtag
-*/
+/* global $, gtag */
 
 window.readMultiFiles = function (files) {
   $('td').hide()
