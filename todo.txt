@@ -2,15 +2,15 @@ SMALL
 Improve favicon
 Move all CSS to CSS file
 Improve styling, style the buttons
-Remove PRINT button? Firefox doesn't show print preview if you call window.print
+Remove PRINT button (on Firefox only)? Firefox doesn't show print preview if you call window.print
 Watermark is in wrong position when printing in Firefox
 Use localstorage instead of cookies?
 
 MEDIUM
 Resize grid without having to resize browser window
 Add button to make screenshot
-ESLint code
-Prettier code
+JSStandard -> Prettier code
+    Review required ESLint packages
 
 BIG
 Bootstrap for responsive layout
