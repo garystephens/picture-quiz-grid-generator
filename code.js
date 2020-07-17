@@ -7,7 +7,7 @@ window.readMultiFiles = function (files) {
         $image.removeAttr('src').replaceWith($image.clone(true));
         $image.closest('td').hide();
     });
-    readFile(files, 0);
+    readFiles(files, 0);
     $('#watermark').show();
     logToGoogleAnalytics(files.length);
 };
@@ -20,21 +20,21 @@ function logToGoogleAnalytics(numberOfImages) {
     });
 }
 
-function readFile(files, i) {
-    var file = files[i];
+function readFiles(files, startingIndex) {
+    var file = files[startingIndex];
     var reader = new window.FileReader();
     reader.onload = function (e) {
-        var $image = $('#pictureQuizGrid img').eq(i);
+        var $image = $('#pictureQuizGrid img').eq(startingIndex);
         $image.attr('src', e.target.result);
         $image.closest('td').css('display', 'table-cell');
-        readNextFile(files, i);
+        readNextFile(files, startingIndex);
     };
     reader.readAsDataURL(file);
 }
 
 function readNextFile(files, i) {
     if (i < files.length - 1) {
-        readFile(files, i + 1);
+        readFiles(files, i + 1);
     }
 }
 
