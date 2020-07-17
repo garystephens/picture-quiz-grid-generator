@@ -9,10 +9,10 @@ Use localstorage instead of cookies?
 MEDIUM
 Resize grid without having to resize browser window
 Add button to make screenshot
-JSStandard -> Prettier code
-    Review required ESLint packages
+Review ESLint config
 
 BIG
+Support different table cell shapes (square vs rectangles)
 Bootstrap for responsive layout
 Allow any number of columns, from 1-10?
     Support any number of images (up to a reasonable max)
