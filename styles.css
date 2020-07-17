@@ -31,14 +31,16 @@ h2 {
 table {
     border: 0;
 }
-table, td {
+table,
+td {
     border-spacing: 0;
 }
-td, img { 
-    padding: 0; 
-    margin: 0; 
+td,
+img {
+    padding: 0;
+    margin: 0;
 }
-td { 
+td {
     position: relative;
     border: 1px solid #000000;
 }
@@ -54,8 +56,8 @@ td {
 }
 #pictureQuizGrid img {
     object-fit: contain;
-    image-rendering: -webkit-optimize-contrast;            
-    border-width: 0; 
+    image-rendering: -webkit-optimize-contrast;
+    border-width: 0;
     display: block;
 }
 #pictureQuizGrid.cropImages img {
@@ -65,8 +67,8 @@ td {
     object-fit: cover;
 }
 #pageUrl {
-    text-align:center;
-    padding-top:2px
+    text-align: center;
+    padding-top: 2px;
 }
 .imageNumber {
     position: absolute;
@@ -99,7 +101,8 @@ td {
 .tip {
     font-size: 12px;
 }
-#main, #instructions {
+#main,
+#instructions {
     float: left;
 }
 #main {
@@ -110,14 +113,14 @@ td {
     width: 40%;
     border: 1px solid #999999;
     padding: 6px;
-    background-color: #EBF4F4;
+    background-color: #ebf4f4;
 }
 #intro {
     font-weight: bold;
 }
 #controls {
     border: 1px solid #999999;
-    background-color: #F4F4F4;
+    background-color: #f4f4f4;
     padding: 5px;
 }
 #showInstructions {
@@ -125,26 +128,29 @@ td {
     margin-bottom: 10px;
 }
 #sampleImage {
-    float:right;
+    float: right;
     margin-left: 10px;
     margin-bottom: 10px;
 }
 @media print, screen and (max-width: 600px) {
-    #watermark, .imageNumber  {
+    #watermark,
+    .imageNumber {
         font-size: 9px;
     }
-    .imageNumber  {
+    .imageNumber {
         padding: 1px 3px 1px 3px;
     }
     #watermark {
         padding: 0 3px 0px 3px;
     }
 }
-@media print { 
-    h2, #main, #instructionsBlock {
+@media print {
+    h2,
+    #main,
+    #instructionsBlock {
         display: none;
     }
-    .imageNumber { 
+    .imageNumber {
         font-size: 30px;
     }
 }
