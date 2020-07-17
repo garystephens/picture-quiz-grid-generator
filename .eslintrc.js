@@ -1,6 +1,8 @@
+/* global module */
+
 module.exports = {
-  extends: 'standard',
-  env: {
-    browser: true
-  }
-}
+    extends: 'eslint:recommended',
+    env: {
+        browser: true,
+    },
+};
