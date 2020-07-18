@@ -1,12 +1,11 @@
 /* global $, gtag */
 
+function emptyOutGridTable() {
+    $('#grid > div').remove();
+}
+
 window.readMultiFiles = function (files) {
-    $('td').hide();
-    $('#pictureQuizGrid img').each(function () {
-        var $image = $(this);
-        $image.removeAttr('src').replaceWith($image.clone(true));
-        $image.closest('td').hide();
-    });
+    emptyOutGridTable();
     readFiles(files, 0);
     $('#watermark').show();
     logToGoogleAnalytics(files.length);
@@ -20,14 +19,37 @@ function logToGoogleAnalytics(numberOfImages) {
     });
 }
 
-function readFiles(files, startingIndex) {
-    var file = files[startingIndex];
+function addPlaceHolderImages(numberOfImages) {
+    var count = 0;
+
+    while (count < numberOfImages) {
+        $('#grid').append($(makeImageDiv('images/yourImageHere.png', count)));
+        count++;
+    }
+}
+
+function makeImageDiv(fileName, index) {
+    var cropImages = $('#cropImages').is(':checked');
+
+    return $(
+        '<div style="width:' +
+            String(100 / getNumberOfColumns()) +
+            '%"><span class="imageNumber">' +
+            (index + 1) +
+            '</span><img src="' +
+            fileName +
+            '"' +
+            (cropImages ? ' class="cropImage"' : '') +
+            '></img></div>'
+    );
+}
+
+function readFiles(files, index) {
+    var file = files[index];
     var reader = new window.FileReader();
     reader.onload = function (e) {
-        var $image = $('#pictureQuizGrid img').eq(startingIndex);
-        $image.attr('src', e.target.result);
-        $image.closest('td').css('display', 'table-cell');
-        readNextFile(files, startingIndex);
+        $('#grid').append(makeImageDiv(e.target.result, index));
+        readNextFile(files, index);
     };
     reader.readAsDataURL(file);
 }
@@ -35,6 +57,8 @@ function readFiles(files, startingIndex) {
 function readNextFile(files, i) {
     if (i < files.length - 1) {
         readFiles(files, i + 1);
+    } else {
+        handleClickImageToCrop();
     }
 }
 
@@ -101,15 +125,31 @@ function handleWindowResize() {
     $(window).resize(function () {
         // On resize, don't adjust image size immediately (too computationally heavy), instead wait for user to stop resizing the window for a moment
         clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(setImageSize, 100);
+        resizeTimeout = setTimeout(function () {
+            setImageSize($('#numberOfColumns').val());
+        }, 100);
     });
 }
 
-function setImageSize() {
-    var contentWidth = $('#content').width();
-    var imageWidth = Math.round((contentWidth - 20) / 4);
-    $('#pictureQuizGrid img').attr('width', imageWidth);
-    $('#pictureQuizGrid img').attr('height', imageWidth);
+// function getImageWidth(numberOfColumns) {
+//     var contentWidth = $('#content').width();
+//     var imageWidth = Math.round((contentWidth - 24) / numberOfColumns);
+//     return imageWidth;
+// }
+
+function setImageSize(numberOfColumns) {
+    numberOfColumns = Number(numberOfColumns);
+    // $('#pictureQuizGrid img').attr('width', getImageWidth(numberOfColumns));
+    // $('#pictureQuizGrid img').attr('height', getImageWidth(numberOfColumns));
+    // $('div#grid > div').attr('width', String(100 /numberOfColumns) + '%');
+    // setTimeout(function () {
+    //     $('div#grid > div').attr('height', $('div#grid img').first().width());
+    // }, 50);
+    $('div#grid > div').css('width', String(100 / numberOfColumns) + '%');
+    // setTimeout(function () {
+    //     $('div#grid > div').css('height', $('div#grid img').first().width());
+    // }, 50);
+    return;
 }
 
 function showGrid() {
@@ -123,12 +163,6 @@ function makeScreenshot () {
   })
 }
 */
-
-function numberTheImages() {
-    $('.imageNumber').each(function (index, image) {
-        $(image).text(index + 1);
-    });
-}
 
 function handleCropImagesChange() {
     $('#cropImages').click(function () {
@@ -158,10 +192,26 @@ function cropImagesByDefault() {
     $('#pictureQuizGrid img').addClass('cropImage');
 }
 
+function handleChangeNumberOfColumns() {
+    $('#numberOfColumns').on('change', function () {
+        setImageSize(getNumberOfColumns());
+        if (getNumberOfColumns() > 6) {
+            $('.imageNumber').css('font-size', '14px');
+        } else {
+            $('.imageNumber').css('font-size', '');
+        }
+    });
+}
+
+function getNumberOfColumns() {
+    return Number($('#numberOfColumns').val());
+}
+
 function handleUserActions() {
     handleDraggingWatermark();
     handleCropImagesChange();
     handleWindowResize();
+    handleChangeNumberOfColumns();
     handleWatermarkTextChange();
     handleWatermarkRotation();
     handleShowInstructions();
@@ -173,8 +223,11 @@ function setSettingsFromCookies() {
     setCropImagesFromCookie();
 }
 
+function numberTheImages() {}
+
 function setUpGrid() {
-    setImageSize();
+    addPlaceHolderImages(getNumberOfColumns() * 3);
+    //setImageSize(getNumberOfColumns());
     numberTheImages();
     cropImagesByDefault();
     showGrid();

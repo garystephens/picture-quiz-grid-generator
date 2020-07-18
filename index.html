@@ -64,26 +64,51 @@
                     <img src="images/samplequiz.jpg" />
                 </div>
                 <div id="intro">
-                    <p style="margin-top: 0;">Easily create a picture quiz of up to 24 images, displayed in a numbered 4-column grid.</p>
-                    <p>Simply select your images for the grid, and then grab a screenshot or print it out.</p>
+                    <p style="margin-top: 0;">Easily create a picture quiz, displayed in a numbered grid.</p>
+                    <p>Just select the images to display in the grid, and then grab a screenshot or print it out.</p>
                 </div>
                 <div style="clear:both"></div>
                 <div id="controls">
-                    <input type="file" id="fileSelector" name="fileSelector" onchange="readMultiFiles(this.files)" multiple=""/>
-                    <br/>
-                    <span class="tip">Maximum 24 files</span>
-                    <br/>
-                    <br/>
-                    <label><input type="checkbox" id="cropImages" checked>Crop images to fit</label>
-                    <br/>
-                    <span class="tip">You can also crop/uncrop images individually by clicking on them.</span>
-                    <br/>
-                    <br/>
-                    Watermark text (optional): <input type="text" id="watermarkText" /> 
-                    <br/>
-                    <label><input type="checkbox" id="verticalWatermark" /> Display watermark vertically</label>
-                    <br/>
-                    <span class="tip">Watermark can be dragged to your preferred location.</span>
+                    <label>Select your images:</label> <input type="file" id="fileSelector" name="fileSelector" onchange="readMultiFiles(this.files)" multiple=""/>
+                    <label>No. of images per row:</label>
+                    <select id="numberOfColumns" style="width: min-content">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4" selected>4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                    </select>
+                    <label>
+                        Crop images to fit
+                    </label>
+                    <span>
+                        <input type="checkbox" id="cropImages" checked>
+                        <br />
+                        <span class="tip">You can also crop/uncrop images individually by clicking on them.</span>
+                    </span>
+                    <span>&nbsp;</span>
+                    <span>&nbsp;</span>
+                    <label>
+                        Watermark text (optional):
+                    </label>
+                    <span>
+                        <input type="text" id="watermarkText" /> 
+                        <br />
+                        <span class="tip">Watermark can be dragged to your preferred location.</span>
+                    </span>                        
+                    <label>
+                        Display watermark vertically
+                    </label>
+                    <input type="checkbox" id="verticalWatermark" /> 
                 </div>
                 <br/>
                 <br/>
@@ -94,29 +119,27 @@
                     <p style="font-weight: bold">Instructions</p>
                     <ol>
                         <li>
-                            Save up to 24 images for your quiz on your device (making sure, of course, that you have the right to use the images)
+                            Save up the images for your quiz on your device (making sure, of course, that you have the right to use the images)
                             <br/>
                             <p class="tip">
                                 Tip: Images that are square in shape, or where the important part of the image is in the centre, work best.
                             </p>
                         </li>
                         <li>
-                            Press the button to select your image files
+                            Press the button to select your image files, and choose how many images you want per row, and if you want them cropped to fill the available space
                         </li>
                         <li>
-                            Optionally, type some watermark text to be overlaid on the grid
+                            Optionally, type some watermark text to be overlaid on the grid. 
+                            <p class="tip">
+                                Note: If printing your image quiz, check the watermark is in the correct position on the print preview, as it might be in a slightly different position to where it is shown on screen.
+                            </p>
                         </li>
                         <li>
                             Take a screenshot of the grid
                             <br/>
                             <span style="font-weight:bold">OR</span>
                             <br/>
-                            <button onclick="window.print()">PRINT</button> to paper or a PDF
-                            <br/>
-                            <p class="tip">
-                                Note: Before making a screenshot or printing, you may need to resize the browser window to change the grid to a suitable size,
-                                and also adjust the position of any watermark you set.
-                            </p>
+                            Print to paper or a PDF
                         </li>
                     </ol>
                     <!--<input type="button" onclick="makeScreenshot()" value="Make screenshot" />-->
@@ -125,118 +148,9 @@
                 </div>  
             </div>  
             <div style="clear:both; height:12px"></div>
-            <div id="pictureQuizGrid">
+            <div id="pictureQuizGrid" style="width: 100%">
                 <div id="watermark"></div>
-                <table>
-                    <tr>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                        <td>
-                            <span class="imageNumber"></span>
-                            <img src="images/yourImageHere.png" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="display:none">
-                            <span class="imageNumber"></span>
-                            <img>
-                        </td>
-                        <td style="display:none">
-                            <span class="imageNumber"></span>
-                            <img>
-                        </td>
-                        <td style="display:none">
-                            <span class="imageNumber"></span>
-                            <img>
-                        </td>
-                        <td style="display:none">
-                            <span class="imageNumber"></span>
-                            <img>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="display:none">
-                            <span class="imageNumber"></span>
-                            <img>
-                        </td>
-                        <td style="display:none">
-                            <span class="imageNumber"></span>
-                            <img>
-                        </td>
-                        <td style="display:none">
-                            <span class="imageNumber"></span>
-                            <img>
-                        </td>
-                        <td style="display:none">
-                            <span class="imageNumber"></span>
-                            <img>
-                        </td>
-                    </tr>
-                </table>
+                <div id="grid"></div>
                 <div id="pageUrl">garystephens.github.io/picture-quiz-grid-generator</div>
             </div>
         </div>

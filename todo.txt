@@ -2,9 +2,14 @@ SMALL
 Improve favicon
 Move all CSS to CSS file
 Improve styling, style the buttons
-Remove PRINT button (on Firefox only)? Firefox doesn't show print preview if you call window.print
+Add PRINT button for Chrome only?
 Watermark is in wrong position when printing in Firefox
 Use localstorage instead of cookies?
+Option to make images a circle/oval shape?
+Make watermark flash/highlight when you change the text
+Tell IE users site may not work?
+Numbers too large when printing
+Numbers too large when > 6 columns
 
 MEDIUM
 Resize grid without having to resize browser window
@@ -14,8 +19,6 @@ Review ESLint config
 BIG
 Support different table cell shapes (square vs rectangles)
 Bootstrap for responsive layout
-Allow any number of columns, from 1-10?
-    Support any number of images (up to a reasonable max)
 Automatically move watermark when grid resizes
 Drag cropped image to fine tune cropping
 Store images in localStorage?
@@ -23,3 +26,8 @@ Webpack, transpile code to ES5? Pull in libraries via npm
     Run local webserver to test cookie code
     Use Less or Sass for CSS
     See https://www.thinkful.com/learn/a-guide-to-using-github-pages/ try a Hello World project first
+
+
+IMPROVEMENTS TO ANNOUNCE
+No 24 image limit
+Choose number of images per row
