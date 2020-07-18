@@ -131,24 +131,9 @@ function handleWindowResize() {
     });
 }
 
-// function getImageWidth(numberOfColumns) {
-//     var contentWidth = $('#content').width();
-//     var imageWidth = Math.round((contentWidth - 24) / numberOfColumns);
-//     return imageWidth;
-// }
-
 function setImageSize(numberOfColumns) {
     numberOfColumns = Number(numberOfColumns);
-    // $('#pictureQuizGrid img').attr('width', getImageWidth(numberOfColumns));
-    // $('#pictureQuizGrid img').attr('height', getImageWidth(numberOfColumns));
-    // $('div#grid > div').attr('width', String(100 /numberOfColumns) + '%');
-    // setTimeout(function () {
-    //     $('div#grid > div').attr('height', $('div#grid img').first().width());
-    // }, 50);
     $('div#grid > div').css('width', String(100 / numberOfColumns) + '%');
-    // setTimeout(function () {
-    //     $('div#grid > div').css('height', $('div#grid img').first().width());
-    // }, 50);
     return;
 }
 
@@ -227,7 +212,6 @@ function numberTheImages() {}
 
 function setUpGrid() {
     addPlaceHolderImages(getNumberOfColumns() * 3);
-    //setImageSize(getNumberOfColumns());
     numberTheImages();
     cropImagesByDefault();
     showGrid();
