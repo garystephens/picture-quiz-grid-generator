@@ -30,10 +30,11 @@ function addPlaceHolderImages(numberOfImages) {
 
 function makeImageDiv(fileName, index) {
     var cropImages = $('#cropImages').is(':checked');
+    var width = String(100 / getNumberOfColumns());
 
     return $(
         '<div style="width:' +
-            String(100 / getNumberOfColumns()) +
+            width +
             '%"><span class="imageNumber">' +
             (index + 1) +
             '</span><img src="' +
