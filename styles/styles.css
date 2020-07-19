@@ -38,7 +38,7 @@ label {
 }
 #pictureQuizGrid {
     position: relative;
-    width: fit-content;
+    width: 100%;
     display: none;
 }
 #grid {
@@ -159,6 +159,9 @@ label {
 #controls label {
     text-align: right;
 }
+#controls select {
+    width: min-content;
+}
 #showInstructions {
     display: none;
     margin-bottom: 10px;
@@ -189,9 +192,6 @@ label {
     #main,
     #instructionsBlock {
         display: none;
-    }
-    #pictureQuizGrid {
-        width: 800px;
     }
 }
 @media screen and (max-width: 850px) {

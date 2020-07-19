@@ -69,9 +69,12 @@
                 </div>
                 <div style="clear:both"></div>
                 <div id="controls">
-                    <label>Select your images:</label> <input type="file" id="fileSelector" name="fileSelector" onchange="readMultiFiles(this.files)" multiple=""/>
+                    <label>Select your images:</label>
+                    <input type="file" id="fileSelector" name="fileSelector" onchange="readMultiFiles(this.files)" multiple=""/>
+                    <span>&nbsp;</span>
+                    <span>&nbsp;</span>
                     <label>No. of images per row:</label>
-                    <select id="numberOfColumns" style="width: min-content">
+                    <select id="numberOfColumns">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -88,7 +91,7 @@
                         <option value="14">14</option>
                     </select>
                     <label>Grid cell shape:</label>
-                    <select id="imageShape" style="width: min-content">
+                    <select id="imageShape">
                         <option value="square" selected>Square</option>
                         <option value="portrait">Portrait (3:4)</option>
                         <option value="portraitTall">Portrait, tall (9:16)</option>
@@ -132,7 +135,7 @@
                             Save up the images for your quiz on your device (making sure, of course, that you have the right to use the images)
                             <br/>
                             <p class="tip">
-                                Tip: Images that are square in shape, or where the important part of the image is in the centre, work best.
+                                Tip: Images where the important part of the image is in the centre work best. You may need to crop some of the image files in an editing tool to adjust this.
                             </p>
                         </li>
                         <li>
@@ -158,7 +161,7 @@
                 </div>  
             </div>  
             <div style="clear:both; height:12px"></div>
-            <div id="pictureQuizGrid" style="width: 100%">
+            <div id="pictureQuizGrid">
                 <div id="watermark"></div>
                 <div id="grid" class="square"></div>
                 <div id="pageUrl">garystephens.github.io/picture-quiz-grid-generator</div>
