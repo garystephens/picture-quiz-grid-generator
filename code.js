@@ -206,6 +206,13 @@ function getNumberOfColumns() {
     return Number($('#numberOfColumns').val());
 }
 
+function handleChangeImageShape() {
+    $('#imageShape').on('change', function () {
+        $('#grid').removeClass();
+        $('#grid').addClass($(this).val());
+    });
+}
+
 function handleUserActions() {
     handleDraggingWatermark();
     handleCropImagesChange();
@@ -215,6 +222,7 @@ function handleUserActions() {
     handleWatermarkRotation();
     handleShowInstructions();
     handleClickImageToCrop();
+    handleChangeImageShape();
 }
 
 function setSettingsFromCookies() {

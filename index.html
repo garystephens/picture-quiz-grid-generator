@@ -87,6 +87,14 @@
                         <option value="13">13</option>
                         <option value="14">14</option>
                     </select>
+                    <label>Grid cell shape:</label>
+                    <select id="imageShape" style="width: min-content">
+                        <option value="square" selected>Square</option>
+                        <option value="portrait">Portrait (3:4)</option>
+                        <option value="portraitTall">Portrait, tall (9:16)</option>
+                        <option value="landscape">Landscape (4:3)</option>
+                        <option value="landscapeWide">Landscape, wide (16:9)</option>
+                    </select>
                     <label>
                         Crop images to fit:
                     </label>
@@ -128,7 +136,7 @@
                             </p>
                         </li>
                         <li>
-                            Press the button to select your image files, and choose how many images you want per row, and if you want them cropped to fill the available space
+                            Press the button to select your image files, and then adjust the various options.
                         </li>
                         <li>
                             Optionally, type some watermark text to be overlaid on the grid. 
@@ -152,7 +160,7 @@
             <div style="clear:both; height:12px"></div>
             <div id="pictureQuizGrid" style="width: 100%">
                 <div id="watermark"></div>
-                <div id="grid"></div>
+                <div id="grid" class="square"></div>
                 <div id="pageUrl">garystephens.github.io/picture-quiz-grid-generator</div>
             </div>
         </div>

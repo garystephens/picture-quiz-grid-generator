@@ -56,7 +56,21 @@ label {
 #grid > div:before {
     content: '';
     float: left;
-    padding-top: 100%; /* initial ratio of 1:1*/
+}
+#grid.square > div:before {
+    padding-top: 100%; /* 1:1 aspect ratio */
+}
+#grid.portrait > div:before {
+    padding-top: 133.33%; /* 3:4 aspect ratio */
+}
+#grid.portraitTall > div:before {
+    padding-top: 177.77%; /* 9:16 aspect ratio */
+}
+#grid.landscape > div:before {
+    padding-top: 75%; /* 4:3 aspect ratio */
+}
+#grid.landscapeWide > div:before {
+    padding-top: 56.25%; /* 16:9 aspect ratio */
 }
 #pictureQuizGrid img {
     width: 100%;

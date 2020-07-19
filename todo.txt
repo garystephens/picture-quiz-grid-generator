@@ -29,3 +29,4 @@ Webpack, transpile code to ES5? Pull in libraries via npm
 IMPROVEMENTS TO ANNOUNCE
 No 24 image limit
 Choose number of images per row
+Choose image shape (square/portrait/landscape)
