@@ -103,10 +103,23 @@ function handleDraggingWatermark() {
     $('#watermark').draggable();
 }
 
+var highlightWaterMarkTimeout;
+function highlightChangeToWatermark() {
+    $('#watermark').addClass('highlight');
+    if (highlightWaterMarkTimeout) {
+        clearTimeout(highlightWaterMarkTimeout);
+    }
+    highlightWaterMarkTimeout = setTimeout(function () {
+        $('#watermark').removeClass('highlight');
+    }, 500);
+}
+
 function handleWatermarkTextChange() {
     $('#watermarkText').keyup(function () {
         var watermarkText = $('#watermarkText').val();
         $('#watermark').text(watermarkText);
+        highlightChangeToWatermark();
+
         saveWatermarkTextToCookie(watermarkText);
     });
 }

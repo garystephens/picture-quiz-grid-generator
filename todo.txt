@@ -1,12 +1,11 @@
 SMALL
 Improve favicon
 Move all CSS to CSS file
-Improve styling, style the buttons
+Improve styling, style the buttons?
 Add PRINT button for Chrome only?
 Watermark is in wrong position when printing in Firefox
 Use localstorage instead of cookies?
 Option to make images a circle/oval shape?
-Make watermark flash/highlight when you change the text
 Tell IE users site may not work?
 Bookmark h/v replace with droddown? Save to cookie
 Add links to sample quizzes created by Gary?
@@ -15,7 +14,6 @@ MEDIUM
 Resize grid without having to resize browser window
 Add button to make screenshot
 Review ESLint config
-
 
 BIG
 Support different table cell shapes (square vs rectangles)

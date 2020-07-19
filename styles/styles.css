@@ -92,13 +92,20 @@ label {
 #watermark {
     position: absolute;
     background-color: white;
-    padding: 0 5px 0 5px;
+    padding: 3px 5px 3px 5px;
     font-weight: bold;
     opacity: 0.5;
     top: 50px;
     left: 50px;
     z-index: 100;
     cursor: move;
+}
+#watermark:empty {
+    padding: 0;
+}
+#watermark.highlight {
+    opacity: 1;
+    background-color: yellow;
 }
 .rotate90 {
     -webkit-transform: rotate(-90deg);
