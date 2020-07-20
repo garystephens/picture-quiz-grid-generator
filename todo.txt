@@ -1,4 +1,5 @@
 SMALL
+Dark mode
 Improve favicon
 Move all CSS to CSS file
 Improve styling, style the buttons?
@@ -9,6 +10,8 @@ Option to make images a circle/oval shape?
 Tell IE users site may not work?
 Bookmark h/v replace with droddown? Save to cookie
 Add links to sample quizzes created by Gary?
+Add a button to randomly reorder images?
+Set a background colour for when images are not cropped
 
 MEDIUM
 Resize grid without having to resize browser window

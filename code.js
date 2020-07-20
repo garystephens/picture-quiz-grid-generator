@@ -38,6 +38,7 @@ function makeImageDiv(fileName, index) {
             '%"><span class="imageNumber">' +
             (index + 1) +
             '</span><img src="' +
+            //'</span><img draggable="false" src="' +
             fileName +
             '"' +
             (cropImages ? ' class="cropImage"' : '') +
@@ -60,8 +61,40 @@ function readNextFile(files, i) {
         readFiles(files, i + 1);
     } else {
         handleClickImageToCrop();
+        //handleFineTuneImagePositioning();
     }
 }
+
+// function moveUp($image) {
+//     $image.css('object-position', '50% 40%');
+// }
+
+// function handleFineTuneImagePositioning() {
+//     var isDragging = false;
+//     var startPos;
+
+//     $('#grid > div img')
+//         .mousedown(function (e) {
+//             isDragging = false;
+//             startPos = e.pageY;
+//         })
+//         .mousemove(function () {
+//             isDragging = true;
+//         })
+//         .mouseup(function (e) {
+//             var wasDragging = isDragging;
+//             var endPos = e.pageY;
+//             isDragging = false;
+//             if (wasDragging) {
+//                 console.error(endPos - startPos);
+//                 if (endPos > startPos) {
+//                     moveUp($(this));
+//                 }
+//             } else {
+//                 $(this).toggleClass('cropImage');
+//             }
+//         });
+// }
 
 var WATERMARKTEXT_COOKIE_NAME = 'watermarkText';
 
