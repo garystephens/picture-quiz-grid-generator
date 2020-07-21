@@ -261,6 +261,7 @@ function handleChangeDarkMode() {
 var DARKMODE_COOKIE_NAME = 'darkMode';
 function setDarkModeFromCookie() {
     var darkMode = $.cookie(DARKMODE_COOKIE_NAME);
+    $('#darkMode').attr('checked', darkMode === 'true');
     if (darkMode === 'true') {
         $('body').addClass('darkMode');
     } else {
