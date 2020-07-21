@@ -246,6 +246,32 @@ function handleChangeImageShape() {
     });
 }
 
+function handleChangeDarkMode() {
+    $('#darkMode').click(function () {
+        if ($(this).is(':checked')) {
+            $('body').addClass('darkMode');
+            saveDarkModeToCookie('true');
+        } else {
+            $('body').removeClass('darkMode');
+            saveDarkModeToCookie('false');
+        }
+    });
+}
+
+var DARKMODE_COOKIE_NAME = 'darkMode';
+function setDarkModeFromCookie() {
+    var darkMode = $.cookie(DARKMODE_COOKIE_NAME);
+    if (darkMode === 'true') {
+        $('body').addClass('darkMode');
+    }
+}
+
+function saveDarkModeToCookie(value) {
+    $.cookie(DARKMODE_COOKIE_NAME, value, {
+        expires: 99999,
+    });
+}
+
 function handleUserActions() {
     handleDraggingWatermark();
     handleCropImagesChange();
@@ -256,11 +282,13 @@ function handleUserActions() {
     handleShowInstructions();
     handleClickImageToCrop();
     handleChangeImageShape();
+    handleChangeDarkMode();
 }
 
-function setSettingsFromCookies() {
+function setOptionsFromCookies() {
     setWatermarkTextFromCookie();
     setCropImagesFromCookie();
+    setDarkModeFromCookie();
 }
 
 function numberTheImages() {}
@@ -274,6 +302,6 @@ function setUpGrid() {
 
 $(window).on('load', function () {
     setUpGrid();
-    setSettingsFromCookies();
+    setOptionsFromCookies();
     handleUserActions();
 });

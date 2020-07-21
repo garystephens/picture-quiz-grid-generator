@@ -4,6 +4,18 @@ body {
     padding: 0;
     font-size: 15px;
 }
+@media screen {
+    body.darkMode {
+        background-color: black;
+        color: white;
+    }
+    body.darkMode input,
+    body.darkMode select,
+    body.darkMode button {
+        background-color: #333333;
+        color: white;
+    }
+}
 p {
     margin-bottom: 12px;
 }
@@ -18,15 +30,17 @@ li p {
     margin-top: 2px;
 }
 h2 {
-    background-color: #b8e4e2;
+    background-color: #7bcbc7;
     margin-top: 0;
     margin-bottom: 6px;
     padding: 4px;
-    border-bottom: 1px solid #999999;
-    border-top: 1px solid #999999;
     text-align: center;
     font-size: 18px;
     font-weight: bold;
+}
+body.darkMode h2 {
+    background-color: #09968f;
+    color: black;
 }
 label {
     font-weight: bold;
@@ -51,6 +65,12 @@ label {
     margin-right: -1px;
     margin-bottom: -3px;
     background-color: white;
+}
+@media screen {
+    body.darkMode #grid > div {
+        outline: 1px solid white;
+        background-color: black;
+    }
 }
 /* Trick to make sure divs are square (same height as the width) */
 #grid > div:before {
@@ -103,9 +123,15 @@ label {
     font-size: 20px;
     z-index: 100;
 }
+@media screen {
+    body.darkMode .imageNumber {
+        background-color: black;
+    }
+}
 #watermark {
     position: absolute;
     background-color: white;
+    color: black;
     padding: 3px 5px 3px 5px;
     font-weight: bold;
     opacity: 0.5;
@@ -136,30 +162,68 @@ label {
     float: left;
 }
 #main {
-    width: 57%;
+    width: 50%;
     padding-right: 10px;
 }
 #instructions {
-    width: 40%;
-    border: 1px solid #999999;
-    padding: 6px;
-    background-color: #ebf4f4;
+    width: 45%;
+    padding: 10px;
+    background-color: #d5e0df;
+    border-radius: 6px;
+}
+#overview {
+    padding: 10px;
+    background-color: #b8e4e2;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+body.darkMode #overview {
+    background-color: #033835;
+}
+body.darkMode #instructions {
+    background-color: #242424;
 }
 #intro {
     font-weight: bold;
+    padding-bottom: 8px;
 }
-#controls {
-    border: 1px solid #999999;
-    background-color: #f4f4f4;
-    padding: 5px;
+#options {
+    background-color: #d5e0df;
+    padding: 10px;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 30% 70%;
     grid-gap: 5px;
+    border-radius: 6px;
+    font-size: 14px;
 }
-#controls label {
+body.darkMode #options {
+    background-color: #242424;
+}
+#fileSelector {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+label#fileSelectorLabel {
+    cursor: pointer;
+    text-align: left;
+    border: 1px solid black;
+    width: min-content;
+    background-color: #ffffff;
+    padding: 6px 8px;
+    white-space: nowrap;
+    font-size: 13px;
+    border-radius: 2px;
+}
+body.darkMode label#fileSelectorLabel {
+    background-color: #09968f;
+    border: 1px solid #000000;
+}
+#options label {
     text-align: right;
 }
-#controls select {
+#options select,
+#options input {
     width: min-content;
 }
 #showInstructions {
@@ -169,7 +233,6 @@ label {
 #sampleImage {
     float: right;
     margin-left: 10px;
-    margin-bottom: 10px;
 }
 @media print, screen and (max-width: 600px) {
     #watermark {
@@ -194,7 +257,7 @@ label {
         display: none;
     }
 }
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 900px) {
     #instructions {
         display: none;
         width: 96%;

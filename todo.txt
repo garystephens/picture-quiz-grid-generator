@@ -1,14 +1,14 @@
 SMALL
-Dark mode
 Improve favicon
 Move all CSS to CSS file
 Improve styling, style the buttons?
 Add PRINT button for Chrome only?
 Watermark is in wrong position when printing in Firefox
-Use localstorage instead of cookies?
-Option to make images a circle/oval shape?
-Tell IE users site may not work?
-Bookmark h/v replace with droddown? Save to cookie
+Save all options to cookies, create functions for interfacing with cookies (can later change to local storage)
+    Use localstorage instead of cookies?
+Check site in IE
+
+Bookmark h/v replace with dropdown?
 Add links to sample quizzes created by Gary?
 Add a button to randomly reorder images?
 Set a background colour for when images are not cropped
@@ -17,6 +17,8 @@ MEDIUM
 Resize grid without having to resize browser window
 Add button to make screenshot
 Review ESLint config
+Support generate version of grid with answer overlaid over each cell.
+On narrow screen, collapse Options and Instructions to just headings, with a show/hide option to expand/collapse
 
 BIG
 Bootstrap for responsive layout?
@@ -34,3 +36,4 @@ IMPROVEMENTS TO ANNOUNCE
 No 24 image limit
 Choose number of images per row
 Choose grid cell shape (square/portrait/landscape)
+Dark mode

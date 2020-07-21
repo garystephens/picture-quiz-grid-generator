@@ -56,24 +56,27 @@
         <link rel="stylesheet" href="styles/styles.css">
 
     </head>
-    <body>
+    <body class="darkMode">
         <h2>Gary's Picture Quiz Grid Generator</h2>
         <div id="content">
             <div id="main">
-                <div id="sampleImage">
-                    <img src="images/samplequiz.jpg" />
+                <div id="overview">
+                    <div id="sampleImage">
+                        <img src="images/samplequiz.jpg" />
+                    </div>
+                    <div id="intro">
+                        <p style="margin-top: 0;">Easily create a picture quiz, displayed in a numbered grid.</p>
+                        <p>Just select the images to display in the grid, and then grab a screenshot or print it out.</p>
+                        <br/>
+                        <label id="fileSelectorLabel" for="fileSelector">SELECT YOUR IMAGES...</label>
+                        <input type="file" id="fileSelector" name="fileSelector" onchange="readMultiFiles(this.files)" multiple=""/>
+                    </div>
+                    <div style="clear:both"></div>
                 </div>
-                <div id="intro">
-                    <p style="margin-top: 0;">Easily create a picture quiz, displayed in a numbered grid.</p>
-                    <p>Just select the images to display in the grid, and then grab a screenshot or print it out.</p>
-                </div>
-                <div style="clear:both"></div>
-                <div id="controls">
-                    <label>Select your images:</label>
-                    <input type="file" id="fileSelector" name="fileSelector" onchange="readMultiFiles(this.files)" multiple=""/>
-                    <span>&nbsp;</span>
-                    <span>&nbsp;</span>
-                    <label>No. of images per row:</label>
+                <div id="options">
+                    <span></span>
+                    <span style="font-weight:bold">OPTIONS</span>
+                    <label>Images per row:</label>
                     <select id="numberOfColumns">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -104,12 +107,16 @@
                     <span>
                         <input type="checkbox" id="cropImages" checked>
                         <br />
-                        <span class="tip">You can also crop/uncrop images individually by clicking on them.</span>
+                        <span class="tip">You can also click a specific image to crop/uncrop it.</span>
+                    </span>
+                    <label>Dark mode:</label>
+                    <span>
+                        <input type="checkbox" id="darkMode" checked />
                     </span>
                     <span>&nbsp;</span>
                     <span>&nbsp;</span>
                     <label>
-                        Watermark text (optional):
+                        Watermark text:
                     </label>
                     <span>
                         <input type="text" id="watermarkText" /> 
@@ -117,7 +124,7 @@
                         <span class="tip">Watermark can be dragged to your preferred location.</span>
                     </span>                        
                     <label>
-                        Display watermark vertically:
+                        Vertical watermark:
                     </label>
                     <span>
                         <input type="checkbox" id="verticalWatermark" /> 
@@ -129,7 +136,7 @@
             </div>            
             <div id="instructionsBlock">
                 <div id="instructions">
-                    <p style="font-weight: bold">Instructions</p>
+                    <p style="font-weight: bold">INSTRUCTIONS</p>
                     <ol>
                         <li>
                             Save up the images for your quiz on your device (making sure, of course, that you have the right to use the images)
