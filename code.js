@@ -303,8 +303,13 @@ function setUpGrid() {
     showGrid();
 }
 
+function showBody() {
+    $('body').show();
+}
+
 $(window).on('load', function () {
     setUpGrid();
     setOptionsFromCookies();
     handleUserActions();
+    showBody();
 });
