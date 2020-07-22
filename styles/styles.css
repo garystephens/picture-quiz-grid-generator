@@ -114,20 +114,41 @@ label {
     padding-top: 4px;
     padding-bottom: 4px;
 }
-.imageNumber {
+.imageNumber,
+.answer {
     position: absolute;
+    background-color: white;
+    font-weight: bold;
+}
+.imageNumber {
     top: 0;
     left: 0;
-    background-color: white;
     display: inline-block;
     padding: 1px 5px 3px 5px;
-    font-weight: bold;
     font-size: 20px;
     z-index: 100;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.answer {
+    bottom: 4px;
+    right: 4px;
+    display: none;
+    padding: 1px 2px 3px 2px;
+    font-size: 12px;
+    z-index: 200;
+    line-height: 12px;
+    text-align: right;
 }
 @media screen {
+    body.darkMode .imageNumber,
+    body.darkMode .answer {
+        background-color: black;
+    }
     body.darkMode .imageNumber {
         background-color: black;
+        border-right: 1px solid white;
+        border-bottom: 1px solid white;
     }
 }
 #watermark {
@@ -249,15 +270,9 @@ body.darkMode label#fileSelectorLabel {
     }
 }
 @media screen and (max-width: 600px) {
+    .answer,
     .imageNumber {
         font-size: 9px;
-    }
-}
-@media print {
-    h2,
-    #main,
-    #instructionsBlock {
-        display: none;
     }
 }
 @media screen and (max-width: 900px) {
@@ -272,5 +287,12 @@ body.darkMode label#fileSelectorLabel {
     }
     #showInstructions {
         display: inline;
+    }
+}
+@media print {
+    h2,
+    #main,
+    #instructionsBlock {
+        display: none;
     }
 }

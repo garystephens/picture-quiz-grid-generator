@@ -109,6 +109,12 @@
                         <br />
                         <span class="tip">You can also click a specific image to crop/uncrop it.</span>
                     </span>
+                    <label>Show answers:</label>
+                    <span>
+                        <input type="checkbox" id="showAnswers" />
+                        <br />
+                        <span class="tip">The answers being the file names, with their extensions removed. "Elvis Presley.jpg" would be displayed as "Elvis Presley".</span>
+                    </span>
                     <label>Dark mode:</label>
                     <span>
                         <input type="checkbox" id="darkMode" checked />
@@ -139,14 +145,21 @@
                     <p style="font-weight: bold">INSTRUCTIONS</p>
                     <ol>
                         <li>
-                            Save up the images for your quiz on your device (making sure, of course, that you have the right to use the images)
+                            Save up the images for your quiz on your device, making sure, of course, that you have the right to use the images.
                             <br/>
                             <p class="tip">
                                 Tip: Images where the important part of the image is in the centre work best. You may need to crop some of the image files in an editing tool to adjust this.
                             </p>
                         </li>
                         <li>
-                            Press the button to select your image files, and then adjust the various options.
+                            If you want to be able to generate a version of the quiz showing answers, set each image filename to be the answer (e.g. "Elvis Presley.jpg").
+                        </li>                            
+                        <li>
+                            Press the button to select your image files.
+                            The images will be ordered in the grid in whatever order they are in when you select them.
+                        </li>
+                        <li>
+                            Adjust the various options to your taste.
                         </li>
                         <li>
                             Optionally, type some watermark text to be overlaid on the grid. 
@@ -160,6 +173,9 @@
                             <span style="font-weight:bold">OR</span>
                             <br/>
                             Print to paper or a PDF
+                        </li>
+                        <li>
+                            If you wish, check 'Show answers' and screenshot or print a version with the answers.
                         </li>
                     </ol>
                     <!--<input type="button" onclick="makeScreenshot()" value="Make screenshot" />-->

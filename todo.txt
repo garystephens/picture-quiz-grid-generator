@@ -17,6 +17,7 @@ Save all options to cookies, create functions for interfacing with cookies (can 
 Check site in IE
 Bookmark h/v replace with dropdown?
 Add links to sample quizzes?
+Reload images button possible?
 
 MEDIUM
 Add a button to randomly reorder images?

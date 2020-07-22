@@ -23,12 +23,38 @@ function addPlaceHolderImages(numberOfImages) {
     var count = 0;
 
     while (count < numberOfImages) {
-        $('#grid').append($(makeImageDiv('images/yourImageHere.png', count)));
+        $('#grid').append(
+            $(makeImageDiv('images/yourImageHere.png', count, ''))
+        );
         count++;
     }
 }
 
-function makeImageDiv(fileName, index) {
+function removeExtensionFromFileName(fileName) {
+    return fileName.substr(0, fileName.lastIndexOf('.')) || fileName;
+}
+
+function convertFileNameToAnswer(fileName) {
+    return removeExtensionFromFileName(fileName).replace(/_/g, ' ');
+}
+
+function makeAnswerTag(fileName) {
+    var showAnswer = $('#showAnswers').is(':checked');
+
+    if (fileName === '') {
+        return '';
+    } else {
+        return (
+            '<span class="answer" ' +
+            (showAnswer ? 'style="display:block"' : '') +
+            '>' +
+            convertFileNameToAnswer(fileName) +
+            '</span>'
+        );
+    }
+}
+
+function makeImageDiv(imageData, index, fileName) {
     var cropImages = $('#cropImages').is(':checked');
     var width = String(100 / getNumberOfColumns());
 
@@ -37,9 +63,11 @@ function makeImageDiv(fileName, index) {
             width +
             '%"><span class="imageNumber">' +
             (index + 1) +
-            '</span><img src="' +
+            '</span>' +
+            makeAnswerTag(fileName) +
+            '<img src="' +
             //'</span><img draggable="false" src="' +
-            fileName +
+            imageData +
             '"' +
             (cropImages ? ' class="cropImage"' : '') +
             '></img></div>'
@@ -50,7 +78,9 @@ function readFiles(files, index) {
     var file = files[index];
     var reader = new window.FileReader();
     reader.onload = function (e) {
-        $('#grid').append(makeImageDiv(e.target.result, index));
+        $('#grid').append(
+            makeImageDiv(e.target.result, index, files[index].name)
+        );
         readNextFile(files, index);
     };
     reader.readAsDataURL(file);
@@ -220,6 +250,16 @@ function handleClickImageToCrop() {
     });
 }
 
+function handleShowAnswers() {
+    $('#showAnswers').click(function () {
+        if ($(this).is(':checked')) {
+            $('.answer').show();
+        } else {
+            $('.answer').hide();
+        }
+    });
+}
+
 function cropImagesByDefault() {
     $('#pictureQuizGrid img').addClass('cropImage');
 }
@@ -286,6 +326,7 @@ function handleUserActions() {
     handleClickImageToCrop();
     handleChangeImageShape();
     handleChangeDarkMode();
+    handleShowAnswers();
 }
 
 function setOptionsFromCookies() {
