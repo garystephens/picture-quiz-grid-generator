@@ -1,21 +1,25 @@
 NEXT
-Create User page on Github pages
+Resize grid without having to resize browser window
+Webpack, transpile code to ES5? Pull in libraries via npm
+    Run local webserver to test cookie code
+    Use Less or Sass for CSS
+    Try a Hello World project first
+        https://www.thinkful.com/learn/a-guide-to-using-github-pages/
+        https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f
 
 SMALL
 Improve favicon
 Move all CSS to CSS file
-Improve styling, style the buttons?
 Add PRINT button for Chrome only?
 Watermark is in wrong position when printing in Firefox
 Save all options to cookies, create functions for interfacing with cookies (can later change to local storage)
     Use localstorage instead of cookies?
 Check site in IE
 Bookmark h/v replace with dropdown?
-Add links to sample quizzes created by Gary?
-Add a button to randomly reorder images?
+Add links to sample quizzes?
 
 MEDIUM
-Resize grid without having to resize browser window
+Add a button to randomly reorder images?
 Add button to make screenshot
 Review ESLint config
 Support generate version of grid with answer overlaid over each cell.
@@ -26,12 +30,6 @@ Bootstrap for responsive layout?
 Automatically move watermark when grid resizes? Snap to table cell?
 Drag cropped image to fine tune cropping
 Store images in localStorage?
-Webpack, transpile code to ES5? Pull in libraries via npm
-    Run local webserver to test cookie code
-    Use Less or Sass for CSS
-    Try a Hello World project first
-        https://www.thinkful.com/learn/a-guide-to-using-github-pages/
-        https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f
 
 IMPROVEMENTS TO ANNOUNCE
 No 24 image limit
