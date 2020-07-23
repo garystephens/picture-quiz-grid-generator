@@ -1,4 +1,13 @@
-/* global $, gtag */
+/* global
+$,
+gtag,
+setOptionsFromLocalStorage,
+saveImageShapeToLocalStorage,
+saveWatermarkTextToLocalStorage,
+saveDarkModeToLocalStorage,
+saveImagesPerRowToLocalStorage,
+saveCropImagesToLocalStorage
+ */
 
 function emptyOutGridTable() {
     $('#grid > div').remove();
@@ -56,7 +65,7 @@ function makeAnswerTag(fileName) {
 
 function makeImageDiv(imageData, index, fileName) {
     var cropImages = $('#cropImages').is(':checked');
-    var width = String(100 / getNumberOfColumns());
+    var width = String(100 / getImagesPerRow());
 
     return $(
         '<div style="width:' +
@@ -126,42 +135,6 @@ function readNextFile(files, i) {
 //         });
 // }
 
-var WATERMARKTEXT_COOKIE_NAME = 'watermarkText';
-
-function setWatermarkTextFromCookie() {
-    var watermarkText = $.cookie(WATERMARKTEXT_COOKIE_NAME);
-    if (watermarkText !== undefined) {
-        $('#watermarkText').val(watermarkText);
-        $('#watermark').text(watermarkText);
-    }
-}
-
-function saveWatermarkTextToCookie(watermarkText) {
-    $.cookie(WATERMARKTEXT_COOKIE_NAME, watermarkText, {
-        expires: 99999,
-    });
-}
-
-var CROPIMAGES_COOKIE_NAME = 'cropImages';
-
-function setCropImagesFromCookie() {
-    var cookieValue = $.cookie(CROPIMAGES_COOKIE_NAME);
-    if (cookieValue !== undefined) {
-        $('#cropImages').attr('checked', cookieValue === 'true');
-        if (cookieValue === 'true') {
-            $('#pictureQuizGrid img').addClass('cropImage');
-        } else {
-            $('#pictureQuizGrid img').removeClass('cropImage');
-        }
-    }
-}
-
-function saveCropImagesToCookie(value) {
-    $.cookie(CROPIMAGES_COOKIE_NAME, value, {
-        expires: 99999,
-    });
-}
-
 function handleDraggingWatermark() {
     $('#watermark').draggable();
 }
@@ -183,7 +156,7 @@ function handleWatermarkTextChange() {
         $('#watermark').text(watermarkText);
         highlightChangeToWatermark();
 
-        saveWatermarkTextToCookie(watermarkText);
+        saveWatermarkTextToLocalStorage(watermarkText);
     });
 }
 
@@ -203,14 +176,14 @@ function handleWindowResize() {
         // On resize, don't adjust image size immediately (too computationally heavy), instead wait for user to stop resizing the window for a moment
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(function () {
-            setImageSize($('#numberOfColumns').val());
+            setImageSize($('#imagesPerRow').val());
         }, 100);
     });
 }
 
-function setImageSize(numberOfColumns) {
-    numberOfColumns = Number(numberOfColumns);
-    $('div#grid > div').css('width', String(100 / numberOfColumns) + '%');
+function setImageSize(imagesPerRow) {
+    imagesPerRow = Number(imagesPerRow);
+    $('div#grid > div').css('width', String(100 / imagesPerRow) + '%');
     return;
 }
 
@@ -230,10 +203,10 @@ function handleCropImagesChange() {
     $('#cropImages').click(function () {
         if ($(this).is(':checked')) {
             $('#pictureQuizGrid img').addClass('cropImage');
-            saveCropImagesToCookie('true');
+            saveCropImagesToLocalStorage('true');
         } else {
             $('#pictureQuizGrid img').removeClass('cropImage');
-            saveCropImagesToCookie('false');
+            saveCropImagesToLocalStorage('false');
         }
     });
 }
@@ -264,25 +237,31 @@ function cropImagesByDefault() {
     $('#pictureQuizGrid img').addClass('cropImage');
 }
 
-function handleChangeNumberOfColumns() {
-    $('#numberOfColumns').on('change', function () {
-        setImageSize(getNumberOfColumns());
-        if (getNumberOfColumns() > 6) {
-            $('.imageNumber').css('font-size', '14px');
-        } else {
-            $('.imageNumber').css('font-size', '');
-        }
+function setImageNumberFontSizeBasedOnImagesPerRow() {
+    if (getImagesPerRow() > 6) {
+        $('.imageNumber').css('font-size', '14px');
+    } else {
+        $('.imageNumber').css('font-size', '');
+    }
+}
+
+function handleChangeImagesPerRow() {
+    $('#imagesPerRow').on('change', function () {
+        setImageSize(getImagesPerRow());
+        saveImagesPerRowToLocalStorage(getImagesPerRow());
+        setImageNumberFontSizeBasedOnImagesPerRow();
     });
 }
 
-function getNumberOfColumns() {
-    return Number($('#numberOfColumns').val());
+function getImagesPerRow() {
+    return Number($('#imagesPerRow').val());
 }
 
 function handleChangeImageShape() {
     $('#imageShape').on('change', function () {
         $('#grid').removeClass();
         $('#grid').addClass($(this).val());
+        saveImageShapeToLocalStorage($(this).val());
     });
 }
 
@@ -290,36 +269,23 @@ function handleChangeDarkMode() {
     $('#darkMode').click(function () {
         if ($(this).is(':checked')) {
             $('body').addClass('darkMode');
-            saveDarkModeToCookie('true');
+            saveDarkModeToLocalStorage('true');
         } else {
             $('body').removeClass('darkMode');
-            saveDarkModeToCookie('false');
+            saveDarkModeToLocalStorage('false');
         }
     });
 }
 
-var DARKMODE_COOKIE_NAME = 'darkMode';
-function setDarkModeFromCookie() {
-    var darkMode = $.cookie(DARKMODE_COOKIE_NAME);
-    $('#darkMode').attr('checked', darkMode === 'true');
-    if (darkMode === 'true') {
-        $('body').addClass('darkMode');
-    } else {
-        $('body').removeClass('darkMode');
-    }
-}
-
-function saveDarkModeToCookie(value) {
-    $.cookie(DARKMODE_COOKIE_NAME, value, {
-        expires: 99999,
-    });
+function showBody() {
+    $('body').show();
 }
 
 function handleUserActions() {
     handleDraggingWatermark();
     handleCropImagesChange();
     handleWindowResize();
-    handleChangeNumberOfColumns();
+    handleChangeImagesPerRow();
     handleWatermarkTextChange();
     handleWatermarkRotation();
     handleShowInstructions();
@@ -329,28 +295,18 @@ function handleUserActions() {
     handleShowAnswers();
 }
 
-function setOptionsFromCookies() {
-    setWatermarkTextFromCookie();
-    setCropImagesFromCookie();
-    setDarkModeFromCookie();
-}
-
 function numberTheImages() {}
 
 function setUpGrid() {
-    addPlaceHolderImages(getNumberOfColumns() * 3);
+    addPlaceHolderImages(getImagesPerRow() * 3);
     numberTheImages();
     cropImagesByDefault();
     showGrid();
 }
 
-function showBody() {
-    $('body').show();
-}
-
 $(window).on('load', function () {
     setUpGrid();
-    setOptionsFromCookies();
     handleUserActions();
+    setOptionsFromLocalStorage();
     showBody();
 });

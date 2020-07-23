@@ -111,8 +111,8 @@ label {
 }
 #pageUrl {
     text-align: center;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding-top: 6px;
+    padding-bottom: 20px;
 }
 .imageNumber,
 .answer {
@@ -133,6 +133,7 @@ label {
 .answer {
     bottom: 4px;
     right: 4px;
+    margin-left: 4px;
     display: none;
     padding: 1px 2px 3px 2px;
     font-size: 12px;

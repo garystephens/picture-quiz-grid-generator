@@ -1,7 +1,8 @@
-NEXT
+PRIORITY
+Save watermark direction to localStorage
+Option to put space under each image to write answer, display answers in that space
 Resize grid without having to resize browser window
 Webpack, transpile code to ES5? Pull in libraries via npm
-    Run local webserver to test cookie code
     Use Less or Sass for CSS
     Try a Hello World project first
         https://www.thinkful.com/learn/a-guide-to-using-github-pages/
@@ -12,14 +13,13 @@ Improve favicon
 Move all CSS to CSS file
 Add PRINT button for Chrome only?
 Watermark is in wrong position when printing in Firefox
-Save all options to cookies, create functions for interfacing with cookies (can later change to local storage)
-    Use localstorage instead of cookies?
 Check site in IE
 Bookmark h/v replace with dropdown?
 Add links to sample quizzes?
 Reload images button possible?
 
 MEDIUM
+Option to have space between images, like https://i.dailymail.co.uk/i/pix/2013/08/13/article-2391154-1B47B58D000005DC-911_964x819.jpg
 Add a button to randomly reorder images?
 Add button to make screenshot
 Review ESLint config
@@ -37,3 +37,4 @@ No 24 image limit
 Choose number of images per row
 Choose grid cell shape (square/portrait/landscape)
 Dark mode
+Overlay answers
