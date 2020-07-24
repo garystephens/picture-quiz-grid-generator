@@ -6,7 +6,9 @@ saveImageShapeToLocalStorage,
 saveWatermarkTextToLocalStorage,
 saveDarkModeToLocalStorage,
 saveImagesPerRowToLocalStorage,
-saveCropImagesToLocalStorage
+saveCropImagesToLocalStorage,
+saveWatermarkVerticalToLocalStorage,
+saveShowAnswersToLocalStorage
  */
 
 function emptyOutGridTable() {
@@ -160,12 +162,14 @@ function handleWatermarkTextChange() {
     });
 }
 
-function handleWatermarkRotation() {
-    $('#verticalWatermark').click(function () {
+function handleWatermarkVertical() {
+    $('#watermarkVertical').click(function () {
         if ($(this).is(':checked')) {
             $('#watermark').addClass('rotate90');
+            saveWatermarkVerticalToLocalStorage('true');
         } else {
             $('#watermark').removeClass('rotate90');
+            saveWatermarkVerticalToLocalStorage('false');
         }
     });
 }
@@ -173,7 +177,8 @@ function handleWatermarkRotation() {
 function handleWindowResize() {
     var resizeTimeout;
     $(window).resize(function () {
-        // On resize, don't adjust image size immediately (too computationally heavy), instead wait for user to stop resizing the window for a moment
+        // On resize, don't adjust image size immediately (too computationally heavy),
+        // instead wait for user to stop resizing the window for a moment
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(function () {
             setImageSize($('#imagesPerRow').val());
@@ -227,8 +232,10 @@ function handleShowAnswers() {
     $('#showAnswers').click(function () {
         if ($(this).is(':checked')) {
             $('.answer').show();
+            saveShowAnswersToLocalStorage('true');
         } else {
             $('.answer').hide();
+            saveShowAnswersToLocalStorage('false');
         }
     });
 }
@@ -287,7 +294,7 @@ function handleUserActions() {
     handleWindowResize();
     handleChangeImagesPerRow();
     handleWatermarkTextChange();
-    handleWatermarkRotation();
+    handleWatermarkVertical();
     handleShowInstructions();
     handleClickImageToCrop();
     handleChangeImageShape();

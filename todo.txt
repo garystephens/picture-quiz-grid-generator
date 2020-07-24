@@ -1,7 +1,8 @@
-PRIORITY
-Save watermark direction to localStorage
+NEEDED FOR LAUNCH
 Option to put space under each image to write answer, display answers in that space
 Resize grid without having to resize browser window
+
+ONGOING
 Webpack, transpile code to ES5? Pull in libraries via npm
     Use Less or Sass for CSS
     Try a Hello World project first
@@ -17,6 +18,7 @@ Check site in IE
 Bookmark h/v replace with dropdown?
 Add links to sample quizzes?
 Reload images button possible?
+Abstract out localStorage functionality?
 
 MEDIUM
 Option to have space between images, like https://i.dailymail.co.uk/i/pix/2013/08/13/article-2391154-1B47B58D000005DC-911_964x819.jpg
