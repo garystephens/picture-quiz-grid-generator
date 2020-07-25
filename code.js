@@ -35,7 +35,13 @@ function addPlaceHolderImages(numberOfImages) {
 
     while (count < numberOfImages) {
         $('#grid').append(
-            $(makeImageDiv('images/yourImageHere.png', count, ''))
+            $(
+                makeImageDiv(
+                    'images/yourImageHere.png',
+                    count,
+                    'answer goes here'
+                )
+            )
         );
         count++;
     }
