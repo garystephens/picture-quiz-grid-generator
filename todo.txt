@@ -1,5 +1,4 @@
 NEEDED FOR LAUNCH
-Option to put space under each image to write answer, display answers in that space
 Resize grid without having to resize browser window
 
 ONGOING
@@ -12,6 +11,7 @@ Webpack, transpile code to ES5? Pull in libraries via npm
 SMALL
 Improve favicon
 Move all CSS to CSS file
+Replace #grid > div with a class for the div
 Add PRINT button for Chrome only?
 Watermark is in wrong position when printing in Firefox
 Check site in IE
@@ -40,3 +40,4 @@ Choose number of images per row
 Choose grid cell shape (square/portrait/landscape)
 Dark mode
 Overlay answers
+Blank space for answer

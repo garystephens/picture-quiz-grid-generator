@@ -113,11 +113,15 @@
                     <span>
                         <input type="checkbox" id="darkMode" checked />
                     </span>
-                    <label>Show answers:</label>
+                    <label>Show:</label>
                     <span>
-                        <input type="checkbox" id="showAnswers" />
+                        <select id="answerDisplay">
+                            <option value="none">No blank space for answer</option>
+                            <option value="blankSpace">Blank space for writing answer</option>
+                            <option value="answer">Answer</option>
+                        </select>
                         <br />
-                        <span class="tip">The answers being the file names, with their extensions removed. "Elvis Presley.jpg" would be displayed as "Elvis Presley".</span>
+                        <span class="tip">Where answers are shown, they are the file names with their extensions removed. "Elvis Presley.jpg" would be displayed as "Elvis Presley".</span>
                     </span>
                     <span>&nbsp;</span>
                     <span>&nbsp;</span>

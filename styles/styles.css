@@ -115,6 +115,7 @@ label {
     padding-bottom: 20px;
 }
 .imageNumber,
+.spaceForAnswer,
 .answer {
     position: absolute;
     background-color: white;
@@ -130,16 +131,26 @@ label {
     border-right: 1px solid black;
     border-bottom: 1px solid black;
 }
+.spaceForAnswer,
 .answer {
-    bottom: 4px;
-    right: 4px;
-    margin-left: 4px;
     display: none;
-    padding: 1px 2px 3px 2px;
     font-size: 12px;
     z-index: 200;
     line-height: 12px;
+}
+.answer {
     text-align: right;
+    right: 4px;
+    bottom: 4px;
+    margin-left: 4px;
+    padding: 1px 2px 3px 2px;
+}
+.spaceForAnswer {
+    left: 8px;
+    right: 8px;
+    bottom: 4px;
+    height: 20px;
+    background-color: white;
 }
 @media screen {
     body.darkMode .imageNumber,
@@ -150,6 +161,9 @@ label {
         background-color: black;
         border-right: 1px solid white;
         border-bottom: 1px solid white;
+    }
+    body.darkMode .spaceForAnswer {
+        background-color: black;
     }
 }
 #watermark {
@@ -268,6 +282,12 @@ body.darkMode label#fileSelectorLabel {
     }
     #watermark {
         padding: 0 3px 0px 3px;
+    }
+    .spaceForAnswer {
+        left: 4px;
+        right: 4px;
+        bottom: 2px;
+        height: 12px;
     }
 }
 @media screen and (max-width: 600px) {

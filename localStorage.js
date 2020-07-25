@@ -12,11 +12,11 @@ saveImagesPerRowToLocalStorage
 saveImageShapeToLocalStorage,
 saveDarkModeToLocalStorage,
 saveWatermarkVerticalToLocalStorage,
-saveShowAnswersToLocalStorage,
+saveAnswerDisplayToLocalStorage,
 setOptionsFromLocalStorage
 */
 
-var SHOWANSWERS_LOCALSTORAGE_NAME = 'showAnswers';
+var ANSWERDISPLAY_LOCALSTORAGE_NAME = 'answerDisplay';
 var WATERMARKTEXT_LOCALSTORAGE_NAME = 'watermarkText';
 var WATERMARKVERTICAL_LOCALSTORAGE_NAME = 'watermarkVertical';
 var CROPIMAGES_LOCALSTORAGE_NAME = 'cropImages';
@@ -24,16 +24,17 @@ var IMAGESPERROW_LOCALSTORAGE_NAME = 'imagesPerRow';
 var IMAGESHAPE_LOCALSTORAGE_NAME = 'imageShape';
 var DARKMODE_LOCALSTORAGE_NAME = 'darkMode';
 
-function setShowAnswersFromLocalStorage() {
-    var showAnswers = localStorage.getItem(SHOWANSWERS_LOCALSTORAGE_NAME);
-    if (showAnswers !== null) {
-        $('#showAnswers').attr('checked', showAnswers === 'true');
-        $('.answer').toggle(showAnswers === 'true');
+function setAnswerDisplayFromLocalStorage() {
+    var answerDisplay = localStorage.getItem(ANSWERDISPLAY_LOCALSTORAGE_NAME);
+    if (answerDisplay !== null) {
+        $('#answerDisplay').val(answerDisplay);
+        $('.answer').toggle(answerDisplay === 'answer');
+        $('.spaceForAnswer').toggle(answerDisplay === 'blankSpace');
     }
 }
 
-function saveShowAnswersToLocalStorage(showAnswers) {
-    localStorage.setItem(SHOWANSWERS_LOCALSTORAGE_NAME, showAnswers);
+function saveAnswerDisplayToLocalStorage(answerDisplay) {
+    localStorage.setItem(ANSWERDISPLAY_LOCALSTORAGE_NAME, answerDisplay);
 }
 
 function setWatermarkVerticalFromLocalStorage() {
@@ -111,7 +112,7 @@ function saveDarkModeToLocalStorage(value) {
 }
 
 function setOptionsFromLocalStorage() {
-    setShowAnswersFromLocalStorage();
+    setAnswerDisplayFromLocalStorage();
     setWatermarkTextFromLocalStorage();
     setCropImagesFromLocalStorage();
     setDarkModeFromLocalStorage();

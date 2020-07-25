@@ -8,7 +8,7 @@ saveDarkModeToLocalStorage,
 saveImagesPerRowToLocalStorage,
 saveCropImagesToLocalStorage,
 saveWatermarkVerticalToLocalStorage,
-saveShowAnswersToLocalStorage
+saveAnswerDisplayToLocalStorage
  */
 
 function emptyOutGridTable() {
@@ -50,7 +50,7 @@ function convertFileNameToAnswer(fileName) {
 }
 
 function makeAnswerTag(fileName) {
-    var showAnswer = $('#showAnswers').is(':checked');
+    var showAnswer = $('#answerDisplay').val() === 'answer';
 
     if (fileName === '') {
         return '';
@@ -65,6 +65,16 @@ function makeAnswerTag(fileName) {
     }
 }
 
+function makeSpaceForAnswerTag() {
+    var showSpaceForAnswer = $('#answerDisplay').val() === 'blankSpace';
+
+    return (
+        '<span class="spaceForAnswer" ' +
+        (showSpaceForAnswer ? 'style="display:block"' : '') +
+        '></span>'
+    );
+}
+
 function makeImageDiv(imageData, index, fileName) {
     var cropImages = $('#cropImages').is(':checked');
     var width = String(100 / getImagesPerRow());
@@ -76,6 +86,7 @@ function makeImageDiv(imageData, index, fileName) {
             (index + 1) +
             '</span>' +
             makeAnswerTag(fileName) +
+            makeSpaceForAnswerTag() +
             '<img src="' +
             //'</span><img draggable="false" src="' +
             imageData +
@@ -196,6 +207,10 @@ function showGrid() {
     $('#pictureQuizGrid').show();
 }
 
+function showBody() {
+    $('body').show();
+}
+
 /*
 function makeScreenshot () {
   html2canvas(document.getElementById('pictureQuizGrid'), { scale: 1 }).then(canvas => {
@@ -225,18 +240,6 @@ function handleShowInstructions() {
 function handleClickImageToCrop() {
     $('#pictureQuizGrid img').click(function () {
         $(this).toggleClass('cropImage');
-    });
-}
-
-function handleShowAnswers() {
-    $('#showAnswers').click(function () {
-        if ($(this).is(':checked')) {
-            $('.answer').show();
-            saveShowAnswersToLocalStorage('true');
-        } else {
-            $('.answer').hide();
-            saveShowAnswersToLocalStorage('false');
-        }
     });
 }
 
@@ -284,8 +287,13 @@ function handleChangeDarkMode() {
     });
 }
 
-function showBody() {
-    $('body').show();
+function handleChangeAnswerDisplay() {
+    $('#answerDisplay').on('change', function () {
+        var answerDisplay = $(this).val();
+        $('.answer').toggle(answerDisplay === 'answer');
+        $('.spaceForAnswer').toggle(answerDisplay === 'blankSpace');
+        saveAnswerDisplayToLocalStorage(answerDisplay);
+    });
 }
 
 function handleUserActions() {
@@ -299,7 +307,7 @@ function handleUserActions() {
     handleClickImageToCrop();
     handleChangeImageShape();
     handleChangeDarkMode();
-    handleShowAnswers();
+    handleChangeAnswerDisplay();
 }
 
 function numberTheImages() {}
