@@ -1,5 +1,6 @@
 NEEDED FOR LAUNCH
-Resize grid without having to resize browser window
+Resize grid without having to resize browser window?
+    Slider to change it from 10% to 100% of page width?
 
 ONGOING
 Webpack, transpile code to ES5? Pull in libraries via npm

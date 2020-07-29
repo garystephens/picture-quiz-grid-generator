@@ -146,7 +146,7 @@ label {
     padding: 1px 2px 3px 2px;
 }
 .spaceForAnswer {
-    left: 8px;
+    left: 7px;
     right: 8px;
     bottom: 4px;
     height: 20px;
@@ -161,9 +161,6 @@ label {
         background-color: black;
         border-right: 1px solid white;
         border-bottom: 1px solid white;
-    }
-    body.darkMode .spaceForAnswer {
-        background-color: black;
     }
 }
 #watermark {
