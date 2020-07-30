@@ -13,6 +13,7 @@ saveImageShapeToLocalStorage,
 saveDarkModeToLocalStorage,
 saveWatermarkVerticalToLocalStorage,
 saveAnswerDisplayToLocalStorage,
+saveGridSizeToLocalStorage
 setOptionsFromLocalStorage
 */
 
@@ -23,6 +24,19 @@ var CROPIMAGES_LOCALSTORAGE_NAME = 'cropImages';
 var IMAGESPERROW_LOCALSTORAGE_NAME = 'imagesPerRow';
 var IMAGESHAPE_LOCALSTORAGE_NAME = 'imageShape';
 var DARKMODE_LOCALSTORAGE_NAME = 'darkMode';
+var GRIDSIZE_LOCALSTORAGE_NAME = 'gridSize';
+
+function setGridSizeFromLocalStorage() {
+    var gridSize = localStorage.getItem(GRIDSIZE_LOCALSTORAGE_NAME);
+    if (gridSize !== null) {
+        $('#gridSizeSlider').slider({ value: gridSize });
+        $('#grid').css('width', gridSize + '%');
+    }
+}
+
+function saveGridSizeToLocalStorage(gridSize) {
+    localStorage.setItem(GRIDSIZE_LOCALSTORAGE_NAME, gridSize);
+}
 
 function setAnswerDisplayFromLocalStorage() {
     var answerDisplay = localStorage.getItem(ANSWERDISPLAY_LOCALSTORAGE_NAME);
@@ -119,4 +133,5 @@ function setOptionsFromLocalStorage() {
     setImagesPerRowFromLocalStorage();
     setImageShapeFromLocalStorage();
     setWatermarkVerticalFromLocalStorage();
+    setGridSizeFromLocalStorage();
 }

@@ -59,6 +59,7 @@ label {
 }
 #grid {
     width: 100%;
+    margin: auto;
 }
 #grid > div {
     display: inline-block;
@@ -230,6 +231,10 @@ body.darkMode #instructions {
     grid-gap: 5px;
     border-radius: 6px;
     font-size: 14px;
+}
+#gridSizeSlider {
+    width: 80%;
+    height: 10px;
 }
 body.darkMode #options {
     background-color: #242424;

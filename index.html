@@ -52,6 +52,7 @@
         <script src="code.js"></script>
         <script src="localStorage.js"></script>
 
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">        
         <link rel="stylesheet" href="styles/css-reset.css">
         <link rel="stylesheet" href="styles/styles.css">
 
@@ -76,6 +77,8 @@
                 <div id="options">
                     <span></span>
                     <span style="font-weight:bold">OPTIONS</span>
+                    <label>Grid size:</label>
+                    <div id="gridSizeSlider"></div>            
                     <label>Images per row:</label>
                     <select id="imagesPerRow">
                         <option value="1">1</option>
@@ -109,10 +112,6 @@
                         <br />
                         <span class="tip">You can also click a specific image to crop/uncrop it.</span>
                     </span>
-                    <label>Dark mode:</label>
-                    <span>
-                        <input type="checkbox" id="darkMode" checked />
-                    </span>
                     <label>Show:</label>
                     <span>
                         <select id="answerDisplay">
@@ -122,6 +121,10 @@
                         </select>
                         <br />
                         <span class="tip">Where answers are shown, they are the file names with their extensions removed. "Elvis Presley.jpg" would be displayed as "Elvis Presley".</span>
+                    </span>
+                    <label>Dark mode:</label>
+                    <span>
+                        <input type="checkbox" id="darkMode" checked />
                     </span>
                     <span>&nbsp;</span>
                     <span>&nbsp;</span>
@@ -168,7 +171,7 @@
                         <li>
                             Optionally, type some watermark text to be overlaid on the grid. 
                             <p class="tip">
-                                Note: If printing your image quiz, check the watermark is in the correct position on the print preview, as it might be in a slightly different position to where it is shown on screen.
+                                Note: If you are going to print the quiz, check the watermark is in the correct position on the print preview, as it might be in a slightly different position to where it is shown on screen.
                             </p>
                         </li>
                         <li>
@@ -179,7 +182,7 @@
                             Print to paper or a PDF
                         </li>
                         <li>
-                            If you wish, check 'Show answers' and screenshot or print a version with the answers.
+                            If you wish, select to show 'Answers' and screenshot or print a version with the answers.
                         </li>
                     </ol>
                     <!--<input type="button" onclick="makeScreenshot()" value="Make screenshot" />-->

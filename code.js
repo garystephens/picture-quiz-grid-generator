@@ -8,7 +8,8 @@ saveDarkModeToLocalStorage,
 saveImagesPerRowToLocalStorage,
 saveCropImagesToLocalStorage,
 saveWatermarkVerticalToLocalStorage,
-saveAnswerDisplayToLocalStorage
+saveAnswerDisplayToLocalStorage,
+saveGridSizeToLocalStorage
  */
 
 function emptyOutGridTable() {
@@ -191,15 +192,19 @@ function handleWatermarkVertical() {
     });
 }
 
+var resizeTimeout;
+function recalcImageWidth() {
+    // On resize, don't adjust image size immediately (too computationally heavy),
+    // instead wait for user to stop resizing the window for a moment
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function () {
+        setImageSize(getImagesPerRow());
+    }, 100);
+}
+
 function handleWindowResize() {
-    var resizeTimeout;
     $(window).resize(function () {
-        // On resize, don't adjust image size immediately (too computationally heavy),
-        // instead wait for user to stop resizing the window for a moment
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function () {
-            setImageSize($('#imagesPerRow').val());
-        }, 100);
+        recalcImageWidth();
     });
 }
 
@@ -316,16 +321,29 @@ function handleUserActions() {
     handleChangeAnswerDisplay();
 }
 
-function numberTheImages() {}
+function handleChangeGridSizeSlider(event, ui) {
+    var gridSizeSliderValue = ui.value;
+    $('#grid').css('width', gridSizeSliderValue + '%');
+    saveGridSizeToLocalStorage(gridSizeSliderValue);
+}
+
+function initGridSizeSlider() {
+    $('#gridSizeSlider').slider({
+        min: 40,
+        max: 100,
+        value: 100,
+        slide: handleChangeGridSizeSlider,
+    });
+}
 
 function setUpGrid() {
     addPlaceHolderImages(getImagesPerRow() * 3);
-    numberTheImages();
     cropImagesByDefault();
     showGrid();
 }
 
 $(window).on('load', function () {
+    initGridSizeSlider();
     setUpGrid();
     handleUserActions();
     setOptionsFromLocalStorage();

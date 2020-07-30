@@ -1,6 +1,5 @@
-NEEDED FOR LAUNCH
-Resize grid without having to resize browser window?
-    Slider to change it from 10% to 100% of page width?
+FOR LAUNCH
+Reduce text size when reduce grid size, or window width
 
 ONGOING
 Webpack, transpile code to ES5? Pull in libraries via npm
@@ -34,6 +33,7 @@ Bootstrap for responsive layout?
 Automatically move watermark when grid resizes? Snap to table cell?
 Drag cropped image to fine tune cropping
 Store images in localStorage?
+Host site somewhere else, e.g. on Netlify?
 
 IMPROVEMENTS TO ANNOUNCE
 No 24 image limit
@@ -42,3 +42,4 @@ Choose grid cell shape (square/portrait/landscape)
 Dark mode
 Overlay answers
 Blank space for answer
+Ability to set grid size
