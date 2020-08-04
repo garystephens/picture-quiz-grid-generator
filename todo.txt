@@ -1,5 +1,6 @@
 FOR LAUNCH
 Reduce text size when reduce grid size, or window width
+Option to hide numbers?
 
 ONGOING
 Webpack, transpile code to ES5? Pull in libraries via npm
