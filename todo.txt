@@ -1,5 +1,5 @@
 FOR LAUNCH
-Reduce text size when reduce grid size, or window width
+Reduce text size when reduce grid size, or window width. Or add control to adjust text sizes of numbers/answers
 Option to hide numbers?
 
 ONGOING
@@ -28,6 +28,7 @@ Add button to make screenshot
 Review ESLint config
 Support generate version of grid with answer overlaid over each cell.
 On narrow screen, collapse Options and Instructions to just headings, with a show/hide option to expand/collapse
+Optional gap between cells?
 
 BIG
 Bootstrap for responsive layout?

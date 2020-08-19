@@ -135,7 +135,7 @@ label {
 .spaceForAnswer,
 .answer {
     display: none;
-    font-size: 12px;
+    font-size: 15px;
     z-index: 200;
     line-height: 12px;
 }

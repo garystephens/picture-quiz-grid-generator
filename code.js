@@ -324,6 +324,8 @@ function handleUserActions() {
 function handleChangeGridSizeSlider(event, ui) {
     var gridSizeSliderValue = ui.value;
     $('#grid').css('width', gridSizeSliderValue + '%');
+    //$('.imageNumber').css('font-size', $('#grid').width() / 50 + 'px');
+    //$('.answer').css('font-size', $('#grid').width() / 50 + 'px');
     saveGridSizeToLocalStorage(gridSizeSliderValue);
 }
 
