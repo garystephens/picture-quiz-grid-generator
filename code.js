@@ -260,7 +260,7 @@ function cropImagesByDefault() {
 
 function setImageNumberFontSizeBasedOnImagesPerRow() {
     if (getImagesPerRow() > 6) {
-        $('.imageNumber').css('font-size', '14px');
+        $('.imageNumber').css('font-size', '13px');
     } else {
         $('.imageNumber').css('font-size', '');
     }

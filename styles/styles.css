@@ -123,14 +123,15 @@ label {
     font-weight: bold;
 }
 .imageNumber {
-    top: 0;
-    left: 0;
+    top: 3px;
+    left: 3px;
     display: inline-block;
-    padding: 1px 5px 3px 5px;
+    padding: 2px 5px 4px 5px;
     font-size: 20px;
+    line-height: 100%;
     z-index: 100;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+    border: 1px solid black;
+    border-radius: 4px;
 }
 .spaceForAnswer,
 .answer {
@@ -160,8 +161,7 @@ label {
     }
     body.darkMode .imageNumber {
         background-color: black;
-        border-right: 1px solid white;
-        border-bottom: 1px solid white;
+        border: 1px solid white;
     }
 }
 #watermark {
