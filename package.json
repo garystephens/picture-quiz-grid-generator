@@ -1,25 +1,38 @@
 {
-  "name": "picture-quiz-grid-generator",
-  "version": "1.0.0",
-  "description": "Generate picture quiz numbered grids simply by uploading images.",
-  "main": "code.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/garystephens/picture-quiz-grid-generator.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/garystephens/picture-quiz-grid-generator/issues"
-  },
-  "homepage": "https://github.com/garystephens/picture-quiz-grid-generator#readme",
-  "devDependencies": {
-    "eslint": "^7.4.0",
-    "eslint-config-prettier": "^6.11.0",
-    "prettier": "^2.0.5"
-  }
+    "name": "picture-quiz-grid-generator",
+    "version": "1.0.0",
+    "description": "Generate picture quiz numbered grids simply by uploading images.",
+    "main": "code.js",
+    "scripts": {
+        "dev": "rmdir /s /q dist && webpack --mode development",
+        "build": "del /q dist\\*.* && webpack --mode production",
+        "start": "webpack-dev-server --mode development --open",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d dist"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/garystephens/picture-quiz-grid-generator.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/garystephens/picture-quiz-grid-generator/issues"
+    },
+    "homepage": "https://github.com/garystephens/picture-quiz-grid-generator#readme",
+    "devDependencies": {
+        "@babel/core": "^7.10.5",
+        "@babel/preset-env": "^7.10.4",
+        "babel-loader": "^8.1.0",
+        "copy-webpack-plugin": "^6.0.3",
+        "eslint": "^7.13.0",
+        "eslint-config-prettier": "^6.15.0",
+        "gh-pages": "^3.1.0",
+        "html-webpack-plugin": "^4.3.0",
+        "prettier": "^2.1.2",
+        "webpack": "^4.43.0",
+        "webpack-cli": "^3.3.12",
+        "webpack-dev-server": "^3.11.0"
+    }
 }

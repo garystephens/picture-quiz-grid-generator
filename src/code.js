@@ -1,90 +1,193 @@
-/* global
-$,
-gtag,
-setOptionsFromLocalStorage,
-saveImageShapeToLocalStorage,
-saveWatermarkTextToLocalStorage,
-saveDarkModeToLocalStorage,
-saveImagesPerRowToLocalStorage,
-saveCropImagesToLocalStorage,
-saveWatermarkVerticalToLocalStorage,
-saveAnswerDisplayToLocalStorage,
-saveGridSizeToLocalStorage
- */
+/* global $ */
+
+import {
+    convertFileNameToAnswer,
+    addClassToElementTemporarily,
+    logToGoogleAnalytics,
+    readFiles,
+} from './utils.js';
+
+const ANSWERDISPLAY_LOCALSTORAGE_NAME = 'answerDisplay';
+const WATERMARKTEXT_LOCALSTORAGE_NAME = 'watermarkText';
+const WATERMARKVERTICAL_LOCALSTORAGE_NAME = 'watermarkVertical';
+const CROPIMAGES_LOCALSTORAGE_NAME = 'cropImages';
+const IMAGESPERROW_LOCALSTORAGE_NAME = 'imagesPerRow';
+const IMAGESHAPE_LOCALSTORAGE_NAME = 'imageShape';
+const DARKMODE_LOCALSTORAGE_NAME = 'darkMode';
+
+import { PersistData } from './persistData.js';
+const persistGridSize = new PersistData('gridSize');
+
+// TODO - same for other values persisted
+
+function setGridSizeFromLocalStorage() {
+    const gridSize = persistGridSize.get();
+    if (gridSize !== null) {
+        $('#gridSizeSlider').slider({ value: gridSize });
+        $('#grid').css('width', gridSize + '%');
+    }
+}
+
+function saveGridSizeToLocalStorage(gridSize) {
+    persistGridSize.set(gridSize);
+}
+
+function setAnswerDisplayFromLocalStorage() {
+    const answerDisplay = localStorage.getItem(ANSWERDISPLAY_LOCALSTORAGE_NAME);
+    if (answerDisplay !== null) {
+        $('#answerDisplay').val(answerDisplay);
+        $('.answer').toggle(answerDisplay === 'answer');
+        $('.spaceForAnswer').toggle(answerDisplay === 'blankSpace');
+    }
+}
+
+function saveAnswerDisplayToLocalStorage(answerDisplay) {
+    localStorage.setItem(ANSWERDISPLAY_LOCALSTORAGE_NAME, answerDisplay);
+}
+
+function setWatermarkVerticalFromLocalStorage() {
+    const watermarkVertical = localStorage.getItem(
+        WATERMARKVERTICAL_LOCALSTORAGE_NAME
+    );
+    if (watermarkVertical !== null) {
+        $('#watermarkVertical').attr('checked', watermarkVertical === 'true');
+        $('#watermark').toggleClass('rotate90', watermarkVertical === 'true');
+    }
+}
+
+function saveWatermarkVerticalToLocalStorage(watermarkText) {
+    localStorage.setItem(WATERMARKVERTICAL_LOCALSTORAGE_NAME, watermarkText);
+}
+
+function setWatermarkTextFromLocalStorage() {
+    const watermarkText = localStorage.getItem(WATERMARKTEXT_LOCALSTORAGE_NAME);
+    if (watermarkText !== null) {
+        $('#watermarkText').val(watermarkText);
+        $('#watermark').text(watermarkText);
+    }
+}
+
+function saveWatermarkTextToLocalStorage(watermarkText) {
+    localStorage.setItem(WATERMARKTEXT_LOCALSTORAGE_NAME, watermarkText);
+}
+
+function setCropImagesFromLocalStorage() {
+    const cropImages = localStorage.getItem(CROPIMAGES_LOCALSTORAGE_NAME);
+    if (cropImages !== null) {
+        $('#cropImages').attr('checked', cropImages === 'true');
+        $('#cropImages').toggleClass('cropImage', cropImages === 'true');
+    }
+}
+
+function saveCropImagesToLocalStorage(value) {
+    localStorage.setItem(CROPIMAGES_LOCALSTORAGE_NAME, value);
+}
+
+function setImagesPerRowFromLocalStorage() {
+    const imagesPerRow = localStorage.getItem(IMAGESPERROW_LOCALSTORAGE_NAME);
+    if (imagesPerRow !== null) {
+        $('#imagesPerRow').val(String(imagesPerRow));
+        setImageSize(getImagesPerRow());
+        setImageNumberFontSizeBasedOnImagesPerRow();
+    }
+}
+
+function saveImagesPerRowToLocalStorage(value) {
+    localStorage.setItem(IMAGESPERROW_LOCALSTORAGE_NAME, value);
+}
+
+function setImageShapeFromLocalStorage() {
+    const imageShape = localStorage.getItem(IMAGESHAPE_LOCALSTORAGE_NAME);
+    if (imageShape !== null) {
+        $('#imageShape').val(imageShape);
+        $('#grid').removeClass();
+        $('#grid').addClass(imageShape);
+    }
+}
+
+function saveImageShapeToLocalStorage(value) {
+    localStorage.setItem(IMAGESHAPE_LOCALSTORAGE_NAME, value);
+}
+
+function setDarkModeFromLocalStorage() {
+    const darkMode = localStorage.getItem(DARKMODE_LOCALSTORAGE_NAME);
+    $('#darkMode').attr('checked', darkMode === 'true');
+    $('body').toggleClass('darkMode', darkMode === 'true');
+}
+
+function saveDarkModeToLocalStorage(value) {
+    localStorage.setItem(DARKMODE_LOCALSTORAGE_NAME, value);
+}
+
+function setImageSize(imagesPerRow) {
+    imagesPerRow = Number(imagesPerRow);
+    $('div#grid > div').css('width', `${String(100 / imagesPerRow)}%`);
+    return;
+}
+
+function setOptionsFromLocalStorage() {
+    setAnswerDisplayFromLocalStorage();
+    setWatermarkTextFromLocalStorage();
+    setCropImagesFromLocalStorage();
+    setDarkModeFromLocalStorage();
+    setImagesPerRowFromLocalStorage();
+    setImageShapeFromLocalStorage();
+    setWatermarkVerticalFromLocalStorage();
+    setGridSizeFromLocalStorage();
+}
 
 function emptyOutGridTable() {
     $('#grid > div').remove();
 }
 
-window.readMultiFiles = function (files) {
+function readNewSetOfFiles(files) {
+    function actionPerFile(filePath, index, fileName) {
+        $('#grid').append(makeImageDiv(filePath, index, fileName));
+    }
+    function onComplete() {
+        handleClickImageToCrop();
+        //handleFineTuneImagePositioning();
+    }
+    readFiles(files, 0, actionPerFile, onComplete);
+}
+
+window.loadNewSetOfFiles = function (files) {
     emptyOutGridTable();
-    readFiles(files, 0);
-    $('#watermark').show();
+    readNewSetOfFiles(files);
     logToGoogleAnalytics(files.length);
 };
 
-function logToGoogleAnalytics(numberOfImages) {
-    gtag('event', 'loadImages', {
-        event_category: 'loadImages',
-        event_label: numberOfImages,
-        value: Number(numberOfImages),
-    });
-}
-
 function addPlaceHolderImages(numberOfImages) {
-    var count = 0;
-
-    while (count < numberOfImages) {
-        $('#grid').append(
-            $(
-                makeImageDiv(
-                    'images/yourImageHere.png',
-                    count,
-                    'answer goes here'
-                )
-            )
+    let index = 0;
+    while (index < numberOfImages) {
+        const imageDiv = $(
+            makeImageDiv('images/yourImageHere.png', index, 'answer goes here')
         );
-        count++;
+        $('#grid').append(imageDiv);
+        index++;
     }
 }
 
-function removeExtensionFromFileName(fileName) {
-    return fileName.substr(0, fileName.lastIndexOf('.')) || fileName;
-}
-
-function convertFileNameToAnswer(fileName) {
-    return removeExtensionFromFileName(fileName).replace(/_/g, ' ');
-}
-
 function makeAnswerTag(fileName) {
-    var showAnswer = $('#answerDisplay').val() === 'answer';
-
+    const showAnswer = $('#answerDisplay').val() === 'answer';
+    const style = showAnswer ? 'style="display:block"' : '';
+    const answer = convertFileNameToAnswer(fileName);
     if (fileName === '') {
         return '';
     } else {
-        return (
-            '<span class="answer" ' +
-            (showAnswer ? 'style="display:block"' : '') +
-            '>' +
-            convertFileNameToAnswer(fileName) +
-            '</span>'
-        );
+        return `<span class="answer" ${style}>${answer}</span>`;
     }
 }
 
 function makeSpaceForAnswerTag() {
-    var showSpaceForAnswer = $('#answerDisplay').val() === 'blankSpace';
-
-    return (
-        '<span class="spaceForAnswer" ' +
-        (showSpaceForAnswer ? 'style="display:block"' : '') +
-        '></span>'
-    );
+    const showSpaceForAnswer = $('#answerDisplay').val() === 'blankSpace';
+    const style = showSpaceForAnswer ? 'style="display:block"' : '';
+    return `<span class="spaceForAnswer" ${style}></span>`;
 }
 
 function makeImageDiv(imageData, index, fileName) {
-    var cropImages = $('#cropImages').is(':checked');
-    var width = String(100 / getImagesPerRow());
+    const cropImages = $('#cropImages').is(':checked');
+    const width = String(100 / getImagesPerRow());
 
     return $(
         '<div style="width:' +
@@ -103,34 +206,13 @@ function makeImageDiv(imageData, index, fileName) {
     );
 }
 
-function readFiles(files, index) {
-    var file = files[index];
-    var reader = new window.FileReader();
-    reader.onload = function (e) {
-        $('#grid').append(
-            makeImageDiv(e.target.result, index, files[index].name)
-        );
-        readNextFile(files, index);
-    };
-    reader.readAsDataURL(file);
-}
-
-function readNextFile(files, i) {
-    if (i < files.length - 1) {
-        readFiles(files, i + 1);
-    } else {
-        handleClickImageToCrop();
-        //handleFineTuneImagePositioning();
-    }
-}
-
 // function moveUp($image) {
 //     $image.css('object-position', '50% 40%');
 // }
 
 // function handleFineTuneImagePositioning() {
-//     var isDragging = false;
-//     var startPos;
+//     const isDragging = false;
+//     const startPos;
 
 //     $('#grid > div img')
 //         .mousedown(function (e) {
@@ -141,8 +223,8 @@ function readNextFile(files, i) {
 //             isDragging = true;
 //         })
 //         .mouseup(function (e) {
-//             var wasDragging = isDragging;
-//             var endPos = e.pageY;
+//             const wasDragging = isDragging;
+//             const endPos = e.pageY;
 //             isDragging = false;
 //             if (wasDragging) {
 //                 console.error(endPos - startPos);
@@ -159,20 +241,13 @@ function handleDraggingWatermark() {
     $('#watermark').draggable();
 }
 
-var highlightWaterMarkTimeout;
 function highlightChangeToWatermark() {
-    $('#watermark').addClass('highlight');
-    if (highlightWaterMarkTimeout) {
-        clearTimeout(highlightWaterMarkTimeout);
-    }
-    highlightWaterMarkTimeout = setTimeout(function () {
-        $('#watermark').removeClass('highlight');
-    }, 500);
+    addClassToElementTemporarily('#watermark', 'highlight', 500);
 }
 
 function handleWatermarkTextChange() {
     $('#watermarkText').keyup(function () {
-        var watermarkText = $('#watermarkText').val();
+        const watermarkText = $('#watermarkText').val();
         $('#watermark').text(watermarkText);
         highlightChangeToWatermark();
 
@@ -192,7 +267,7 @@ function handleWatermarkVertical() {
     });
 }
 
-var resizeTimeout;
+let resizeTimeout;
 function recalcImageWidth() {
     // On resize, don't adjust image size immediately (too computationally heavy),
     // instead wait for user to stop resizing the window for a moment
@@ -206,12 +281,6 @@ function handleWindowResize() {
     $(window).resize(function () {
         recalcImageWidth();
     });
-}
-
-function setImageSize(imagesPerRow) {
-    imagesPerRow = Number(imagesPerRow);
-    $('div#grid > div').css('width', String(100 / imagesPerRow) + '%');
-    return;
 }
 
 function showGrid() {
@@ -300,7 +369,7 @@ function handleChangeDarkMode() {
 
 function handleChangeAnswerDisplay() {
     $('#answerDisplay').on('change', function () {
-        var answerDisplay = $(this).val();
+        const answerDisplay = $(this).val();
         $('.answer').toggle(answerDisplay === 'answer');
         $('.spaceForAnswer').toggle(answerDisplay === 'blankSpace');
         saveAnswerDisplayToLocalStorage(answerDisplay);
@@ -322,7 +391,7 @@ function handleUserActions() {
 }
 
 function handleChangeGridSizeSlider(event, ui) {
-    var gridSizeSliderValue = ui.value;
+    const gridSizeSliderValue = ui.value;
     $('#grid').css('width', gridSizeSliderValue + '%');
     //$('.imageNumber').css('font-size', $('#grid').width() / 50 + 'px');
     //$('.answer').css('font-size', $('#grid').width() / 50 + 'px');
