@@ -12,6 +12,8 @@ import {
     readFiles,
 } from './utils.js';
 
+const NUM_PLACEHOLDER_ROWS = 3;
+
 const persistGridSize = new PersistData('gridSize');
 const persistAnswerDisplay = new PersistData('answerDisplay');
 const persistWatermarkText = new PersistData('watermarkText');
@@ -407,15 +409,15 @@ function initGridSizeSlider() {
 }
 
 function setUpGrid() {
-    addPlaceHolderImages(getImagesPerRow() * 3);
+    addPlaceHolderImages(getImagesPerRow() * NUM_PLACEHOLDER_ROWS);
     cropImagesByDefault();
     showGrid();
 }
 
 $(window).on('load', function () {
     initGridSizeSlider();
+    setOptionsFromLocalStorage();
     setUpGrid();
     handleUserActions();
-    setOptionsFromLocalStorage();
     showBody();
 });

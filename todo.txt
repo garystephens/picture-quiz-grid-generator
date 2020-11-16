@@ -1,13 +1,11 @@
 NEXT
 Install jQuery with npm? Create vendor bundle.
-
-???
-Reduce text size when reduce grid size, or window width. Or add control to adjust text sizes of numbers/answers
-Option to hide numbers? (for Only Connect style rounds)
+Put CSS in file, to avoid flicker on page load
 
 SMALL
 Improve favicon
 Move all CSS to CSS file
+Option to hide numbers? (for Only Connect style rounds)
 Replace #grid > div with a class for the div
 Add PRINT button for Chrome only?
 Watermark is in wrong position when printing in Firefox
@@ -18,18 +16,18 @@ Reload images button possible?
 Abstract out localStorage functionality?
 
 MEDIUM
+Reduce text size when reduce grid size, or window width. Or add control to adjust text sizes of numbers/answers
 Option to have space between images, like https://i.dailymail.co.uk/i/pix/2013/08/13/article-2391154-1B47B58D000005DC-911_964x819.jpg
 Add a button to randomly reorder images?
 Add button to make screenshot
 Review ESLint config
-Support generate version of grid with answer overlaid over each cell.
 On narrow screen, collapse Options and Instructions to just headings, with a show/hide option to expand/collapse
 Optional gap between cells?
 
 BIG
 Bootstrap for responsive layout?
 Automatically move watermark when grid resizes? Snap to table cell?
-Drag cropped image to fine tune cropping
+Drag cropped image to fine tune cropping, save fine-tuned position in localStorage?
 Store images in localStorage?
 Host site somewhere else, e.g. on Netlify?
 
