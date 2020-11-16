@@ -7,65 +7,21 @@ body {
     display: none;
 }
 
-@media screen {
-    body.darkMode {
-        background-color: black;
-        color: white;
-
-        input,
-        select,
-        button {
-            background-color: #333333;
-            color: white;
-        }
-    }
-
-    body.darkMode .imageNumber,
-    body.darkMode .answer {
-        background-color: black;
-    }
-
-    body.darkMode .imageNumber {
-        background-color: black;
-        border: 1px solid white;
-    }
-
-    body.darkMode #grid > div {
-        outline: 1px solid white;
-        background-color: black;
-    }
-}
-
-body.darkMode {
-    h2 {
-        background-color: #09968f;
-        color: black;
-    }
-    #options {
-        background-color: #242424;
-    }
-    #overview {
-        background-color: #033835;
-    }
-    #instructions {
-        background-color: #242424;
-    }
-}
-
 p {
+    margin-block-start: 0;
     margin-bottom: 12px;
 }
 
 ol {
     list-style: decimal;
-    margin-left: 26px;
-}
+    padding-inline-start: 20px;
 
-li {
-    margin-bottom: 8px;
+    li {
+        margin-bottom: 8px;
 
-    p {
-        margin-top: 2px;
+        p {
+            margin-top: 2px;
+        }
     }
 }
 
@@ -98,22 +54,23 @@ label {
 #grid {
     width: 100%;
     margin: auto;
+
+    & > div {
+        display: inline-block;
+        position: relative;
+        outline: 1px solid black;
+        margin-right: -1px;
+        margin-bottom: -3px;
+        background-color: white;
+
+        /* Trick to make sure divs are square (same height as the width) */
+        &:before {
+            content: '';
+            float: left;
+        }
+    }
 }
 
-#grid > div {
-    display: inline-block;
-    position: relative;
-    outline: 1px solid black;
-    margin-right: -1px;
-    margin-bottom: -3px;
-    background-color: white;
-}
-
-/* Trick to make sure divs are square (same height as the width) */
-#grid > div:before {
-    content: '';
-    float: left;
-}
 #grid.square > div:before {
     padding-top: 100%; /* 1:1 aspect ratio */
 }
@@ -129,6 +86,7 @@ label {
 #grid.landscapeWide > div:before {
     padding-top: 56.25%; /* 16:9 aspect ratio */
 }
+
 #pictureQuizGrid {
     img {
         width: 100%;
@@ -143,11 +101,11 @@ label {
             object-fit: cover;
         }
     }
-}
 
-#pictureQuizGrid.cropImages {
-    img {
-        object-fit: cover;
+    &.cropImages {
+        img {
+            object-fit: cover;
+        }
     }
 }
 
@@ -321,6 +279,52 @@ body.darkMode label#fileSelectorLabel {
     margin-left: 10px;
 }
 
+@media screen {
+    body.darkMode {
+        background-color: black;
+        color: white;
+
+        input,
+        select,
+        button {
+            background-color: #333333;
+            color: white;
+        }
+
+        .imageNumber,
+        .answer {
+            background-color: black;
+        }
+
+        .imageNumber {
+            background-color: black;
+            border: 1px solid white;
+        }
+
+        #grid > div {
+            outline: 1px solid white;
+            background-color: black;
+        }
+
+        h2 {
+            background-color: #09968f;
+            color: black;
+        }
+
+        #options {
+            background-color: #242424;
+        }
+
+        #overview {
+            background-color: #033835;
+        }
+
+        #instructions {
+            background-color: #242424;
+        }
+    }
+}
+
 @media print, screen and (max-width: 600px) {
     #watermark {
         font-size: 9px;
@@ -338,12 +342,14 @@ body.darkMode label#fileSelectorLabel {
         height: 12px;
     }
 }
+
 @media screen and (max-width: 600px) {
     .answer,
     .imageNumber {
         font-size: 9px;
     }
 }
+
 @media screen and (max-width: 900px) {
     #instructions {
         display: none;
@@ -358,6 +364,7 @@ body.darkMode label#fileSelectorLabel {
         display: inline;
     }
 }
+
 @media print {
     h2,
     #main,

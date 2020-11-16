@@ -19,7 +19,6 @@ module.exports = {
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: './src/styles', to: './styles' },
                 { from: './src/images', to: './images' },
                 { from: './src/favicons', to: './favicons' },
             ],

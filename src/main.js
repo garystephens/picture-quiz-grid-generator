@@ -1,6 +1,7 @@
 /* global $ */
 
-import './styles.scss';
+import 'normalize.css';
+import './styles/styles.scss';
 
 import { PersistData } from './persistData.js';
 
@@ -11,17 +12,14 @@ import {
     readFiles,
 } from './utils.js';
 
-const ANSWERDISPLAY_LOCALSTORAGE_NAME = 'answerDisplay';
-const WATERMARKTEXT_LOCALSTORAGE_NAME = 'watermarkText';
-const WATERMARKVERTICAL_LOCALSTORAGE_NAME = 'watermarkVertical';
-const CROPIMAGES_LOCALSTORAGE_NAME = 'cropImages';
-const IMAGESPERROW_LOCALSTORAGE_NAME = 'imagesPerRow';
-const IMAGESHAPE_LOCALSTORAGE_NAME = 'imageShape';
-const DARKMODE_LOCALSTORAGE_NAME = 'darkMode';
-
 const persistGridSize = new PersistData('gridSize');
-
-// TODO - same for other values persisted?
+const persistAnswerDisplay = new PersistData('answerDisplay');
+const persistWatermarkText = new PersistData('watermarkText');
+const persistWatermarkVertical = new PersistData('watermarkVertical');
+const persistCropImages = new PersistData('cropImages');
+const persistImagesPerRow = new PersistData('imagesPerRow');
+const persistImageShape = new PersistData('imageShape');
+const persistDarkMode = new PersistData('darkMode');
 
 function setGridSizeFromLocalStorage() {
     const gridSize = persistGridSize.get();
@@ -36,7 +34,7 @@ function saveGridSizeToLocalStorage(gridSize) {
 }
 
 function setAnswerDisplayFromLocalStorage() {
-    const answerDisplay = localStorage.getItem(ANSWERDISPLAY_LOCALSTORAGE_NAME);
+    const answerDisplay = persistAnswerDisplay.get();
     if (answerDisplay !== null) {
         $('#answerDisplay').val(answerDisplay);
         $('.answer').toggle(answerDisplay === 'answer');
@@ -45,13 +43,11 @@ function setAnswerDisplayFromLocalStorage() {
 }
 
 function saveAnswerDisplayToLocalStorage(answerDisplay) {
-    localStorage.setItem(ANSWERDISPLAY_LOCALSTORAGE_NAME, answerDisplay);
+    persistAnswerDisplay.set(answerDisplay);
 }
 
 function setWatermarkVerticalFromLocalStorage() {
-    const watermarkVertical = localStorage.getItem(
-        WATERMARKVERTICAL_LOCALSTORAGE_NAME
-    );
+    const watermarkVertical = persistWatermarkVertical.get();
     if (watermarkVertical !== null) {
         $('#watermarkVertical').attr('checked', watermarkVertical === 'true');
         $('#watermark').toggleClass('rotate90', watermarkVertical === 'true');
@@ -59,11 +55,11 @@ function setWatermarkVerticalFromLocalStorage() {
 }
 
 function saveWatermarkVerticalToLocalStorage(watermarkText) {
-    localStorage.setItem(WATERMARKVERTICAL_LOCALSTORAGE_NAME, watermarkText);
+    persistWatermarkVertical.set(watermarkText);
 }
 
 function setWatermarkTextFromLocalStorage() {
-    const watermarkText = localStorage.getItem(WATERMARKTEXT_LOCALSTORAGE_NAME);
+    const watermarkText = persistWatermarkText.get();
     if (watermarkText !== null) {
         $('#watermarkText').val(watermarkText);
         $('#watermark').text(watermarkText);
@@ -71,11 +67,11 @@ function setWatermarkTextFromLocalStorage() {
 }
 
 function saveWatermarkTextToLocalStorage(watermarkText) {
-    localStorage.setItem(WATERMARKTEXT_LOCALSTORAGE_NAME, watermarkText);
+    persistWatermarkText.set(watermarkText);
 }
 
 function setCropImagesFromLocalStorage() {
-    const cropImages = localStorage.getItem(CROPIMAGES_LOCALSTORAGE_NAME);
+    const cropImages = persistCropImages.get();
     if (cropImages !== null) {
         $('#cropImages').attr('checked', cropImages === 'true');
         $('#cropImages').toggleClass('cropImage', cropImages === 'true');
@@ -83,11 +79,11 @@ function setCropImagesFromLocalStorage() {
 }
 
 function saveCropImagesToLocalStorage(value) {
-    localStorage.setItem(CROPIMAGES_LOCALSTORAGE_NAME, value);
+    persistCropImages.set(value);
 }
 
 function setImagesPerRowFromLocalStorage() {
-    const imagesPerRow = localStorage.getItem(IMAGESPERROW_LOCALSTORAGE_NAME);
+    const imagesPerRow = persistImagesPerRow.get();
     if (imagesPerRow !== null) {
         $('#imagesPerRow').val(String(imagesPerRow));
         setImageSize(getImagesPerRow());
@@ -96,11 +92,11 @@ function setImagesPerRowFromLocalStorage() {
 }
 
 function saveImagesPerRowToLocalStorage(value) {
-    localStorage.setItem(IMAGESPERROW_LOCALSTORAGE_NAME, value);
+    persistImagesPerRow.set(value);
 }
 
 function setImageShapeFromLocalStorage() {
-    const imageShape = localStorage.getItem(IMAGESHAPE_LOCALSTORAGE_NAME);
+    const imageShape = persistImageShape.get();
     if (imageShape !== null) {
         $('#imageShape').val(imageShape);
         $('#grid').removeClass();
@@ -109,17 +105,17 @@ function setImageShapeFromLocalStorage() {
 }
 
 function saveImageShapeToLocalStorage(value) {
-    localStorage.setItem(IMAGESHAPE_LOCALSTORAGE_NAME, value);
+    persistImageShape.set(value);
 }
 
 function setDarkModeFromLocalStorage() {
-    const darkMode = localStorage.getItem(DARKMODE_LOCALSTORAGE_NAME);
+    const darkMode = persistDarkMode.get();
     $('#darkMode').attr('checked', darkMode === 'true');
     $('body').toggleClass('darkMode', darkMode === 'true');
 }
 
 function saveDarkModeToLocalStorage(value) {
-    localStorage.setItem(DARKMODE_LOCALSTORAGE_NAME, value);
+    persistDarkMode.set(value);
 }
 
 function setImageSize(imagesPerRow) {
