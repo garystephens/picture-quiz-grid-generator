@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: './src/code.js',
+    entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].[contenthash].js',
@@ -21,17 +21,22 @@ module.exports = {
             patterns: [
                 { from: './src/styles', to: './styles' },
                 { from: './src/images', to: './images' },
+                { from: './src/favicons', to: './favicons' },
             ],
         }),
     ],
     module: {
         rules: [
             {
-                test: /\.js$/, //using regex to tell babel exactly what files to transcompile
-                exclude: /node_modules/, // files to be ignored
+                test: /\.js$/,
+                exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader', // specify the loader
+                    loader: 'babel-loader',
                 },
+            },
+            {
+                test: /\.(sa|sc|c)ss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader'],
             },
         ],
     },

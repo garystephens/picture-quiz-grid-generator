@@ -1,5 +1,9 @@
 /* global $ */
 
+import './styles.scss';
+
+import { PersistData } from './persistData.js';
+
 import {
     convertFileNameToAnswer,
     addClassToElementTemporarily,
@@ -15,10 +19,9 @@ const IMAGESPERROW_LOCALSTORAGE_NAME = 'imagesPerRow';
 const IMAGESHAPE_LOCALSTORAGE_NAME = 'imageShape';
 const DARKMODE_LOCALSTORAGE_NAME = 'darkMode';
 
-import { PersistData } from './persistData.js';
 const persistGridSize = new PersistData('gridSize');
 
-// TODO - same for other values persisted
+// TODO - same for other values persisted?
 
 function setGridSizeFromLocalStorage() {
     const gridSize = persistGridSize.get();

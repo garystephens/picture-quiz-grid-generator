@@ -6,31 +6,69 @@ body {
     line-height: 18px;
     display: none;
 }
+
 @media screen {
     body.darkMode {
         background-color: black;
         color: white;
+
+        input,
+        select,
+        button {
+            background-color: #333333;
+            color: white;
+        }
     }
-    body.darkMode input,
-    body.darkMode select,
-    body.darkMode button {
-        background-color: #333333;
-        color: white;
+
+    body.darkMode .imageNumber,
+    body.darkMode .answer {
+        background-color: black;
+    }
+
+    body.darkMode .imageNumber {
+        background-color: black;
+        border: 1px solid white;
+    }
+
+    body.darkMode #grid > div {
+        outline: 1px solid white;
+        background-color: black;
     }
 }
+
+body.darkMode {
+    h2 {
+        background-color: #09968f;
+        color: black;
+    }
+    #options {
+        background-color: #242424;
+    }
+    #overview {
+        background-color: #033835;
+    }
+    #instructions {
+        background-color: #242424;
+    }
+}
+
 p {
     margin-bottom: 12px;
 }
+
 ol {
     list-style: decimal;
     margin-left: 26px;
 }
+
 li {
     margin-bottom: 8px;
+
+    p {
+        margin-top: 2px;
+    }
 }
-li p {
-    margin-top: 2px;
-}
+
 h2 {
     background-color: #7bcbc7;
     margin-top: 0;
@@ -40,27 +78,28 @@ h2 {
     font-size: 18px;
     font-weight: bold;
 }
-body.darkMode h2 {
-    background-color: #09968f;
-    color: black;
-}
+
 label {
     font-weight: bold;
 }
+
 #content {
     padding: 6px;
     max-width: 1000px;
     margin: auto;
 }
+
 #pictureQuizGrid {
     position: relative;
     width: 100%;
     display: none;
 }
+
 #grid {
     width: 100%;
     margin: auto;
 }
+
 #grid > div {
     display: inline-block;
     position: relative;
@@ -69,12 +108,7 @@ label {
     margin-bottom: -3px;
     background-color: white;
 }
-@media screen {
-    body.darkMode #grid > div {
-        outline: 1px solid white;
-        background-color: black;
-    }
-}
+
 /* Trick to make sure divs are square (same height as the width) */
 #grid > div:before {
     content: '';
@@ -95,26 +129,34 @@ label {
 #grid.landscapeWide > div:before {
     padding-top: 56.25%; /* 16:9 aspect ratio */
 }
-#pictureQuizGrid img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    object-fit: contain;
-    image-rendering: -webkit-optimize-contrast;
-    border-width: 0;
-    display: block;
+#pictureQuizGrid {
+    img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        object-fit: contain;
+        image-rendering: -webkit-optimize-contrast;
+        border-width: 0;
+        display: block;
+
+        &.cropImage {
+            object-fit: cover;
+        }
+    }
 }
-#pictureQuizGrid.cropImages img {
-    object-fit: cover;
+
+#pictureQuizGrid.cropImages {
+    img {
+        object-fit: cover;
+    }
 }
-#pictureQuizGrid img.cropImage {
-    object-fit: cover;
-}
+
 #pageUrl {
     text-align: center;
     padding-top: 6px;
     padding-bottom: 20px;
 }
+
 .imageNumber,
 .spaceForAnswer,
 .answer {
@@ -122,6 +164,7 @@ label {
     background-color: white;
     font-weight: bold;
 }
+
 .imageNumber {
     top: 3px;
     left: 3px;
@@ -133,6 +176,7 @@ label {
     border: 1px solid black;
     border-radius: 4px;
 }
+
 .spaceForAnswer,
 .answer {
     display: none;
@@ -140,6 +184,7 @@ label {
     z-index: 200;
     line-height: 12px;
 }
+
 .answer {
     text-align: right;
     right: 4px;
@@ -147,6 +192,7 @@ label {
     margin-left: 4px;
     padding: 1px 2px 3px 2px;
 }
+
 .spaceForAnswer {
     left: 7px;
     right: 8px;
@@ -154,16 +200,7 @@ label {
     height: 20px;
     background-color: white;
 }
-@media screen {
-    body.darkMode .imageNumber,
-    body.darkMode .answer {
-        background-color: black;
-    }
-    body.darkMode .imageNumber {
-        background-color: black;
-        border: 1px solid white;
-    }
-}
+
 #watermark {
     position: absolute;
     background-color: white;
@@ -175,14 +212,16 @@ label {
     left: 50px;
     z-index: 100;
     cursor: move;
+
+    &:empty {
+        padding: 0;
+    }
+    &.highlight {
+        opacity: 1;
+        background-color: yellow;
+    }
 }
-#watermark:empty {
-    padding: 0;
-}
-#watermark.highlight {
-    opacity: 1;
-    background-color: yellow;
-}
+
 .rotate90 {
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
@@ -190,39 +229,40 @@ label {
     -ms-transform: rotate(-90deg);
     transform: rotate(-90deg);
 }
+
 .tip {
     font-size: 12px;
 }
+
 #main,
 #instructions {
     float: left;
 }
+
 #main {
     width: 50%;
     padding-right: 10px;
 }
+
 #instructions {
     width: 45%;
     padding: 10px;
     background-color: #d5e0df;
     border-radius: 6px;
 }
+
 #overview {
     padding: 10px;
     background-color: #b8e4e2;
     border-radius: 6px;
     margin-bottom: 10px;
 }
-body.darkMode #overview {
-    background-color: #033835;
-}
-body.darkMode #instructions {
-    background-color: #242424;
-}
+
 #intro {
     font-weight: bold;
     padding-bottom: 8px;
 }
+
 #options {
     background-color: #d5e0df;
     padding: 10px;
@@ -231,20 +271,29 @@ body.darkMode #instructions {
     grid-gap: 5px;
     border-radius: 6px;
     font-size: 14px;
+
+    label {
+        text-align: right;
+    }
+
+    select,
+    input {
+        width: min-content;
+    }
 }
+
 #gridSizeSlider {
     width: 80%;
     height: 10px;
 }
-body.darkMode #options {
-    background-color: #242424;
-}
+
 #fileSelector {
     opacity: 0;
     position: absolute;
     z-index: -1;
     display: block;
 }
+
 label#fileSelectorLabel {
     cursor: pointer;
     text-align: left;
@@ -256,25 +305,22 @@ label#fileSelectorLabel {
     font-size: 13px;
     border-radius: 2px;
 }
+
 body.darkMode label#fileSelectorLabel {
     background-color: #09968f;
     border: 1px solid #000000;
 }
-#options label {
-    text-align: right;
-}
-#options select,
-#options input {
-    width: min-content;
-}
+
 #showInstructions {
     display: none;
     margin-bottom: 10px;
 }
+
 #sampleImage {
     float: right;
     margin-left: 10px;
 }
+
 @media print, screen and (max-width: 600px) {
     #watermark {
         font-size: 9px;

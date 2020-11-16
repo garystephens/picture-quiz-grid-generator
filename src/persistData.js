@@ -5,8 +5,8 @@ class PersistData {
     get() {
         return localStorage.getItem(this.name);
     }
-    set(gridSize) {
-        localStorage.setItem(this.name, gridSize);
+    set(value) {
+        localStorage.setItem(this.name, value);
     }
 }
 
