@@ -1,11 +1,11 @@
 NEXT
-Install jQuery with npm? Create vendor bundle.
 Convert to use React (do minor work first)
+Install jQuery with npm? Create vendor bundle.
 
 SMALL
-Put CSS in file?
+Put CSS in file with hash?
 Improve favicon
-Move all CSS to CSS file
+Move all CSS to SCSS file
 Option to hide numbers? (for Only Connect style rounds)
 Replace #grid > div with a class for the div
 Add PRINT button for Chrome only?

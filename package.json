@@ -5,7 +5,7 @@
     "main": "main.js",
     "scripts": {
         "dev": "rmdir /s /q dist && webpack --mode development",
-        "build": "del /q dist\\*.* && webpack --mode production",
+        "build": "rmdir /s /q dist && webpack --mode production",
         "start": "webpack-dev-server --mode development --open",
         "predeploy": "npm run build",
         "deploy": "gh-pages -d dist"
