@@ -3,13 +3,13 @@ Install jQuery with npm? Create vendor bundle.
 Put CSS in file, to avoid flicker on page load
 
 SMALL
+IE - display text saying not supported https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
 Improve favicon
 Move all CSS to CSS file
 Option to hide numbers? (for Only Connect style rounds)
 Replace #grid > div with a class for the div
 Add PRINT button for Chrome only?
 Watermark is in wrong position when printing in Firefox
-Check site in IE
 Bookmark h/v replace with dropdown?
 Add links to sample quizzes?
 Reload images button possible?
