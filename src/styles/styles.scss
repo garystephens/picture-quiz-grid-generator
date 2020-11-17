@@ -366,3 +366,32 @@ label#fileSelectorLabel {
         display: none;
     }
 }
+
+.ie-only {
+    display: none;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    // These styles will be applied to IE10/IE11 only, allowing us to indicate we don't support IE
+
+    * {
+        display: none;
+    }
+
+    html,
+    body,
+    .ie-only {
+        display: block;
+    }
+
+    .ie-only {
+        margin: auto;
+        width: 500px;
+        text-align: center;
+        padding-top: 100px;
+
+        br {
+            display: block;
+        }
+    }
+}

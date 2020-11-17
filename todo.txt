@@ -1,9 +1,9 @@
 NEXT
 Install jQuery with npm? Create vendor bundle.
-Put CSS in file, to avoid flicker on page load
+Convert to use React (do minor work first)
 
 SMALL
-IE - display text saying not supported https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+Put CSS in file?
 Improve favicon
 Move all CSS to CSS file
 Option to hide numbers? (for Only Connect style rounds)
