@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Draggable from 'react-draggable';
 import PictureQuizGridElement from './pictureQuizGridElement.js';
 import { addClassToElementTemporarily } from '../utils.js';
 import { usePrevious } from '../reactUtils.js';
@@ -7,11 +8,6 @@ import { usePrevious } from '../reactUtils.js';
 function PictureQuizGrid(props) {
     const [watermarkText, setWatermarkText] = useState(props.watermarkText);
     const prevWatermarketText = usePrevious(watermarkText);
-
-    // On first render
-    useEffect(() => {
-        $('#watermark').draggable();
-    }, []);
 
     // On change of watermark text
     useEffect(() => {
@@ -21,19 +17,23 @@ function PictureQuizGrid(props) {
             prevWatermarketText !== undefined &&
             props.watermarkText !== prevWatermarketText
         ) {
-            addClassToElementTemporarily('#watermark', 'highlight', 500);
+            addClassToElementTemporarily('#watermarkText', 'highlight', 500);
         }
-        $('#watermark').draggable();
     }, [props.watermarkText]);
 
     return (
         <div id="pictureQuizGrid">
-            <div
-                id="watermark"
-                className={props.watermarkVertical ? 'rotate90' : ''}
-            >
-                {watermarkText}
-            </div>
+            <Draggable>
+                <div id="watermark">
+                    <div
+                        id="watermarkText"
+                        className={props.watermarkVertical ? 'rotate90' : ''}
+                    >
+                        {' '}
+                        {watermarkText}
+                    </div>
+                </div>
+            </Draggable>
             <div
                 id="grid"
                 style={{ width: props.gridSize + '%' }}

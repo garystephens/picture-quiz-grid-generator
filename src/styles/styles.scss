@@ -51,11 +51,7 @@ label {
 
     #watermark {
         position: absolute;
-        background-color: white;
-        color: black;
-        padding: 3px 5px 3px 5px;
-        font-weight: bold;
-        opacity: 0.5;
+
         top: 50px;
         left: 50px;
         z-index: 100;
@@ -64,9 +60,18 @@ label {
         &:empty {
             padding: 0;
         }
-        &.highlight {
-            opacity: 1;
-            background-color: yellow;
+
+        #watermarkText {
+            background-color: white;
+            color: black;
+            padding: 3px 5px 3px 5px;
+            font-weight: bold;
+            opacity: 0.5;
+
+            &.highlight {
+                opacity: 1;
+                background-color: yellow;
+            }
         }
     }
 
