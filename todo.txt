@@ -1,9 +1,8 @@
 REACT SUPPORT
-logToGoogleAnalytics (check on live)
+Use react-draggable in place of jQuery UI
 Show/hide instructions
 Set default number of images to 3 rows
 Tidy up readFiles?
-Use react-draggable in place of jQuery UI
 
 NEXT
 Install jQuery with npm? Create vendor bundle.
@@ -14,7 +13,7 @@ SMALL
 Put CSS in file with hash?
 Improve favicon
 Move all CSS to SCSS file
-Option to hide numbers? (for Only Connect style rounds)
+Show numbers / letters / none (for Only Connect style rounds)
 Replace #grid > div with a class for the div
 Add PRINT button for Chrome only?
 Watermark is in wrong position when printing in Firefox

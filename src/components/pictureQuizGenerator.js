@@ -38,6 +38,9 @@ function PictureQuizGenerator(props) {
         darkMode: false,
     };
 
+    const MIN_IMAGES_PER_ROW = 1;
+    const MAX_IMAGES_PER_ROW = 14;
+
     function getPersistedFiles() {
         const persistedFiles = persistFiles.get();
         if (persistedFiles === null) {
@@ -155,6 +158,8 @@ function PictureQuizGenerator(props) {
                 <PictureQuizOptions
                     gridSize={gridSize}
                     imagesPerRow={imagesPerRow}
+                    minImagesPerRow={MIN_IMAGES_PER_ROW}
+                    maxImagesPerRow={MAX_IMAGES_PER_ROW}
                     imageShape={imageShape}
                     cropImages={cropImages}
                     answerDisplay={answerDisplay}

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
+import GridSizeSlider from './optionControls/gridSizeSlider.js';
+import ImageShapeSelect from './optionControls/imageShapeSelect.js';
+import NumberSelect from './optionControls/numberSelect.js';
 
 function PictureQuizOptions(props) {
     const [gridSize, setGridSize] = useState(props.gridSize);
@@ -60,40 +61,22 @@ function PictureQuizOptions(props) {
             <span></span>
             <span style={{ fontWeight: 'bold' }}>OPTIONS</span>
             <label>Grid size:</label>
-            <div className="slider">
-                <Slider
-                    defaultValue={gridSize}
-                    trackStyle={{ backgroundColor: '#09968f' }}
-                    handleStyle={{ borderColor: '#09968f' }}
-                    min={40}
-                    max={100}
-                    onChange={(gridSize) => onChangeGridSize(gridSize)}
-                />
-            </div>
+            <GridSizeSlider
+                defaultValue={gridSize}
+                onChange={onChangeGridSize}
+            />
             <label>Images per row:</label>
-            <select
-                value={imagesPerRow}
-                onChange={(e) =>
-                    onChangeImagesPerRow(Number(e.currentTarget.value))
-                }
-            >
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((i) => (
-                    <option key={i} value={i}>
-                        {i}
-                    </option>
-                ))}
-            </select>
+            <NumberSelect
+                min={props.minImagesPerRow}
+                max={props.maxImagesPerRow}
+                defaultValue={imagesPerRow}
+                onChange={onChangeImagesPerRow}
+            />
             <label>Grid cell shape:</label>
-            <select
-                value={imageShape}
-                onChange={(e) => onChangeImageShape(e.currentTarget.value)}
-            >
-                <option value="square">Square</option>
-                <option value="portrait">Portrait (3:4)</option>
-                <option value="portraitTall">Portrait, tall (9:16)</option>
-                <option value="landscape">Landscape (4:3)</option>
-                <option value="landscapeWide">Landscape, wide (16:9)</option>
-            </select>
+            <ImageShapeSelect
+                defaultValue={imageShape}
+                onChange={onChangeImageShape}
+            />
             <label>Crop images to fit:</label>
             <span>
                 <input
@@ -124,9 +107,9 @@ function PictureQuizOptions(props) {
                 </select>
                 <br />
                 <span className="tip">
-                    Where answers are shown, they are the file names with their
-                    extensions removed. &quot;Elvis Presley.jpg&quot; would be
-                    displayed as &quot;Elvis Presley&quot;.
+                    Where answers are shown, they are the file names without
+                    their extensions. <i>Elvis Presley.jpg</i> would be
+                    displayed as <i>Elvis Presley</i>.
                 </span>
             </span>
             <label>Dark mode:</label>
@@ -170,6 +153,8 @@ function PictureQuizOptions(props) {
 PictureQuizOptions.propTypes = {
     gridSize: PropTypes.number.isRequired,
     imagesPerRow: PropTypes.number.isRequired,
+    minImagesPerRow: PropTypes.number.isRequired,
+    maxImagesPerRow: PropTypes.number.isRequired,
     imageShape: PropTypes.string.isRequired,
     cropImages: PropTypes.bool.isRequired,
     answerDisplay: PropTypes.string.isRequired,
