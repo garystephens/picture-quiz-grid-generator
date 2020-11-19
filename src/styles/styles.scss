@@ -47,7 +47,7 @@ label {
 #pictureQuizGrid {
     position: relative;
     width: 100%;
-    display: none;
+    // display: none;
 
     #watermark {
         position: absolute;
@@ -80,7 +80,7 @@ label {
             outline: 1px solid black;
             margin-right: -1px;
             margin-bottom: -3px;
-            background-color: white;
+            background-color: #d5e0df;
 
             /* Trick to make sure divs are square (same height as the width) */
             &:before {
@@ -94,7 +94,7 @@ label {
             height: 100%;
             position: absolute;
             object-fit: contain;
-            image-rendering: -webkit-optimize-contrast;
+            //image-rendering: -webkit-optimize-contrast; // seems to cause pixellation of images, in Edge at least
             border-width: 0;
             display: block;
 
@@ -151,11 +151,14 @@ label {
     z-index: 100;
     border: 1px solid black;
     border-radius: 4px;
+
+    &.small {
+        font-size: 13px;
+    }
 }
 
 .spaceForAnswer,
 .answer {
-    display: none;
     font-size: 15px;
     z-index: 200;
     line-height: 12px;
@@ -235,6 +238,12 @@ label {
     input {
         width: min-content;
     }
+
+    .slider {
+        margin-left: 4px;
+        margin-right: 8px;
+        margin-top: 3px;
+    }
 }
 
 #gridSizeSlider {
@@ -295,9 +304,9 @@ label#fileSelectorLabel {
             border: 1px solid white;
         }
 
-        #grid > div {
+        #pictureQuizGrid #grid > div {
             outline: 1px solid white;
-            background-color: black;
+            background-color: #222222;
         }
 
         h2 {

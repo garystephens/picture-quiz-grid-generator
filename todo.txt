@@ -1,6 +1,14 @@
+REACT SUPPORT
+logToGoogleAnalytics (check on live)
+Show/hide instructions
+Set default number of images to 3 rows
+Tidy up readFiles?
+Use react-draggable in place of jQuery UI
+
 NEXT
-Convert to use React (do minor work first)
 Install jQuery with npm? Create vendor bundle.
+Remove hello-world from github
+use styled-components?
 
 SMALL
 Put CSS in file with hash?
@@ -13,7 +21,6 @@ Watermark is in wrong position when printing in Firefox
 Bookmark h/v replace with dropdown?
 Add links to sample quizzes?
 Reload images button possible?
-Abstract out localStorage functionality?
 
 MEDIUM
 Reduce text size when reduce grid size, or window width. Or add control to adjust text sizes of numbers/answers

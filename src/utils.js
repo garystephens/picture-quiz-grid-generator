@@ -19,7 +19,7 @@ function addClassToElementTemporarily(selector, className, delay) {
     }, delay);
 }
 
-function logToGoogleAnalytics(numberOfImages) {
+function logLoadImagesToGoogleAnalytics(numberOfImages) {
     gtag('event', 'loadImages', {
         event_category: 'loadImages',
         event_label: numberOfImages,
@@ -44,10 +44,24 @@ function readFiles(files, index, actionPerFile, onComplete) {
     reader.readAsDataURL(file);
 }
 
+// function JSONStringifyFilelist(fileList) {
+//     const newFiles = [];
+//     for (let i = 0; i < fileList.length; i++) {
+//         newFiles.push({
+//             lastModified: fileList[i].lastModified,
+//             lastModifiedDate: fileList[i].lastModifiedDate,
+//             name: fileList[i].name,
+//             size: fileList[i].size,
+//             type: fileList[i].type,
+//         });
+//     }
+//     return JSON.stringify(newFiles);
+// }
+
 export {
     removeExtensionFromFileName,
     convertFileNameToAnswer,
     addClassToElementTemporarily,
-    logToGoogleAnalytics,
+    logLoadImagesToGoogleAnalytics,
     readFiles,
 };

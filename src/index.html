@@ -53,8 +53,6 @@
 
         <!--<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>-->
 
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">        
-
     </head>
     <body style="display:none">
         <div class="ie-only">
@@ -63,143 +61,8 @@
             Please use a more up-to-date browser, such as Chrome, Firefox or Edge.
         </div>
         <h2>Gary's Picture Quiz Grid Generator</h2>
+
         <div id="content">
-            <div id="main">
-                <div id="overview">
-                    <div id="sampleImage">
-                        <img src="images/samplequiz.jpg" />
-                    </div>
-                    <div id="intro">
-                        <p style="margin-top: 0;">Easily create a picture quiz, displayed in a numbered grid.</p>
-                        <p>Just select the images to display in the grid, and then grab a screenshot or print it out.</p>
-                        <br/>
-                        <label id="fileSelectorLabel" for="fileSelector">SELECT YOUR IMAGES...</label>
-                        <input type="file" id="fileSelector" name="fileSelector" onchange="loadNewSetOfFiles(this.files)" multiple=""/>
-                    </div>
-                    <div style="clear:both"></div>
-                </div>
-                <div id="options">
-                    <span></span>
-                    <span style="font-weight:bold">OPTIONS</span>
-                    <label>Grid size:</label>
-                    <div id="gridSizeSlider"></div>            
-                    <label>Images per row:</label>
-                    <select id="imagesPerRow">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5" selected>5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                    </select>
-                    <label>Grid cell shape:</label>
-                    <select id="imageShape">
-                        <option value="square" selected>Square</option>
-                        <option value="portrait">Portrait (3:4)</option>
-                        <option value="portraitTall">Portrait, tall (9:16)</option>
-                        <option value="landscape">Landscape (4:3)</option>
-                        <option value="landscapeWide">Landscape, wide (16:9)</option>
-                    </select>
-                    <label>
-                        Crop images to fit:
-                    </label>
-                    <span>
-                        <input type="checkbox" id="cropImages" checked>
-                        <br />
-                        <span class="tip">You can also click a specific image to crop/uncrop it.</span>
-                    </span>
-                    <label>Show:</label>
-                    <span>
-                        <select id="answerDisplay">
-                            <option value="none">No answer spaces or answers</option>
-                            <option value="blankSpace">Blank space for writing answers</option>
-                            <option value="answer">Answers</option>
-                        </select>
-                        <br />
-                        <span class="tip">Where answers are shown, they are the file names with their extensions removed. "Elvis Presley.jpg" would be displayed as "Elvis Presley".</span>
-                    </span>
-                    <label>Dark mode:</label>
-                    <span>
-                        <input type="checkbox" id="darkMode" checked />
-                    </span>
-                    <span>&nbsp;</span>
-                    <span>&nbsp;</span>
-                    <label>
-                        Watermark text:
-                    </label>
-                    <span>
-                        <input type="text" id="watermarkText" /> 
-                        <br />
-                        <span class="tip">Watermark can be dragged to your preferred location.</span>
-                    </span>                        
-                    <label>
-                        Vertical watermark:
-                    </label>
-                    <span>
-                        <input type="checkbox" id="watermarkVertical" /> 
-                    </span>
-                </div>
-                <br/>
-                <br/>
-                <button id="showInstructions">Show/Hide Instructions</button>
-            </div>            
-            <div id="instructionsBlock">
-                <div id="instructions">
-                    <p style="font-weight: bold">INSTRUCTIONS</p>
-                    <ol>
-                        <li>
-                            Save up the images for your quiz on your device, making sure, of course, that you have the right to use the images.
-                            <br/>
-                            <p class="tip">
-                                Tip: Images where the important part of the image is in the centre work best. You may need to crop some of the image files in an editing tool to adjust this.
-                            </p>
-                        </li>
-                        <li>
-                            If you want to be able to generate a version of the quiz showing answers, set each image filename to be the answer (e.g. "Elvis Presley.jpg").
-                        </li>                            
-                        <li>
-                            Press the button to select your image files.
-                            The images will be ordered in the grid in whatever order they are in when you select them.
-                        </li>
-                        <li>
-                            Adjust the various options to your taste.
-                        </li>
-                        <li>
-                            Optionally, type some watermark text to be overlaid on the grid. 
-                            <p class="tip">
-                                Note: If you are going to print the quiz, check the watermark is in the correct position on the print preview, as it might be in a slightly different position to where it is shown on screen.
-                            </p>
-                        </li>
-                        <li>
-                            Take a screenshot of the grid
-                            &nbsp;
-                            <span style="font-weight:bold">OR</span>
-                            &nbsp;
-                            Print to paper or a PDF
-                        </li>
-                        <li>
-                            If you wish, select to show 'Answers' and screenshot or print a version with the answers.
-                        </li>
-                    </ol>
-                    <!--<input type="button" onclick="makeScreenshot()" value="Make screenshot" />-->
-                    Please send bug reports, feature suggestions, spare change, etc. to: gary.p.stephens [AT] gmail DOT com
-                    <br/>
-                </div>  
-            </div>  
-            <div style="clear:both; height:12px"></div>
-            <div id="pictureQuizGrid">
-                <div id="watermark"></div>
-                <div id="grid" class="square"></div>
-                <div id="pageUrl">garystephens.github.io/picture-quiz-grid-generator</div>
-            </div>
         </div>
     </body>
 </html>
