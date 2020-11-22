@@ -1,6 +1,5 @@
 REACT SUPPORT
 Show/hide instructions
-Set default number of images to 3 rows
 Tidy up readFiles?
 
 NEXT

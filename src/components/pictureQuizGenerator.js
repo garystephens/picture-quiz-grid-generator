@@ -19,14 +19,6 @@ function PictureQuizGenerator(props) {
     const persistDarkMode = new PersistData('darkMode');
     const persistFiles = new PersistData('files');
 
-    const DEFAULT_NUM_PLACEHOLDER_IMAGES = 15;
-
-    const defaultFiles = Array(DEFAULT_NUM_PLACEHOLDER_IMAGES).fill({
-        filePath: 'images/answer goes here.png',
-        index: 0,
-        fileName: 'answer goes here.png',
-    });
-
     const DEFAULT_OPTIONS = {
         gridSize: 100,
         imagesPerRow: 5,
@@ -38,6 +30,7 @@ function PictureQuizGenerator(props) {
         darkMode: false,
     };
 
+    const DEFAULT_NUM_ROWS_PLACEHOLDER_IMAGES = 3;
     const MIN_IMAGES_PER_ROW = 1;
     const MAX_IMAGES_PER_ROW = 14;
 
@@ -49,12 +42,22 @@ function PictureQuizGenerator(props) {
         return JSON.parse(persistedFiles);
     }
 
-    const [files, setFiles] = useState(getPersistedFiles() || defaultFiles);
-    const [gridSize, setGridSize] = useState(
-        persistGridSize.getNumber() || DEFAULT_OPTIONS.gridSize
-    );
+    function makeDefaultFilesArray(imagesPerRow) {
+        return Array(imagesPerRow * DEFAULT_NUM_ROWS_PLACEHOLDER_IMAGES).fill({
+            filePath: 'images/answer goes here.png',
+            index: 0,
+            fileName: 'answer goes here.png',
+        });
+    }
+
     const [imagesPerRow, setImagesPerRow] = useState(
         persistImagesPerRow.getNumber() || DEFAULT_OPTIONS.imagesPerRow
+    );
+    const [files, setFiles] = useState(
+        getPersistedFiles() || makeDefaultFilesArray(imagesPerRow)
+    );
+    const [gridSize, setGridSize] = useState(
+        persistGridSize.getNumber() || DEFAULT_OPTIONS.gridSize
     );
     const [imageShape, setImageShape] = useState(
         persistImageShape.get() || DEFAULT_OPTIONS.imageShape
