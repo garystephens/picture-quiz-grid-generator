@@ -1,5 +1,4 @@
 REACT SUPPORT
-Move watermark to own component
 Show/hide instructions
 Set default number of images to 3 rows
 Tidy up readFiles?
