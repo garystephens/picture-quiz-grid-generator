@@ -18,8 +18,8 @@ function PictureQuizGrid(props) {
                 {props.files.map((file, index) => (
                     <PictureQuizGridElement
                         key={index + 1}
-                        filePath={file.filePath}
                         fileName={file.fileName}
+                        filePath={file.filePath}
                         index={index + 1}
                         widthPercentage={100 / props.imagesPerRow}
                         cropImages={props.cropImages}

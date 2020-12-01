@@ -1,7 +1,12 @@
 /* global module */
 
 module.exports = {
-    extends: 'eslint:recommended',
+    extends: [
+        'eslint:recommended',
+        'plugin:react/recommended',
+        'plugin:react-hooks/recommended',
+    ],
+    plugins: ['react', 'react-hooks'],
     env: {
         browser: true,
         es6: true,
@@ -13,8 +18,10 @@ module.exports = {
             jsx: true,
         },
     },
-    extends: ['plugin:react/recommended'],
-    globals: { $: 'readonly' },
+    globals: {
+        $: 'readonly',
+        gtag: 'readonly',
+    },
     rules: {
         'no-undef': 'error',
     },

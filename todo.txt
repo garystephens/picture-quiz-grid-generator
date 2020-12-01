@@ -1,14 +1,10 @@
-REACT SUPPORT
-Show/hide instructions
-Tidy up readFiles?
-
 NEXT
-Install jQuery with npm? Create vendor bundle.
-Remove hello-world from github
-use styled-components?
+Install jQuery with npm? Create vendor bundle?
+use styled-components? how to handle dark-mode? https://www.smashingmagazine.com/2020/04/dark-mode-react-apps-styled-components/
+Use flux/redux?
 
 SMALL
-Put CSS in file with hash?
+Put CSS in bundle with hash?
 Improve favicon
 Move all CSS to SCSS file
 Show numbers / letters / none (for Only Connect style rounds)
@@ -22,7 +18,6 @@ Reload images button possible?
 MEDIUM
 Reduce text size when reduce grid size, or window width. Or add control to adjust text sizes of numbers/answers
 Option to have space between images, like https://i.dailymail.co.uk/i/pix/2013/08/13/article-2391154-1B47B58D000005DC-911_964x819.jpg
-Add a button to randomly reorder images?
 Add button to make screenshot
 Review ESLint config
 On narrow screen, collapse Options and Instructions to just headings, with a show/hide option to expand/collapse
@@ -32,7 +27,6 @@ BIG
 Bootstrap for responsive layout?
 Automatically move watermark when grid resizes? Snap to table cell?
 Drag cropped image to fine tune cropping, save fine-tuned position in localStorage?
-Store images in localStorage?
 Host site somewhere else, e.g. on Netlify?
 
 IMPROVEMENTS TO ANNOUNCE

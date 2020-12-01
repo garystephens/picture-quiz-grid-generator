@@ -4,11 +4,15 @@ import PictureQuizGrid from './pictureQuizGrid.js';
 import PictureQuizOptions from './pictureQuizOptions.js';
 import PictureQuizInstructions from './pictureQuizInstructions.js';
 import PictureQuizOverview from './pictureQuizOverview.js';
+import config from './defaultConfig.js';
+import { shuffleArray } from '../utils/utils.js';
+import {
+    readFilelist,
+    logLoadImagesToGoogleAnalytics,
+} from '../utils/utils.js';
+import PersistData from '../utils/persistData.js';
 
-import { readFiles, logLoadImagesToGoogleAnalytics } from '../utils.js';
-import PersistData from '../persistData.js';
-
-function PictureQuizGenerator(props) {
+function PictureQuizGenerator() {
     const persistGridSize = new PersistData('gridSize');
     const persistAnswerDisplay = new PersistData('answerDisplay');
     const persistWatermarkText = new PersistData('watermarkText');
@@ -17,22 +21,8 @@ function PictureQuizGenerator(props) {
     const persistImagesPerRow = new PersistData('imagesPerRow');
     const persistImageShape = new PersistData('imageShape');
     const persistDarkMode = new PersistData('darkMode');
+    const persistRandomiseOrder = new PersistData('randomiseOrder');
     const persistFiles = new PersistData('files');
-
-    const DEFAULT_OPTIONS = {
-        gridSize: 100,
-        imagesPerRow: 5,
-        imageShape: 'square',
-        cropImages: true,
-        answerDisplay: '',
-        watermarkText: '',
-        watermarkVertical: false,
-        darkMode: false,
-    };
-
-    const DEFAULT_NUM_ROWS_PLACEHOLDER_IMAGES = 3;
-    const MIN_IMAGES_PER_ROW = 1;
-    const MAX_IMAGES_PER_ROW = 14;
 
     function getPersistedFiles() {
         const persistedFiles = persistFiles.get();
@@ -43,74 +33,72 @@ function PictureQuizGenerator(props) {
     }
 
     function makeDefaultFilesArray(imagesPerRow) {
-        return Array(imagesPerRow * DEFAULT_NUM_ROWS_PLACEHOLDER_IMAGES).fill({
+        return Array(
+            imagesPerRow * config.DEFAULT_NUM_ROWS_PLACEHOLDER_IMAGES
+        ).fill({
             filePath: 'images/answer goes here.png',
-            index: 0,
             fileName: 'answer goes here.png',
         });
     }
 
     const [imagesPerRow, setImagesPerRow] = useState(
-        persistImagesPerRow.getNumber() || DEFAULT_OPTIONS.imagesPerRow
+        persistImagesPerRow.getNumber() || config.DEFAULT_OPTIONS.imagesPerRow
     );
     const [files, setFiles] = useState(
         getPersistedFiles() || makeDefaultFilesArray(imagesPerRow)
     );
     const [gridSize, setGridSize] = useState(
-        persistGridSize.getNumber() || DEFAULT_OPTIONS.gridSize
+        persistGridSize.getNumber() || config.DEFAULT_OPTIONS.gridSize
     );
     const [imageShape, setImageShape] = useState(
-        persistImageShape.get() || DEFAULT_OPTIONS.imageShape
+        persistImageShape.get() || config.DEFAULT_OPTIONS.imageShape
     );
     const [cropImages, setCropImages] = useState(
         persistCropImages.getBoolean() !== null
             ? persistCropImages.getBoolean()
-            : DEFAULT_OPTIONS.cropImages
+            : config.DEFAULT_OPTIONS.cropImages
     );
     const [answerDisplay, setAnswerDisplay] = useState(
-        persistAnswerDisplay.get() || DEFAULT_OPTIONS.answerDisplay
+        persistAnswerDisplay.get() || config.DEFAULT_OPTIONS.answerDisplay
     );
     const [watermarkText, setWatermarkText] = useState(
-        persistWatermarkText.get() || DEFAULT_OPTIONS.watermarkText
+        persistWatermarkText.get() || config.DEFAULT_OPTIONS.watermarkText
     );
     const [watermarkVertical, setWatermarkVertical] = useState(
         persistWatermarkVertical.getBoolean() !== null
             ? persistWatermarkVertical.getBoolean()
-            : DEFAULT_OPTIONS.watermarkVertical
+            : config.DEFAULT_OPTIONS.watermarkVertical
     );
     const [darkMode, setDarkMode] = useState(
         persistDarkMode.getBoolean() !== null
             ? persistDarkMode.getBoolean()
-            : DEFAULT_OPTIONS.darkMode
+            : config.DEFAULT_OPTIONS.darkMode
+    );
+    const [randomiseOrder, setRandomiseOrder] = useState(
+        persistRandomiseOrder.getBoolean() !== null
+            ? persistRandomiseOrder.getBoolean()
+            : config.DEFAULT_OPTIONS.randomiseOrder
     );
 
-    // TODO change to async / await, put compiling of array into util function
-    function readNewSetOfFiles(files) {
-        const fileList = [];
-        function actionPerFile(filePath, index, fileName) {
-            fileList.push({
-                filePath: filePath,
-                index: index,
-                fileName: fileName,
-            });
+    async function readNewSetOfFiles(filelist) {
+        if (randomiseOrder) {
+            filelist = shuffleArray(Array.from(filelist));
         }
-        function onComplete() {
-            setFiles(fileList);
-            persistFiles.set(JSON.stringify(fileList));
-        }
-        readFiles(files, 0, actionPerFile, onComplete);
+        const fileDetails = await readFilelist(filelist);
+        setFiles(fileDetails);
+        persistFiles.set(JSON.stringify(fileDetails));
     }
 
-    function onFilesSelected(e) {
-        readNewSetOfFiles(e.target.files);
-        logLoadImagesToGoogleAnalytics(e.target.files.length);
-    }
-
-    function updateDarkMode() {
-        $('body').toggleClass('darkMode', darkMode);
+    function onFilesSelected(filelist) {
+        readNewSetOfFiles(filelist);
+        logLoadImagesToGoogleAnalytics(filelist.length);
     }
 
     useEffect(() => {
+        function updateDarkMode() {
+            $('body').toggleClass('darkMode', darkMode);
+        }
+
         updateDarkMode();
     }, [darkMode]);
 
@@ -154,6 +142,11 @@ function PictureQuizGenerator(props) {
         persistDarkMode.set(darkMode);
     }
 
+    function onChangeRandomiseOrder(randomiseOrder) {
+        setRandomiseOrder(randomiseOrder);
+        persistRandomiseOrder.set(randomiseOrder);
+    }
+
     return (
         <div>
             <div id="main">
@@ -161,14 +154,15 @@ function PictureQuizGenerator(props) {
                 <PictureQuizOptions
                     gridSize={gridSize}
                     imagesPerRow={imagesPerRow}
-                    minImagesPerRow={MIN_IMAGES_PER_ROW}
-                    maxImagesPerRow={MAX_IMAGES_PER_ROW}
+                    minImagesPerRow={config.MIN_IMAGES_PER_ROW}
+                    maxImagesPerRow={config.MAX_IMAGES_PER_ROW}
                     imageShape={imageShape}
                     cropImages={cropImages}
                     answerDisplay={answerDisplay}
                     watermarkText={watermarkText}
                     watermarkVertical={watermarkVertical}
                     darkMode={darkMode}
+                    randomiseOrder={randomiseOrder}
                     onChangeGridSize={onChangeGridSize}
                     onChangeImagesPerRow={onChangeImagesPerRow}
                     onChangeImageShape={onChangeImageShape}
@@ -177,6 +171,7 @@ function PictureQuizGenerator(props) {
                     onChangeWatermarkText={onChangeWatermarkText}
                     onChangeWatermarkVertical={onChangeWatermarkVertical}
                     onChangeDarkMode={onChangeDarkMode}
+                    onChangeRandomiseOrder={onChangeRandomiseOrder}
                 />
             </div>
             <PictureQuizInstructions />
@@ -191,6 +186,7 @@ function PictureQuizGenerator(props) {
                 watermarkText={watermarkText}
                 watermarkVertical={watermarkVertical}
                 darkMode={darkMode}
+                randomiseOrder={randomiseOrder}
             />
             <div id="pageUrl">
                 garystephens.github.io/picture-quiz-grid-generator

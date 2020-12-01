@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import MultiFileSelector from './multiFileSelector.js';
 
 function PictureQuizOverview(props) {
     return (
@@ -16,15 +17,9 @@ function PictureQuizOverview(props) {
                     a screenshot or print it out.
                 </p>
                 <br />
-                <label id="fileSelectorLabel" htmlFor="fileSelector">
-                    SELECT YOUR IMAGES...
-                </label>
-                <input
-                    type="file"
-                    id="fileSelector"
-                    name="fileSelector"
-                    onChange={props.onFilesSelected}
-                    multiple
+                <MultiFileSelector
+                    label="SELECT YOUR IMAGES..."
+                    onFilesSelected={props.onFilesSelected}
                 />
             </div>
             <div style={{ clear: 'both' }}></div>

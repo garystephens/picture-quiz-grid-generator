@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { usePrevious } from '../reactUtils.js';
-import { convertFileNameToAnswer } from '../utils.js';
+import { usePrevious } from '../utils/reactUtils.js';
+import { convertFileNameToAnswer } from '../utils/utils.js';
 
 function PictureQuizGridElement(props) {
     const [cropThisImage, setCropThisImage] = useState(props.cropImages);
@@ -10,20 +10,26 @@ function PictureQuizGridElement(props) {
         setIsGeneralCropSettingOverridden,
     ] = useState(false);
 
-    const prevCropThisImage = usePrevious(cropThisImage);
+    const prevCropThisImageValue = usePrevious(cropThisImage);
 
     useEffect(() => {
-        if (props.cropImages !== prevCropThisImage) {
-            // General crop setting has been changed, so override for this image no longer applies
+        function generalCropSettingHasBeenChanged() {
+            return props.cropImages !== prevCropThisImageValue;
+        }
+
+        if (generalCropSettingHasBeenChanged()) {
             setIsGeneralCropSettingOverridden(false);
         }
         if (!isGeneralCropSettingOverridden) {
             setCropThisImage(props.cropImages);
         }
-    });
+    }, [
+        props.cropImages,
+        prevCropThisImageValue,
+        isGeneralCropSettingOverridden,
+    ]);
 
-    function onImageClick() {
-        // Clicking an image overrides the general crop setting for that image
+    function toggleImageCropping() {
         setIsGeneralCropSettingOverridden(true);
         setCropThisImage(!cropThisImage);
     }
@@ -48,7 +54,7 @@ function PictureQuizGridElement(props) {
             <img
                 className={cropThisImage ? 'cropImage' : ''}
                 src={props.filePath}
-                onClick={onImageClick}
+                onClick={toggleImageCropping}
             ></img>
         </div>
     );

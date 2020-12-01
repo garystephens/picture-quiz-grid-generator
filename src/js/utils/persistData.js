@@ -1,9 +1,10 @@
 class PersistData {
     constructor(name) {
         this.name = name;
+        this.storage = window.localStorage;
     }
     get() {
-        return localStorage.getItem(this.name);
+        return this.storage.getItem(this.name);
     }
     getBoolean() {
         const value = this.get();
@@ -20,12 +21,12 @@ class PersistData {
         return value;
     }
     set(value) {
+        this.storage.removeItem(this.name);
         try {
-            localStorage.removeItem(this.name); // in case setItem fails
-            localStorage.setItem(this.name, value);
+            this.storage.setItem(this.name, value);
         } catch (ex) {
             console.warn(
-                `Data for '${this.name}' couldn't be persisted to localStorage (it may be simply too large)`
+                `Data for '${this.name}' couldn't be persisted to storage (it may be simply too large)`
             );
         }
     }

@@ -362,9 +362,9 @@ label#fileSelectorLabel {
 
 @media screen and (max-width: 900px) {
     #instructions {
-        display: none;
-        width: 96%;
+        width: unset;
         margin-top: 8px;
+        float: initial;
     }
     #main {
         width: 100%;
@@ -372,6 +372,9 @@ label#fileSelectorLabel {
     }
     #showInstructions {
         display: inline;
+    }
+    #instructionsText {
+        display: none;
     }
 }
 

@@ -1,102 +1,51 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import GridSizeSlider from './optionControls/gridSizeSlider.js';
 import ImageShapeSelect from './optionControls/imageShapeSelect.js';
 import NumberSelect from './optionControls/numberSelect.js';
 
 function PictureQuizOptions(props) {
-    const [gridSize, setGridSize] = useState(props.gridSize);
-    const [imagesPerRow, setImagesPerRow] = useState(props.imagesPerRow);
-    const [imageShape, setImageShape] = useState(props.imageShape);
-    const [cropImages, setCropImages] = useState(props.cropImages);
-    const [answerDisplay, setAnswerDisplay] = useState(props.answerDisplay);
-    const [watermarkText, setWatermarkText] = useState(props.watermarkText);
-    const [watermarkVertical, setWatermarkVertical] = useState(
-        props.watermarkVertical
-    );
-    const [darkMode, setDarkMode] = useState(props.darkMode);
-
-    function onChangeGridSize(gridSize) {
-        setGridSize(gridSize);
-        props.onChangeGridSize(gridSize);
-    }
-
-    function onChangeImagesPerRow(imagesPerRow) {
-        setImagesPerRow(imagesPerRow);
-        props.onChangeImagesPerRow(imagesPerRow);
-    }
-
-    function onChangeImageShape(imageShape) {
-        setImageShape(imageShape);
-        props.onChangeImageShape(imageShape);
-    }
-
-    function onChangeCropImages(cropImages) {
-        setCropImages(cropImages);
-        props.onChangeCropImages(cropImages);
-    }
-
-    function onChangeAnswerDisplay(answerDisplay) {
-        setAnswerDisplay(answerDisplay);
-        props.onChangeAnswerDisplay(answerDisplay);
-    }
-
-    function onChangeWatermarkText(watermarkText) {
-        setWatermarkText(watermarkText);
-        props.onChangeWatermarkText(watermarkText);
-    }
-
-    function onChangeWatermarkVertical(watermarkVertical) {
-        setWatermarkVertical(watermarkVertical);
-        props.onChangeWatermarkVertical(watermarkVertical);
-    }
-
-    function onChangeDarkMode(darkMode) {
-        setDarkMode(darkMode);
-        props.onChangeDarkMode(darkMode);
-    }
-
     return (
         <div id="options">
             <span></span>
             <span style={{ fontWeight: 'bold' }}>OPTIONS</span>
             <label>Grid size:</label>
             <GridSizeSlider
-                defaultValue={gridSize}
-                onChange={onChangeGridSize}
+                defaultValue={props.gridSize}
+                onChange={props.onChangeGridSize}
             />
             <label>Images per row:</label>
             <NumberSelect
                 min={props.minImagesPerRow}
                 max={props.maxImagesPerRow}
-                defaultValue={imagesPerRow}
-                onChange={onChangeImagesPerRow}
+                defaultValue={props.imagesPerRow}
+                onChange={props.onChangeImagesPerRow}
             />
             <label>Grid cell shape:</label>
             <ImageShapeSelect
-                defaultValue={imageShape}
-                onChange={onChangeImageShape}
+                defaultValue={props.imageShape}
+                onChange={props.onChangeImageShape}
             />
             <label>Crop images to fit:</label>
             <span>
                 <input
                     type="checkbox"
-                    defaultChecked={cropImages}
+                    defaultChecked={props.cropImages}
+                    style={{ marginRight: '10px' }}
                     onChange={(e) =>
-                        onChangeCropImages(e.currentTarget.checked)
+                        props.onChangeCropImages(e.currentTarget.checked)
                     }
                 />
-                <br />
                 <span className="tip">
-                    You can also click a specific image to crop/uncrop it.
+                    (You can also click a specific image to crop/uncrop it)
                 </span>
             </span>
             <label>Show:</label>
             <span>
                 <select
-                    value={answerDisplay}
+                    value={props.answerDisplay}
                     onChange={(e) =>
-                        onChangeAnswerDisplay(e.currentTarget.value)
+                        props.onChangeAnswerDisplay(e.currentTarget.value)
                     }
                 >
                     <option value="none">No answer spaces or answers</option>
@@ -112,23 +61,23 @@ function PictureQuizOptions(props) {
                     displayed as <i>Elvis Presley</i>.
                 </span>
             </span>
-            <label>Dark mode:</label>
+            <label>Load images in random order:</label>
             <span>
                 <input
                     type="checkbox"
-                    defaultChecked={darkMode}
-                    onChange={(e) => onChangeDarkMode(e.currentTarget.checked)}
+                    defaultChecked={props.randomiseOrder}
+                    onChange={(e) =>
+                        props.onChangeRandomiseOrder(e.currentTarget.checked)
+                    }
                 />
             </span>
-            <span style={{ paddingTop: '10px' }}> </span>
-            <span> </span>
             <label>Watermark text:</label>
             <span>
                 <input
                     type="text"
-                    value={watermarkText}
+                    value={props.watermarkText}
                     onChange={(e) =>
-                        onChangeWatermarkText(e.currentTarget.value)
+                        props.onChangeWatermarkText(e.currentTarget.value)
                     }
                 />
                 <br />
@@ -140,9 +89,19 @@ function PictureQuizOptions(props) {
             <span>
                 <input
                     type="checkbox"
-                    defaultChecked={watermarkVertical}
+                    defaultChecked={props.watermarkVertical}
                     onChange={(e) =>
-                        onChangeWatermarkVertical(e.currentTarget.checked)
+                        props.onChangeWatermarkVertical(e.currentTarget.checked)
+                    }
+                />
+            </span>
+            <label>Dark mode:</label>
+            <span>
+                <input
+                    type="checkbox"
+                    defaultChecked={props.darkMode}
+                    onChange={(e) =>
+                        props.onChangeDarkMode(e.currentTarget.checked)
                     }
                 />
             </span>
@@ -161,6 +120,7 @@ PictureQuizOptions.propTypes = {
     watermarkText: PropTypes.string.isRequired,
     watermarkVertical: PropTypes.bool.isRequired,
     darkMode: PropTypes.bool.isRequired,
+    randomiseOrder: PropTypes.bool.isRequired,
     onChangeGridSize: PropTypes.func.isRequired,
     onChangeImagesPerRow: PropTypes.func.isRequired,
     onChangeImageShape: PropTypes.func.isRequired,
@@ -169,6 +129,7 @@ PictureQuizOptions.propTypes = {
     onChangeWatermarkText: PropTypes.func.isRequired,
     onChangeWatermarkVertical: PropTypes.func.isRequired,
     onChangeDarkMode: PropTypes.func.isRequired,
+    onChangeRandomiseOrder: PropTypes.func.isRequired,
 };
 
 export default PictureQuizOptions;

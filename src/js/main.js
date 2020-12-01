@@ -1,11 +1,9 @@
-/* global $ */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PictureQuizGenerator from './components/pictureQuizGenerator.js';
-
 import 'normalize.css';
-import './styles/styles.scss';
+
+import PictureQuizGenerator from './ui/pictureQuizGenerator.js';
+import '../styles/styles.scss';
 
 function injectPictureQuizGenerator() {
     ReactDOM.render(
