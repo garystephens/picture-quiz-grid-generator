@@ -45,39 +45,6 @@ async function readFilelist(filelist) {
         fileDetailsArray.push(await readAsDataURLPromise(file));
     }
     return fileDetailsArray;
-    // for (let i = 0; i < files.length; i++) {
-    //     output.push(await readAsDataURL(files[i]));
-    // }
-
-    // Promise.all(Array.prototype.map.call(files, readAsDataURL))
-    //     .then((fileList) => {
-    //         onComplete(fileList);
-    //         // ...use `urls` (an array) here...
-    //     })
-    //     .catch((error) => {
-    //         // ...handle/report error...
-    //     });
-
-    // const fileList = [];
-    // function readFile(index) {
-    //     const file = files[index];
-    //     const reader = new window.FileReader();
-    //     reader.onload = function (e) {
-    //         const filePath = e.target.result;
-    //         const fileName = files[index].name;
-    //         fileList.push({
-    //             fileName: fileName,
-    //             filePath: filePath,
-    //         });
-    //         if (index < files.length - 1) {
-    //             readFile(index + 1);
-    //         } else {
-    //             onComplete(fileList);
-    //         }
-    //     };
-    //     reader.readAsDataURL(file);
-    // }
-    // readFile(0);
 }
 
 function shuffleArray(array) {
