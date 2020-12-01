@@ -16,7 +16,5 @@ function showBody() {
     $('body').show();
 }
 
-$(window).on('load', function () {
-    showBody();
-    injectPictureQuizGenerator();
-});
+showBody();
+injectPictureQuizGenerator();
