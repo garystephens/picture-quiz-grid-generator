@@ -48,7 +48,8 @@ function PictureQuizInstructions() {
                         <li>
                             Press the button to select your image files. The
                             images will be ordered in the grid in whatever order
-                            they are in when you select them.
+                            they are in when you select them (unless you select
+                            &apos;Load images in random order&apos;)
                         </li>
                         <li>Adjust the various options to your taste.</li>
                         <li>
@@ -76,6 +77,12 @@ function PictureQuizInstructions() {
                     Please send bug reports, feature suggestions, spare change,
                     etc. to: gary.p.stephens [AT] gmail DOT com
                     <br />
+                    <br />
+                    <em>
+                        <a href="../">
+                            Other apps for quizmasters &amp; quiz setters
+                        </a>
+                    </em>
                 </div>
             </div>
         </div>

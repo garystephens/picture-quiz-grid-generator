@@ -11,7 +11,7 @@ Show numbers / letters / none (for Only Connect style rounds)
 Replace #grid > div with a class for the div
 Add PRINT button for Chrome only?
 Watermark is in wrong position when printing in Firefox
-Bookmark h/v replace with dropdown?
+Watermark h/v replace with dropdown?
 Add links to sample quizzes?
 Reload images button possible?
 
