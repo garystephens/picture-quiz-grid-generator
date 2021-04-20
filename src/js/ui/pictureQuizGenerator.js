@@ -23,6 +23,7 @@ function PictureQuizGenerator() {
     const persistDarkMode = new PersistData('darkMode');
     const persistRandomiseOrder = new PersistData('randomiseOrder');
     const persistFiles = new PersistData('files');
+    const persistHeaderText = new PersistData('headerText');
 
     function getPersistedFiles() {
         const persistedFiles = persistFiles.get();
@@ -78,6 +79,9 @@ function PictureQuizGenerator() {
         persistRandomiseOrder.getBoolean() !== null
             ? persistRandomiseOrder.getBoolean()
             : config.DEFAULT_OPTIONS.randomiseOrder
+    );
+    const [headerText, setHeaderText] = useState(
+        persistHeaderText.get() || config.DEFAULT_OPTIONS.headerText
     );
 
     async function readNewSetOfFiles(filelist) {
@@ -147,6 +151,11 @@ function PictureQuizGenerator() {
         persistRandomiseOrder.set(randomiseOrder);
     }
 
+    function onChangeHeaderText(headerText) {
+        setHeaderText(headerText);
+        persistHeaderText.set(headerText);
+    }
+
     return (
         <div>
             <div id="main">
@@ -163,6 +172,7 @@ function PictureQuizGenerator() {
                     watermarkVertical={watermarkVertical}
                     darkMode={darkMode}
                     randomiseOrder={randomiseOrder}
+                    headerText={headerText}
                     onChangeGridSize={onChangeGridSize}
                     onChangeImagesPerRow={onChangeImagesPerRow}
                     onChangeImageShape={onChangeImageShape}
@@ -172,6 +182,7 @@ function PictureQuizGenerator() {
                     onChangeWatermarkVertical={onChangeWatermarkVertical}
                     onChangeDarkMode={onChangeDarkMode}
                     onChangeRandomiseOrder={onChangeRandomiseOrder}
+                    onChangeHeaderText={onChangeHeaderText}
                 />
             </div>
             <PictureQuizInstructions />
@@ -187,6 +198,7 @@ function PictureQuizGenerator() {
                 watermarkVertical={watermarkVertical}
                 darkMode={darkMode}
                 randomiseOrder={randomiseOrder}
+                headerText={headerText}
             />
             <div id="pageUrl">
                 garystephens.github.io/picture-quiz-grid-generator

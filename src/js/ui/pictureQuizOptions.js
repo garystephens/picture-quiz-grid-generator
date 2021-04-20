@@ -105,6 +105,17 @@ function PictureQuizOptions(props) {
                     }
                 />
             </span>
+            <label>Header text:</label>
+            <span>
+                <input
+                    type="text"
+                    value={props.headerText}
+                    style={{ width: '90%' }}
+                    onChange={(e) =>
+                        props.onChangeHeaderText(e.currentTarget.value)
+                    }
+                />
+            </span>
         </div>
     );
 }
@@ -121,6 +132,7 @@ PictureQuizOptions.propTypes = {
     watermarkVertical: PropTypes.bool.isRequired,
     darkMode: PropTypes.bool.isRequired,
     randomiseOrder: PropTypes.bool.isRequired,
+    headerText: PropTypes.string.isRequired,
     onChangeGridSize: PropTypes.func.isRequired,
     onChangeImagesPerRow: PropTypes.func.isRequired,
     onChangeImageShape: PropTypes.func.isRequired,
@@ -130,6 +142,7 @@ PictureQuizOptions.propTypes = {
     onChangeWatermarkVertical: PropTypes.func.isRequired,
     onChangeDarkMode: PropTypes.func.isRequired,
     onChangeRandomiseOrder: PropTypes.func.isRequired,
+    onChangeHeaderText: PropTypes.func.isRequired,
 };
 
 export default PictureQuizOptions;

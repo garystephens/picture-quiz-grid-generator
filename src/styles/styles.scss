@@ -47,7 +47,17 @@ label {
 #pictureQuizGrid {
     position: relative;
     width: 100%;
-    // display: none;
+
+    #header {
+        margin: auto;
+        background-color: #000000;
+        color: #ffffff;
+        text-align: center;
+        font-weight: bold;
+        padding-top: 8px;
+        padding-bottom: 14px;
+        outline: 1px solid black;
+    }
 
     #watermark {
         position: absolute;
@@ -83,7 +93,6 @@ label {
             display: inline-block;
             position: relative;
             outline: 1px solid black;
-            margin-right: -1px;
             margin-bottom: -3px;
             background-color: #d5e0df;
 
@@ -314,6 +323,12 @@ label#fileSelectorLabel {
         #pictureQuizGrid #grid > div {
             outline: 1px solid white;
             background-color: #222222;
+        }
+
+        #pictureQuizGrid #header {
+            background-color: #ffffff;
+            color: #000000;
+            outline-color: #ffffff;
         }
 
         h2 {

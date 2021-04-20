@@ -6,6 +6,18 @@ import DraggableWatermark from './draggableWatermark.js';
 function PictureQuizGrid(props) {
     return (
         <div id="pictureQuizGrid">
+            {props.headerText && (
+                <div
+                    id="header"
+                    style={{
+                        width: props.gridSize + '%',
+                        fontSize: 30 * (props.gridSize / 100) + 'px',
+                        lineHeight: 30 * (props.gridSize / 100) + 'px',
+                    }}
+                >
+                    {props.headerText}
+                </div>
+            )}
             <DraggableWatermark
                 watermarkText={props.watermarkText}
                 watermarkVertical={props.watermarkVertical}
@@ -42,6 +54,7 @@ PictureQuizGrid.propTypes = {
     watermarkText: PropTypes.string.isRequired,
     watermarkVertical: PropTypes.bool.isRequired,
     darkMode: PropTypes.bool.isRequired,
+    headerText: PropTypes.string.isRequired,
 };
 
 export default PictureQuizGrid;

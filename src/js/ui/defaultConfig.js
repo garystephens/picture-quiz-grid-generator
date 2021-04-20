@@ -9,6 +9,7 @@ const config = {
         watermarkVertical: false,
         darkMode: false,
         randomiseOrder: false,
+        headerText: '',
     },
     DEFAULT_NUM_ROWS_PLACEHOLDER_IMAGES: 3,
     MIN_IMAGES_PER_ROW: 1,
