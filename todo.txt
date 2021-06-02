@@ -18,7 +18,6 @@ Reload images button possible?
 MEDIUM
 Reduce text size when reduce grid size, or window width. Or add control to adjust text sizes of numbers/answers
 Option to have space between images, like https://i.dailymail.co.uk/i/pix/2013/08/13/article-2391154-1B47B58D000005DC-911_964x819.jpg
-Add button to make screenshot
 Review ESLint config
 On narrow screen, collapse Options and Instructions to just headings, with a show/hide option to expand/collapse
 Optional gap between cells?
