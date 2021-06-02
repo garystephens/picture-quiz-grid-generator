@@ -13,14 +13,18 @@ function PictureQuizOverview(props) {
                     Easily create a picture quiz, displayed in a numbered grid.
                 </p>
                 <p>
-                    Just select the images to display in the grid, and then grab
-                    a screenshot or print it out.
+                    Just select the images to display in the grid, and then save
+                    to a file or print it out.
                 </p>
                 <br />
                 <MultiFileSelector
                     label="SELECT YOUR IMAGES..."
                     onFilesSelected={props.onFilesSelected}
                 />
+                <br />
+                <button onClick={props.saveGridImageToFile}>
+                    SAVE QUIZ IMAGE TO FILE
+                </button>
             </div>
             <div style={{ clear: 'both' }}></div>
         </div>
@@ -29,6 +33,7 @@ function PictureQuizOverview(props) {
 
 PictureQuizOverview.propTypes = {
     onFilesSelected: PropTypes.func.isRequired,
+    saveGridImageToFile: PropTypes.func.isRequired,
 };
 
 export default PictureQuizOverview;

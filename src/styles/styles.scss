@@ -34,6 +34,7 @@ h2 {
     font-weight: bold;
 }
 
+button,
 label {
     font-weight: bold;
 }
@@ -143,8 +144,8 @@ label {
 
 #pageUrl {
     text-align: center;
-    padding-top: 6px;
-    padding-bottom: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 .imageNumber,
@@ -274,6 +275,7 @@ label {
     display: block;
 }
 
+button,
 label#fileSelectorLabel {
     cursor: pointer;
     text-align: left;
@@ -298,14 +300,17 @@ label#fileSelectorLabel {
     margin-left: 10px;
 }
 
+#gridAreaToSaveToDisk {
+    background-color: #ffffff;
+}
+
 @media screen {
     body.darkMode {
         background-color: black;
         color: white;
 
         input,
-        select,
-        button {
+        select {
             background-color: #333333;
             color: white;
         }
@@ -350,6 +355,10 @@ label#fileSelectorLabel {
 
         a {
             color: #09968f;
+        }
+
+        #gridAreaToSaveToDisk {
+            background-color: #000000;
         }
     }
 }

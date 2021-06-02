@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import domtoimage from 'dom-to-image';
 
 import PictureQuizGrid from './pictureQuizGrid.js';
 import PictureQuizOptions from './pictureQuizOptions.js';
@@ -156,10 +157,27 @@ function PictureQuizGenerator() {
         persistHeaderText.set(headerText);
     }
 
+    function saveGridImageToFile() {
+        domtoimage
+            .toPng(document.getElementById('gridAreaToSaveToDisk'))
+            .then(function (dataUrl) {
+                const downloadLink = document.createElement('a');
+                downloadLink.href = dataUrl;
+                downloadLink.download = 'picture-quiz.png';
+                downloadLink.click();
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+    }
+
     return (
         <div>
             <div id="main">
-                <PictureQuizOverview onFilesSelected={onFilesSelected} />
+                <PictureQuizOverview
+                    onFilesSelected={onFilesSelected}
+                    saveGridImageToFile={saveGridImageToFile}
+                />
                 <PictureQuizOptions
                     gridSize={gridSize}
                     imagesPerRow={imagesPerRow}
@@ -187,21 +205,23 @@ function PictureQuizGenerator() {
             </div>
             <PictureQuizInstructions />
             <div style={{ clear: 'both', height: '12px' }}></div>
-            <PictureQuizGrid
-                files={files}
-                gridSize={gridSize}
-                imagesPerRow={imagesPerRow}
-                imageShape={imageShape}
-                cropImages={cropImages}
-                answerDisplay={answerDisplay}
-                watermarkText={watermarkText}
-                watermarkVertical={watermarkVertical}
-                darkMode={darkMode}
-                randomiseOrder={randomiseOrder}
-                headerText={headerText}
-            />
-            <div id="pageUrl">
-                garystephens.github.io/picture-quiz-grid-generator
+            <div id="gridAreaToSaveToDisk">
+                <PictureQuizGrid
+                    files={files}
+                    gridSize={gridSize}
+                    imagesPerRow={imagesPerRow}
+                    imageShape={imageShape}
+                    cropImages={cropImages}
+                    answerDisplay={answerDisplay}
+                    watermarkText={watermarkText}
+                    watermarkVertical={watermarkVertical}
+                    darkMode={darkMode}
+                    randomiseOrder={randomiseOrder}
+                    headerText={headerText}
+                />
+                <div id="pageUrl">
+                    garystephens.github.io/picture-quiz-grid-generator
+                </div>
             </div>
         </div>
     );

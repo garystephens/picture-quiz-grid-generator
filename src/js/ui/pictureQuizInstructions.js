@@ -65,13 +65,17 @@ function PictureQuizInstructions() {
                         </li>
                         <li>
                             <span>
-                                Take a screenshot of the grid <b>OR</b> print to
-                                paper or a PDF
+                                Save the grid image to a file (using the button
+                                - image quality is best in Chrome or Edge),
+                                <br />
+                                <b>OR</b> take a screenshot of the grid,
+                                <br />
+                                <b>OR</b> print to paper or a PDF
                             </span>
                         </li>
                         <li>
                             If you wish, select to show &apos;Answers&apos; and
-                            screenshot or print a version with the answers.
+                            save or print a version with the answers.
                         </li>
                     </ol>
                     Please send bug reports, feature suggestions, spare change,
