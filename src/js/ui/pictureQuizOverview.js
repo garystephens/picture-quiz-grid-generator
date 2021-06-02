@@ -23,7 +23,7 @@ function PictureQuizOverview(props) {
                 />
                 <br />
                 <button onClick={props.saveGridImageToFile}>
-                    SAVE QUIZ IMAGE TO FILE
+                    SAVE QUIZ GRID IMAGE TO FILE
                 </button>
             </div>
             <div style={{ clear: 'both' }}></div>
