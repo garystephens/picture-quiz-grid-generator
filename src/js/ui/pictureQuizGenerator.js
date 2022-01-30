@@ -163,7 +163,18 @@ function PictureQuizGenerator() {
             .then(function (dataUrl) {
                 const downloadLink = document.createElement('a');
                 downloadLink.href = dataUrl;
-                downloadLink.download = 'picture-quiz.png';
+                switch (answerDisplay) {
+                    case 'answer':
+                        downloadLink.download = 'picture-quiz-with-answers.png';
+                        break;
+                    case 'blankSpace':
+                        downloadLink.download =
+                            'picture-quiz-with-spaces-for-answers.png';
+                        break;
+                    default:
+                        downloadLink.download = 'picture-quiz.png';
+                        break;
+                }
                 downloadLink.click();
             })
             .catch(function (error) {
