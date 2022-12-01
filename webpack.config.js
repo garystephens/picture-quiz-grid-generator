@@ -6,11 +6,11 @@ module.exports = {
     entry: './src/js/main.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[contenthash].js',
+        filename: '[name].[hash].js',
     },
     devtool: 'source-map',
     devServer: {
-        contentBase: './dist',
+        static: './dist',
     },
     plugins: [
         new HtmlWebpackPlugin({
