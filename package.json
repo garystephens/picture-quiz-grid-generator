@@ -4,7 +4,7 @@
     "description": "Generate picture quiz numbered grids simply by uploading images.",
     "main": "main.js",
     "scripts": {
-        "build": "webpack --mode production",
+        "build": "rmdir /s /q dist && webpack --mode production",
         "start": "webpack-dev-server --mode development --open",
         "predeploy": "npm run build",
         "deploy": "gh-pages -d dist",
