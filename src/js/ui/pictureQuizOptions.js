@@ -58,7 +58,7 @@ function PictureQuizOptions(props) {
                 <span className="tip">
                     Answers are file names without their extensions.{' '}
                     <i>Elvis Presley.jpg</i> would be displayed as{' '}
-                    <i>Elvis Presley</i>.
+                    <i>Elvis Presley</i>
                 </span>
             </span>
             <label>Load images in random order:</label>
