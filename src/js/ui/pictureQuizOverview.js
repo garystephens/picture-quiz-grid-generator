@@ -18,9 +18,19 @@ function PictureQuizOverview(props) {
                 </p>
                 <br />
                 <MultiFileSelector
-                    label="SELECT YOUR IMAGES..."
+                    label="SELECT YOUR SET OF IMAGES..."
                     onFilesSelected={props.onFilesSelected}
                 />
+                <div
+                    style={{
+                        fontWeight: 'normal',
+                        fontSize: '11px',
+                        marginTop: '8px',
+                    }}
+                >
+                    (you must select the full set of images, we don&apos;t yet
+                    support adding images one by one)
+                </div>
                 <br />
                 <button onClick={props.saveGridImageToFile}>
                     SAVE QUIZ GRID IMAGE TO FILE
