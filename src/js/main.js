@@ -1,15 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+
 import 'normalize.css';
 
 import PictureQuizGenerator from './ui/pictureQuizGenerator.js';
 import '../styles/styles.scss';
 
 function injectPictureQuizGenerator() {
-    ReactDOM.render(
-        React.createElement(PictureQuizGenerator, {}),
-        document.getElementById('content')
-    );
+    const container = document.getElementById('content');
+    const root = createRoot(container);
+    root.render(React.createElement(PictureQuizGenerator, {}));
 }
 
 function showBody() {
