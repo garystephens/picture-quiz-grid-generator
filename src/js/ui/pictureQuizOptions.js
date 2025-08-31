@@ -36,7 +36,7 @@ function PictureQuizOptions(props) {
                         props.onChangeCropImages(e.currentTarget.checked)
                     }
                 />
-                <span className="tip">
+                <span className="tip" style={{ display: 'none' }}>
                     (You can also click a specific image to crop/uncrop it)
                 </span>
             </span>
@@ -61,7 +61,7 @@ function PictureQuizOptions(props) {
                     <i>Elvis Presley</i>
                 </span>
             </span>
-            <label>Load images in random order:</label>
+            <label>Add images to grid in random order:</label>
             <span>
                 <input
                     type="checkbox"

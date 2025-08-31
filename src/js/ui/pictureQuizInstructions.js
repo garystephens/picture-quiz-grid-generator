@@ -68,7 +68,8 @@ function PictureQuizInstructions() {
                                 Save the grid image to a file (using the button
                                 - image quality is best in Chrome or Edge),
                                 <br />
-                                <b>OR</b> take a screenshot of the grid,
+                                <b>OR</b> copy the grid image to the clipboard
+                                so you can paste it into another application,
                                 <br />
                                 <b>OR</b> print to paper or a PDF
                             </span>

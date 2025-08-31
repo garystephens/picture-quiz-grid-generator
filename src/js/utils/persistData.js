@@ -30,6 +30,9 @@ class PersistData {
             );
         }
     }
+    clear() {
+        this.storage.removeItem(this.name);
+    }
 }
 
 export default PersistData;

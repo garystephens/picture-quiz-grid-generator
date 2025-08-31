@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function MultiFileSelector(props) {
     return (
-        <div>
+        <div title={props.title || ''}>
             <label id="fileSelectorLabel" htmlFor="fileSelector">
                 {props.label}
             </label>
@@ -27,6 +27,7 @@ function MultiFileSelector(props) {
 MultiFileSelector.propTypes = {
     label: PropTypes.string.isRequired,
     onFilesSelected: PropTypes.func.isRequired,
+    title: PropTypes.string,
 };
 
 export default MultiFileSelector;

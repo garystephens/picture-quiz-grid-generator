@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PictureQuizGridElement from './pictureQuizGridElement.js';
+import PictureQuizGridCell from './pictureQuizGridCell.js';
 import DraggableWatermark from './draggableWatermark.js';
 
 function PictureQuizGrid(props) {
@@ -28,7 +28,7 @@ function PictureQuizGrid(props) {
                 className={props.imageShape}
             >
                 {props.files.map((file, index) => (
-                    <PictureQuizGridElement
+                    <PictureQuizGridCell
                         key={index + 1}
                         fileName={file.fileName}
                         filePath={file.filePath}
@@ -37,7 +37,9 @@ function PictureQuizGrid(props) {
                         cropImages={props.cropImages}
                         answerDisplay={props.answerDisplay}
                         reduceFontSize={props.imagesPerRow > 6}
-                    ></PictureQuizGridElement>
+                        allowDelete={file.isPlaceHolder !== true}
+                        onDeleteImage={() => props.onDeleteImage(index)}
+                    ></PictureQuizGridCell>
                 ))}
             </div>
         </div>
@@ -55,6 +57,7 @@ PictureQuizGrid.propTypes = {
     watermarkVertical: PropTypes.bool.isRequired,
     darkMode: PropTypes.bool.isRequired,
     headerText: PropTypes.string.isRequired,
+    onDeleteImage: PropTypes.func.isRequired,
 };
 
 export default PictureQuizGrid;

@@ -16,25 +16,61 @@ function PictureQuizOverview(props) {
                     Just select the images to display in the grid, and then save
                     to a file or print it out.
                 </p>
+                <p>
+                    <span style={{ color: 'red' }}>NEW!</span> Add images to
+                    grid in multiple batches
+                    <br />
+                    <span style={{ color: 'red' }}>NEW!</span> Remove individual
+                    images
+                    <br />
+                    <span style={{ color: 'red' }}>NEW!</span> Shuffle images in
+                    random order
+                    <br />
+                    <span style={{ color: 'red' }}>NEW!</span> Copy image grid
+                    to clipboard
+                </p>
                 <br />
                 <MultiFileSelector
-                    label="SELECT YOUR SET OF IMAGES..."
+                    label="➕ ADD IMAGE(S) TO GRID..."
                     onFilesSelected={props.onFilesSelected}
+                    title="Select one or more image files to add to the grid"
                 />
-                <div
-                    style={{
-                        fontWeight: 'normal',
-                        fontSize: '11px',
-                        marginTop: '8px',
-                    }}
-                >
-                    (you must select the full set of images, we don&apos;t yet
-                    support adding images one by one)
-                </div>
                 <br />
-                <button onClick={props.saveGridImageToFile}>
-                    SAVE QUIZ GRID IMAGE TO FILE
+                <button
+                    onClick={props.onSaveGridImageToFile}
+                    title="Save the image of the grid to a file on your device"
+                >
+                    📁 SAVE GRID TO FILE
+                </button>{' '}
+                <div style={{ display: 'inline-block' }}>
+                    &nbsp;&nbsp;or&nbsp;&nbsp;
+                </div>
+                <button
+                    onClick={props.onCopyGridImageToClipboard}
+                    title="Copy the image of the grid to the clipboard so you can paste it into another app or website"
+                >
+                    📋 COPY GRID TO CLIPBOARD
                 </button>
+                <br />
+                <br />
+                <button
+                    className="btnSecondary"
+                    disabled={!props.enableClearGrid}
+                    onClick={props.onClearGrid}
+                    title="Remove all images from the grid"
+                >
+                    ✖️ CLEAR GRID
+                </button>
+                &nbsp;
+                <button
+                    className="btnSecondary"
+                    disabled={!props.enableShuffle}
+                    onClick={props.onRandomiseGridOrder}
+                    title="Randomise the order of images in the grid"
+                >
+                    🔀 SHUFFLE IMAGES
+                </button>
+                <br />
             </div>
             <div style={{ clear: 'both' }}></div>
         </div>
@@ -42,8 +78,13 @@ function PictureQuizOverview(props) {
 }
 
 PictureQuizOverview.propTypes = {
+    enableClearGrid: PropTypes.bool.isRequired,
+    enableShuffle: PropTypes.bool.isRequired,
     onFilesSelected: PropTypes.func.isRequired,
-    saveGridImageToFile: PropTypes.func.isRequired,
+    onSaveGridImageToFile: PropTypes.func.isRequired,
+    onCopyGridImageToClipboard: PropTypes.func.isRequired,
+    onClearGrid: PropTypes.func.isRequired,
+    onRandomiseGridOrder: PropTypes.func.isRequired,
 };
 
 export default PictureQuizOverview;

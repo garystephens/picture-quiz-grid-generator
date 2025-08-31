@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import domtoimage from 'dom-to-image';
+import toast, { Toaster } from 'react-hot-toast';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 import PictureQuizGrid from './pictureQuizGrid.js';
 import PictureQuizOptions from './pictureQuizOptions.js';
@@ -12,6 +15,7 @@ import {
     logLoadImagesToGoogleAnalytics,
 } from '../utils/utils.js';
 import PersistData from '../utils/persistData.js';
+import CustomConfirm from './confirmClearGrid.js';
 
 function PictureQuizGenerator() {
     const persistGridSize = new PersistData('gridSize');
@@ -31,7 +35,12 @@ function PictureQuizGenerator() {
         if (persistedFiles === null) {
             return undefined;
         }
-        return JSON.parse(persistedFiles);
+        try {
+            return JSON.parse(persistedFiles);
+        } catch (ex) {
+            // Persisted list of files must be corrupted - so wipe it
+            persistFiles.clear();
+        }
     }
 
     function makeDefaultFilesArray(imagesPerRow) {
@@ -40,7 +49,12 @@ function PictureQuizGenerator() {
         ).fill({
             filePath: 'images/answer goes here.png',
             fileName: 'answer goes here.png',
+            isPlaceHolder: true,
         });
+    }
+
+    function weAreShowingPlaceholderImages() {
+        return files && files[0] && files[0].isPlaceHolder;
     }
 
     const [imagesPerRow, setImagesPerRow] = useState(
@@ -90,13 +104,41 @@ function PictureQuizGenerator() {
             filelist = shuffleArray(Array.from(filelist));
         }
         const fileDetails = await readFilelist(filelist);
-        setFiles(fileDetails);
-        persistFiles.set(JSON.stringify(fileDetails));
+        const filesToAddTo = weAreShowingPlaceholderImages() ? [] : files;
+        const newFileList = filesToAddTo.concat(fileDetails);
+        setFiles(newFileList);
+        persistFiles.set(JSON.stringify(newFileList));
     }
 
     function onFilesSelected(filelist) {
         readNewSetOfFiles(filelist);
         logLoadImagesToGoogleAnalytics(filelist.length);
+    }
+
+    function doClearingOfGrid() {
+        const defaultFileArray = makeDefaultFilesArray(imagesPerRow);
+        setFiles(defaultFileArray);
+        persistFiles.set(JSON.stringify(defaultFileArray));
+    }
+
+    async function clearGrid() {
+        confirmAlert({
+            customUI: ({ onClose }) => (
+                <CustomConfirm
+                    onClose={onClose}
+                    onConfirm={() => {
+                        doClearingOfGrid();
+                        onClose();
+                    }}
+                />
+            ),
+        });
+    }
+
+    function randomiseGridOrder() {
+        const filesInNewOrder = shuffleArray(files);
+        setFiles(filesInNewOrder);
+        persistFiles.set(JSON.stringify(filesInNewOrder));
     }
 
     useEffect(() => {
@@ -157,9 +199,15 @@ function PictureQuizGenerator() {
         persistHeaderText.set(headerText);
     }
 
+    function excludeMarkedElements(node) {
+        return !node.classList?.contains('exclude-from-output-image');
+    }
+
     function saveGridImageToFile() {
         domtoimage
-            .toPng(document.getElementById('gridAreaToSaveToDisk'))
+            .toPng(document.getElementById('gridAreaToSaveToDisk'), {
+                filter: excludeMarkedElements,
+            })
             .then(function (dataUrl) {
                 const downloadLink = document.createElement('a');
                 downloadLink.href = dataUrl;
@@ -176,18 +224,55 @@ function PictureQuizGenerator() {
                         break;
                 }
                 downloadLink.click();
+                toast(
+                    `✅ Image saved to file '${downloadLink.download}'.\n\nIt should be in your Downloads folder.`
+                );
             })
             .catch(function (error) {
                 console.error('oops, something went wrong!', error);
             });
     }
 
+    async function copyGridImageToClipboard() {
+        try {
+            const blob = await domtoimage.toBlob(
+                document.getElementById('gridAreaToSaveToDisk'),
+                {
+                    filter: excludeMarkedElements,
+                }
+            );
+            const item = new ClipboardItem({ 'image/png': blob });
+            await navigator.clipboard.write([item]);
+            toast(
+                '✅ Image copied to clipboard 📋.\n\nYou can now paste it into another app or website.'
+            );
+        } catch (err) {
+            console.error('Failed to copy image: ', err);
+        }
+    }
+
+    function deleteImage(index) {
+        const newFileList = [
+            ...files.slice(0, index),
+            ...files.slice(index + 1),
+        ];
+        setFiles(newFileList);
+        persistFiles.set(JSON.stringify(newFileList));
+    }
+
     return (
         <div>
             <div id="main">
                 <PictureQuizOverview
+                    enableClearGrid={!weAreShowingPlaceholderImages()}
+                    enableShuffle={
+                        !weAreShowingPlaceholderImages() && files.length > 1
+                    }
                     onFilesSelected={onFilesSelected}
-                    saveGridImageToFile={saveGridImageToFile}
+                    onSaveGridImageToFile={saveGridImageToFile}
+                    onCopyGridImageToClipboard={copyGridImageToClipboard}
+                    onClearGrid={clearGrid}
+                    onRandomiseGridOrder={randomiseGridOrder}
                 />
                 <PictureQuizOptions
                     gridSize={gridSize}
@@ -229,11 +314,13 @@ function PictureQuizGenerator() {
                     darkMode={darkMode}
                     randomiseOrder={randomiseOrder}
                     headerText={headerText}
+                    onDeleteImage={deleteImage}
                 />
                 <div id="pageUrl">
                     garystephens.github.io/picture-quiz-grid-generator
                 </div>
             </div>
+            <Toaster />
         </div>
     );
 }

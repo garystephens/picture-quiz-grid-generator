@@ -65,7 +65,7 @@ label {
 
         top: 50px;
         left: 50px;
-        z-index: 100;
+        z-index: 50;
         cursor: move;
 
         &:empty {
@@ -149,6 +149,7 @@ label {
 }
 
 .imageNumber,
+.deleteImage,
 .spaceForAnswer,
 .answer {
     position: absolute;
@@ -156,14 +157,14 @@ label {
     font-weight: bold;
 }
 
-.imageNumber {
-    top: 3px;
-    left: 3px;
+.imageNumber,
+.deleteImage {
+    top: 5px;
     display: inline-block;
     padding: 2px 5px 4px 5px;
     font-size: 20px;
     line-height: 100%;
-    z-index: 100;
+    z-index: 50;
     border: 1px solid black;
     border-radius: 4px;
 
@@ -172,10 +173,23 @@ label {
     }
 }
 
+.imageNumber {
+    left: 5px;
+}
+
+.deleteImage {
+    right: 5px;
+    cursor: pointer;
+    background-color: #09968f;
+    color: white;
+    opacity: 0.5;
+    font-size: 12px;
+}
+
 .spaceForAnswer,
 .answer {
     font-size: 15px;
-    z-index: 200;
+    z-index: 50;
     line-height: 16px;
 }
 
@@ -281,13 +295,25 @@ label#fileSelectorLabel {
     text-align: left;
     border: 1px solid black;
     width: min-content;
-    background-color: #ffffff;
     padding: 6px 8px;
     white-space: nowrap;
     font-size: 13px;
     border-radius: 2px;
     background-color: #09968f;
     color: white;
+}
+
+button.btnSecondary {
+    background-color: #cee9e7;
+    color: #333333;
+    font-size: 11px;
+}
+
+button:disabled {
+    background-color: #dddddd;
+    color: #888888;
+    cursor: not-allowed;
+    border: 1px solid #999999;
 }
 
 #showInstructions {
@@ -316,11 +342,13 @@ label#fileSelectorLabel {
         }
 
         .imageNumber,
+        .deleteImage,
         .answer {
             background-color: black;
         }
 
-        .imageNumber {
+        .imageNumber,
+        .deleteImage {
             background-color: black;
             border: 1px solid white;
         }
@@ -383,7 +411,8 @@ label#fileSelectorLabel {
 
 @media screen and (max-width: 600px) {
     .answer,
-    .imageNumber {
+    .imageNumber,
+    .deleteImage {
         font-size: 9px;
     }
 }
@@ -409,7 +438,8 @@ label#fileSelectorLabel {
 @media print {
     h2,
     #main,
-    #instructionsBlock {
+    #instructionsBlock,
+    .deleteImage {
         display: none;
     }
 }
@@ -442,3 +472,27 @@ label#fileSelectorLabel {
         }
     }
 }
+
+.react-confirm-alert-overlay {
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.2
+    ) !important; /* lighter/more transparent */
+}
+
+.react-confirm-alert-button-group button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #09968f; /* Example: green background */
+    color: white;
+    border-radius: 4px;
+    padding: 8px 16px;
+    border: none;
+    margin: 0 8px;
+    cursor: pointer;
+}
+
+// .react-confirm-alert-button-group button:hover {
+//     background-color: #45a049; /* Darker green on hover */
+// }
